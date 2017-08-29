@@ -1,0 +1,3 @@
+<IfModule mod_rewrite.c>
+    FallbackResource /web/index.php
+</IfModule>
