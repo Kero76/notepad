@@ -3,7 +3,10 @@
   "description": "Notepad is an online notepad used to stored important information and get it from another computers.",
   "license": "GPL-3.0",
   "type": "project",
-  "keywords": ["Notepad", "Nicolas GILLE"],
+  "keywords": [
+    "Notepad",
+    "Nicolas GILLE"
+  ],
   "authors": [
     {
       "name": "Nicolas GILLE",
@@ -22,18 +25,17 @@
     "symfony/twig-bridge": "^3.3",
     "twig/twig": "^2.4.3",
     "twig/extensions": "^1.5",
-    "doctrine/dbal": "^2.5"
+    "dflydev/doctrine-orm-service-provider": "^2.0",
+    "symfony/yaml": "^3.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^6.2"
   },
-
   "autoload": {
     "psr-4": {
       "Notepad\\": "src/"
     }
   },
-
   "autoload-dev": {
     "psr-4": {
       "NotepadTest\\": "tests/"
