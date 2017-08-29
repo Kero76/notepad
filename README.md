@@ -1,5 +1,5 @@
 # Notepad
-Notepad is an online notepad used to remember things when I used differents computers.
+Notepad is an online notepad used to stored important information and get it from another computers.
 
 # License
 This project is under GPLv3 license.
