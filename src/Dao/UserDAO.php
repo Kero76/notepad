@@ -77,7 +77,7 @@
          * @version 1.0
          */
         public function find(int $id) {
-            $sql = "SELECT * FROM mc_users WHERE usr_id = ?";
+            $sql = "SELECT * FROM np_users WHERE usr_id = ?";
             $row =
                 $this->getDb()
                      ->fetchAssoc($sql, array($id));
@@ -92,7 +92,7 @@
          * @inheritdoc
          */
         public function loadUserByUsername($username) {
-            $sql = "SELECT * FROM mc_users WHERE usr_name = ?";
+            $sql = "SELECT * FROM np_users WHERE usr_name = ?";
             $row =
                 $this->getDb()
                      ->fetchAssoc($sql, array($username));
