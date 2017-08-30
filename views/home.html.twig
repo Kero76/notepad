@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block keywords %}{% endblock %}
+
+{% block meta_tags %}{% endblock %}
+
+{% block stylesheet_block %}{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>{% trans %}home{% endtrans %}</h1>
+    {% for ticket in tickets %}
+        <article>
+            <h2>{{ ticket.title }}</h2>
+            <p>{{ ticket.contet }}</p>
+        </article>
+    {% else %}
+        <p>No ticket found.</p>
+    {% endfor %}
+{% endblock %}

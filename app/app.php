@@ -110,3 +110,7 @@
     $app['dao.user'] = function($app) {
         return new Notepad\Dao\UserDAO($app['db']);
     };
+
+    $app['dao.ticket'] = function($app) {
+        return new Notepad\Dao\TicketDao($app['db']);
+    };

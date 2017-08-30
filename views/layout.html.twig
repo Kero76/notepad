@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    {% block meta_tags %}{% endblock %}
+
+    <link href="{{ asset('favicon.ico') }}" rel="icon">
+    <link href="{{ asset('../vendor/twbs/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('../vendor/fortawesome/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('../vendor/components/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    {# Add other stylesheets #}
+    {% block stylesheet_block %}{% endblock %}
+
+    <title>Notepad | {% block title %}{% endblock %}</title>
+</head>
+
+<body class="container-fluid">
+<div class="row">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="main-menu−collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('home') }}"> Notepad</a>
+            </div>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="main-menu−collapse">
+                <ul class="nav navbar-nav">
+                    {# Home menu #}
+                    <li>
+                        <a role="menuitem" href="{{ path('home') }}">
+                            <span class="glyphicon glyphicon-home"></span> {% trans %}home{% endtrans %}
+                        </a>
+                    </li>
+                    {# Add tickets menu #}
+                    <li>
+                        <a role="menuitem" href="{{ path('home') }}">
+                            <span class="glyphicon glyphicon-tag"></span> {% trans %}add_ticket{% endtrans %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Body of webpage -->
+    <section class="container-fluid">
+        <section class="row">
+            {% block content %}{% endblock %}
+        </section>
+    </section>
+
+    <!-- Footer of the webpage. -->
+    <div class="container-fluid">
+        <div class="row">
+            <footer class="col-md-12 col-sm-12 col-xs-12">
+                <p class="col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+                    Notepad &copy;, 2017, {% trans %}copyright{% endtrans %}.
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Loading script section -->
+    <script src="{{ asset('../vendor/components/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('../vendor/twbs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    {% block javascript_block %}{% endblock %}
+</div>
+</body>
+</html>

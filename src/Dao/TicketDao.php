@@ -16,6 +16,7 @@
      * You should have received a copy of the GNU General Public License
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
+    declare(strict_types=1);
 
     namespace Notepad\Dao;
 
@@ -43,7 +44,7 @@
             $sql = 'SELECT * FROM np_tickets ORDER BY ticket_id DESC';
             $result =
                 $this->getDb()
-                     ->fetchAll();
+                     ->fetchAll($sql);
 
             $tickets = array();
             foreach ($result as $row) {
