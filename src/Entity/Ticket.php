@@ -19,8 +19,6 @@
 
     namespace Notepad\Entity;
 
-    use Doctrine\ORM\Mapping as ORM;
-
     /**
      * Class Ticket.
      *
@@ -37,26 +35,18 @@
         /**
          * @var int
          * @since 0.1
-         *
-         * @ORM\Id()
-         * @ORM\GeneratedValue(strategy="AUTO_INCREMENT")
-         * @ORM\Column(name="id", type="integer", nullable=false)
          */
         private $id;
 
         /**
          * @var string
          * @since 0.1
-         *
-         * @ORM\Column(name="title", type="string")
          */
         private $title;
 
         /**
          * @var string
          * @since 0.1
-         *
-         * @ORM\Column(name="content", type="text")
          */
         private $content;
 
