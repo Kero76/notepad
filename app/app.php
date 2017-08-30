@@ -19,14 +19,10 @@
 
     use Symfony\Component\Debug\ErrorHandler;
     use Symfony\Component\Debug\ExceptionHandler;
-    use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
-
-    declare(strict_types=1);
 
     // Register global errors and exceptions handler.
     ErrorHandler::register();
     ExceptionHandler::register();
-
     // Register Twig services providers.
     $app->register(
         new Silex\Provider\TwigServiceProvider(),
@@ -52,22 +48,65 @@
             'assets.version' => 'v1',
         )
     );
+    // Doctrine service providers.
+    $app->register(new Silex\Provider\DoctrineServiceProvider());
 
-    // Register Doctrine ORM service provider.
+    // Form service providers.
+    $app->register(new Silex\Provider\FormServiceProvider());
+    $app->register(new Silex\Provider\ValidatorServiceProvider());
+
+    // I18N / Globalization services providers.
+    $app->register(new Silex\Provider\LocaleServiceProvider());
     $app->register(
-        new DoctrineOrmServiceProvider,
+        new Silex\Provider\TranslationServiceProvider(),
         array(
-            'orm.proxies_dir' => 'src/App/Entity/Proxy',
-            'orm.auto_generate_proxies' => $app['debug'],
-            'orm.em.options' => array(
-                'mappings' => array(
-                    array(
-                        'type' => 'annotation',
-                        'namespace' => 'Notepad\\Entity\\',
-                        'path' => 'src/Entity',
-                        'use_simple_annotation_reader' => false,
+            'locale' => \Notepad\Utils\WebBrowser::getClientLanguage(),
+            'locale_fallback' => 'en',
+            'translation.class_path' => __DIR__ . '/vender/Symfony/Component',
+        )
+    );
+    $app->extend(
+        'translator',
+        function($translator, $app) {
+            $translator->addLoader('yaml', new \Symfony\Component\Translation\Loader\YamlFileLoader());
+            $translator->addResource('yaml', __DIR__ . '/../src/locales/fr.yml', 'fr');
+            $translator->addResource('yaml', __DIR__ . '/../src/locales/en.yml', 'en');
+            return $translator;
+        }
+    );
+
+    // Security services providers.
+    $app->register(new Silex\Provider\SessionServiceProvider());
+    $app->register(
+        new Silex\Provider\SecurityServiceProvider(),
+        array(
+            'security.firewalls' => array(
+                'secured' => array(
+                    'pattern' => '^/',
+                    'anonymous' => true,
+                    'logout' => true,
+                    'form' => array(
+                        'login_path' => '/login',
+                        'check_path' => '/login_check',
                     ),
+                    'users' => function() use ($app) {
+                        return new Notepad\Dao\UserDAO($app['db']);
+                    },
+                ),
+            ),
+            'security.role_hierarchy' => array(
+                'ROLE_ADMIN' => array('ROLE_USER'),
+            ),
+            'security.access_rules' => array(
+                array(
+                    '^/admin',
+                    'ROLE_ADMIN',
                 ),
             ),
         )
     );
+
+    // Register DAO's services providers.
+    $app['dao.user'] = function($app) {
+        return new Notepad\Dao\UserDAO($app['db']);
+    };
