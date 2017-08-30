@@ -47,11 +47,11 @@
             if ($user->getId() !== -1) {
                 // The user has already been saved : update it
                 $this->getDb()
-                     ->update('mc_users', $userData, array('usr_id' => $user->getId()));
+                     ->update('np_users', $userData, array('usr_id' => $user->getId()));
             } else {
                 // The user has never been saved : insert it
                 $this->getDb()
-                     ->insert('mc_users', $userData);
+                     ->insert('np_users', $userData);
                 // Get the id of the newly created user and set it on the entity.
                 $id =
                     $this->getDb()
@@ -82,7 +82,7 @@
                 $this->getDb()
                      ->fetchAssoc($sql, array($id));
             if ($row) {
-                return $this->buildObject($row);
+                return $this->buildEntity($row);
             } else {
                 throw new \Exception("No user matching id " . $id);
             }
@@ -97,7 +97,7 @@
                 $this->getDb()
                      ->fetchAssoc($sql, array($username));
             if ($row) {
-                return $this->buildObject($row);
+                return $this->buildEntity($row);
             } else {
                 throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
             }

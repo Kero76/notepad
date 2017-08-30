@@ -22,6 +22,8 @@
 
     namespace Notepad\Controller;
 
+    use Notepad\Entity\User;
+    use Notepad\Form\SignUpType;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
 
@@ -66,6 +68,9 @@
          * @param \Symfony\Component\HttpFoundation\Request $request
          *  Request who contains parameter get from form.
          *
+         * @return mixed
+         *  Twig render page.
+         *
          * @since 1.0
          * @version 1.0
          */
@@ -88,10 +93,50 @@
          *  Silex Application
          * @param \Symfony\Component\HttpFoundation\Request $request
          *  HTTP request with all information get from form.
+         *
+         * @return mixed
+         *  Twig render page.
          * @since 1.0
          * @version 1.0
          */
         public function signUpAction(Application $app, Request $request) {
+            // Instantiate a User hydrate by the data get from the registration form.
+            $user = new User();
+            $signUpForm = $app['form.factory']->create(SignUpType::class, $user);
 
+            // User try to register on website.
+            $signUpForm->handleRequest($request);
+            if ($signUpForm->isSubmitted() && $signUpForm->isValid()) {
+                // Generate a random salt value.
+                $salt = substr(md5(time() . ""), 0, 23);
+                $user->setSalt($salt);
+                $plainPassword = $user->getPassword();
+
+                // Find the default encoder
+                $encoder = $app['security.encoder.bcrypt'];
+
+                // Compute the encoded password
+                $password = $encoder->encodePassword($plainPassword, $user->getSalt());
+                $user->setPassword($password);
+                $user->setRole('ROLE_ADMIN');
+
+                // Save the user on database and redirect the user on home page.
+                $app['dao.user']->save($user);
+
+                return $app->redirect($app['url_generator']->generate('home'));
+            }
+
+            // Generate the view of the register form.
+            $signUpFormView = $signUpForm->createView();
+            $layout = 'sign-up.html.twig';
+
+            return $app['twig']->render(
+                $layout,
+                array(
+                    'error' => $app['security.last_error']($request),
+                    'last_username' => $app['session']->get('_security.last_username'),
+                    'sign_up_form' => $signUpFormView,
+                )
+            );
         }
     }

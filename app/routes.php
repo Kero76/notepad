@@ -28,5 +28,5 @@
         ->bind('login');
 
     // Sign in
-    $app->get('/sign_up', 'Notepad\Controller\HomeController::signUpAction')
+    $app->match('/sign_up', 'Notepad\Controller\HomeController::signUpAction')
         ->bind('sign_up');

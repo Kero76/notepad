@@ -43,12 +43,14 @@
                             <span class="glyphicon glyphicon-home"></span> {% trans %}home{% endtrans %}
                         </a>
                     </li>
-                    {# Add tickets menu #}
-                    <li role="presentation">
-                        <a role="menuitem" href="{{ path('home') }}">
-                            <span class="glyphicon glyphicon-tag"></span> {% trans %}add_ticket{% endtrans %}
-                        </a>
-                    </li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {# Add tickets menu #}
+                        <li role="presentation">
+                            <a role="menuitem" href="{{ path('home') }}">
+                                <span class="glyphicon glyphicon-tag"></span> {% trans %}add_ticket{% endtrans %}
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
 
                 {# Login / Sign in menu #}

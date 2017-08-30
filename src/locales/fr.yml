@@ -5,9 +5,13 @@ sign_up: S'inscrire
 login: Se connecter
 logout: Se déconnecter
 
-# Content section
+# Page title section
+sign_up_title: Inscription
+
+# Form section
 login_title: Connexion
 login_fail_error: Erreur de connexion !
+sign_up_fail_error: Erreur d'inscription!
 clean_form: Effacer les données
 username_label: Nom d'utilisateur
 password_label: Mot de passe

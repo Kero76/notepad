@@ -5,10 +5,13 @@ sign_up: Sign Up
 login: Login
 logout: Logout
 
-# Content section
+# Page title section
+sign_up_title: Sign up
+
+# Form section
 login_title: Login
 login_fail_error: Login failed!
-
+sign_up_fail_error: Sign up failed!
 clean_form: Clean form
 username_label: Username
 password_label: Password
