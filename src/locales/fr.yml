@@ -1,6 +1,16 @@
 # Nav section
 home: Accueil
 add_ticket: Créer une Note
+sign_up: S'inscrire
+login: Se connecter
+logout: Se déconnecter
+
+# Content section
+login_title: Connexion
+login_fail_error: Erreur de connexion !
+clean_form: Effacer les données
+username_label: Nom d'utilisateur
+password_label: Mot de passe
 
 # Footer section
 copyright: Tous Droits Réservés

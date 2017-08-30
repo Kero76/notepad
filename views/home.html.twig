@@ -1,12 +1,16 @@
 {% extends 'layout.html.twig' %}
 
-{% block keywords %}{% endblock %}
+{% block keywords %}
+    Notepad
+{% endblock %}
 
 {% block meta_tags %}{% endblock %}
 
 {% block stylesheet_block %}{% endblock %}
 
-{% block title %}Home{% endblock %}
+{% block title %}
+    {% trans %}home{% endtrans %}
+{% endblock %}
 
 {% block content %}
     <h1>{% trans %}home{% endtrans %}</h1>

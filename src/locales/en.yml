@@ -1,6 +1,17 @@
 # Nav section
 home: Home
 add_ticket: Add Ticket
+sign_up: Sign Up
+login: Login
+logout: Logout
+
+# Content section
+login_title: Login
+login_fail_error: Login failed!
+
+clean_form: Clean form
+username_label: Username
+password_label: Password
 
 # Footer section
 copyright: All Right Reserved

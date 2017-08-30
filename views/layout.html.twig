@@ -17,6 +17,7 @@
     <title>Notepad | {% block title %}{% endblock %}</title>
 </head>
 
+
 <body class="container-fluid">
 <div class="row">
     <!-- Navigation -->
@@ -37,17 +38,44 @@
             <div class="collapse navbar-collapse" id="main-menu−collapse">
                 <ul class="nav navbar-nav">
                     {# Home menu #}
-                    <li>
+                    <li role="presentation">
                         <a role="menuitem" href="{{ path('home') }}">
                             <span class="glyphicon glyphicon-home"></span> {% trans %}home{% endtrans %}
                         </a>
                     </li>
                     {# Add tickets menu #}
-                    <li>
+                    <li role="presentation">
                         <a role="menuitem" href="{{ path('home') }}">
                             <span class="glyphicon glyphicon-tag"></span> {% trans %}add_ticket{% endtrans %}
                         </a>
                     </li>
+                </ul>
+
+                {# Login / Sign in menu #}
+                <ul class="nav navbar-nav navbar-right">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li role="presentation">
+                            <a role="menuitem" href="{{ path('home') }}">
+                                <span class="glyphicon glyphicon-user"></span> {{ app.user.username }}
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" href="{{ path('logout') }}">
+                                <span class="glyphicon glyphicon-log-out"></span> {% trans %}logout{% endtrans %}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li role="presentation">
+                            <a role="menuitem" href="{{ path('sign_up') }}">
+                                <i class="fa fa-user" aria-hidden="true"></i> {% trans %}sign_up{% endtrans %}
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" href="{{ path('login') }}">
+                                <span class="glyphicon glyphicon-log-in"></span> {% trans %}login{% endtrans %}
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -55,11 +83,8 @@
 
 
     <!-- Body of webpage -->
-    <section class="container-fluid">
-        <section class="row">
-            {% block content %}{% endblock %}
-        </section>
-    </section>
+    {% block content %}{% endblock %}
+
 
     <!-- Footer of the webpage. -->
     <div class="container-fluid">

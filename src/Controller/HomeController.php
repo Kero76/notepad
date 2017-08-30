@@ -23,6 +23,7 @@
     namespace Notepad\Controller;
 
     use Silex\Application;
+    use Symfony\Component\HttpFoundation\Request;
 
     /**
      * Class HomeController.
@@ -55,5 +56,42 @@
                     'tickets' => $tickets,
                 )
             );
+        }
+
+        /**
+         * Login page.
+         *
+         * @param \Silex\Application $app
+         *  Silex Application.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request who contains parameter get from form.
+         *
+         * @since 1.0
+         * @version 1.0
+         */
+        public function loginAction(Application $app, Request $request) {
+            $layout = 'login.html.twig';
+
+            return $app['twig']->render(
+                $layout,
+                array(
+                    'error' => $app['security.last_error']($request),
+                    'last_username' => $app['session']->get('_security.last_username'),
+                )
+            );
+        }
+
+        /**
+         * Sign Up page.
+         *
+         * @param \Silex\Application $app
+         *  Silex Application
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  HTTP request with all information get from form.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function signUpAction(Application $app, Request $request) {
+
         }
     }

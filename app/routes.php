@@ -22,3 +22,11 @@
     // Homepage.
     $app->match('/', 'Notepad\Controller\HomeController::homeAction')
         ->bind('home');
+
+    // Login
+    $app->match('/login', 'Notepad\Controller\HomeController::loginAction')
+        ->bind('login');
+
+    // Sign in
+    $app->get('/sign_up', 'Notepad\Controller\HomeController::signUpAction')
+        ->bind('sign_up');
