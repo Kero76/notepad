@@ -19,48 +19,39 @@
 
     namespace Notepad\Dao;
 
-    use Doctrine\DBAL\Driver\Connection;
+    use Notepad\Entity\Ticket;
 
     /**
-     * Class AbstractDAO.
+     * Class TicketDao
      *
      * @author Nicolas GILLE
-     * @package NotePad\DAO
+     * @package Notepad\Dao
      * @since 1.0
      * @version 1.0
      */
-    abstract class AbstractDAO {
+    class TicketDao extends AbstractDAO {
 
         /**
-         * Database connection.
+         * Get all tickets from the database.
          *
-         * @var \Doctrine\DBAL\Driver\Connection
-         */
-        private $db;
-
-        /**
-         * AbstractDAO constructor.
-         *
-         * @param \Doctrine\DBAL\Driver\Connection $db
-         *  Database access connection.
-         *
+         * @return array
+         *  All tickets found on database.
          * @since 1.0
          * @version 1.0
          */
-        public function __construct(Connection $db) {
-            $this->db = $db;
-        }
+        public function findAll() {
+            $sql = 'SELECT * FROM np_tickets ORDER BY ticket_id DESC';
+            $result =
+                $this->getDb()
+                     ->fetchAll();
 
-        /**
-         * Get the database connection.
-         *
-         * @return \Doctrine\DBAL\Driver\Connection
-         *  Return the database connection.
-         * @since 1.0
-         * @version 1.0
-         */
-        protected function getDb(): Connection {
-            return $this->db;
+            $tickets = array();
+            foreach ($result as $row) {
+                $id = $row['ticket_id'];
+                $tickets[$id] = $this->buildObject($row);
+            }
+
+            return $tickets;
         }
 
         /**
@@ -69,10 +60,17 @@
          * @param array $data
          *  An array to fill object get from Database.
          *
-         * @return mixed
-         *  Return the object who corresponding to the DAO.
+         * @return \Notepad\Entity\Ticket
+         *  Return the ticket to build with data.
          * @since 1.0
          * @version 1.0
          */
-        protected abstract function buildEntity(array $data);
+        protected function buildEntity(array $data) {
+            $ticket = new Ticket();
+            $ticket->setId($data['ticket_id']);
+            $ticket->setTitle($data['ticket_title']);
+            $ticket->setContent($data['ticket_content']);
+
+            return $ticket;
+        }
     }

@@ -122,9 +122,17 @@
         }
 
         /**
-         * @inheritdoc
+         * Build the specific object from the Model.
+         *
+         * @param array $data
+         *  An array to fill object get from Database.
+         *
+         * @return \Notepad\Entity\User
+         *  Return the user to build with data..
+         * @since 1.0
+         * @version 1.0
          */
-        protected function buildObject(array $data) {
+        protected function buildEntity(array $data) {
             $user = new User();
             $user->setId(intval($data['usr_id']));
             $user->setEmail($data['usr_mail']);
