@@ -81,7 +81,7 @@
                 $app['dao.ticket']->save($ticket);
 
                 // Finally, it redirect the user on home page.
-//                return $app->redirect($app['url_generator']->generate('home'));
+                return $app->redirect($app['url_generator']->generate('home'));
             }
 
             // Generate the view of the register form.
