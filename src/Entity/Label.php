@@ -16,25 +16,23 @@
      * You should have received a copy of the GNU General Public License
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
+
     declare(strict_types=1);
 
     namespace Notepad\Entity;
 
     /**
-     * Class Ticket.
-     *
-     * This class represent a ticket present on Notepad.
-     * In fact, each note is represent as a ticket with a title and the content of the ticket.
+     * Class Label
      *
      * @author Nicolas GILLE
      * @package Notepad\Entity
      * @since 0.1
      * @version 1.0
      */
-    class Ticket {
+    class Label {
 
         /**
-         * @var int
+         * @var integer
          * @since 0.1
          */
         private $id;
@@ -44,18 +42,6 @@
          * @since 0.1
          */
         private $title;
-
-        /**
-         * @var string
-         * @since 0.1
-         */
-        private $content;
-
-        /**
-         * @var \Notepad\Entity\Label
-         * @since 0.1
-         */
-        private $label;
 
         /**
          * @return int
@@ -68,6 +54,7 @@
 
         /**
          * @param int $id
+         *
          * @since 0.1
          * @version 1.0
          */
@@ -86,6 +73,7 @@
 
         /**
          * @param string $title
+         *
          * @since 0.1
          * @version 1.0
          */
@@ -93,39 +81,4 @@
             $this->title = $title;
         }
 
-        /**
-         * @return string
-         * @since 0.1
-         * @version 1.0
-         */
-        public function getContent(): string {
-            return $this->content;
-        }
-
-        /**
-         * @param string $content
-         * @since 0.1
-         * @version 1.0
-         */
-        public function setContent(string $content) {
-            $this->content = $content;
-        }
-
-        /**
-         * @return \Notepad\Entity\Label
-         * @since 0.1
-         * @version 1.0
-         */
-        public function getLabel(): Label {
-            return $this->label;
-        }
-
-        /**
-         * @param \Notepad\Entity\Label $label
-         * @since 0.1
-         * @version 1.0
-         */
-        public function setLabel(Label $label) {
-            $this->label = $label;
-        }
     }

@@ -26,7 +26,7 @@
     use Symfony\Component\Security\Core\User\UserInterface;
     use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-    class UserDAO extends AbstractDAO implements UserProviderInterface {
+    class UserDao extends AbstractDao implements UserProviderInterface {
 
         /**
          * @param \Notepad\Entity\User $user

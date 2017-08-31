@@ -23,14 +23,14 @@
     use Doctrine\DBAL\Driver\Connection;
 
     /**
-     * Class AbstractDAO.
+     * Class AbstractDao.
      *
      * @author Nicolas GILLE
      * @package NotePad\DAO
      * @since 1.0
      * @version 1.0
      */
-    abstract class AbstractDAO {
+    abstract class AbstractDao {
 
         /**
          * Database connection.
@@ -40,7 +40,7 @@
         private $db;
 
         /**
-         * AbstractDAO constructor.
+         * AbstractDao constructor.
          *
          * @param \Doctrine\DBAL\Driver\Connection $db
          *  Database access connection.

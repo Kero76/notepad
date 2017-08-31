@@ -1,4 +1,5 @@
 <?php
+
     /**
      * Notepad.
      * Copyright (C) 2017 Nicolas GILLE
@@ -30,7 +31,60 @@
      * @since 1.0
      * @version 1.0
      */
-    class TicketDao extends AbstractDAO {
+    class TicketDao extends AbstractDao {
+
+        /**
+         * @var \Notepad\Dao\LabelDao
+         * @since 0.1
+         */
+        private $labelDao;
+
+        /**
+         * @param \Notepad\Dao\LabelDao $labelDao
+         *
+         * @since 0.1
+         * @version 1.0
+         */
+        public function setLabelDao(LabelDao $labelDao) {
+            $this->labelDao = $labelDao;
+        }
+
+        /**
+         * Return a specific ticket with his id.
+         *
+         * @param int $id
+         *  Id of the ticket.
+         *
+         * @return \Notepad\Entity\Ticket
+         *  An instance of Ticket.
+         * @throws \Exception
+         *  Throw an exception when fetchAssoc() return nothing.
+         * @since 0.1
+         * @version 1.0
+         */
+        public function find(int $id): Ticket {
+            // Create SQL request
+            $sql = 'SELECT * FROM np_tickets WHERE ticket_id = ?';
+
+            // Execute request and get object.
+            $row = $this->getDb()
+                        ->fetchAssoc($sql, array($id));
+
+            // If row exist.
+            if ($row) {
+                // Build ticket
+                $ticket = $this->buildEntity($row);
+
+                // If fk_label_id exist, set new label object.
+                if (array_key_exists('fk_label_id', $row)) {
+                    $labelId = $row['fk_label_id'];
+                    $label = $this->labelDao->find($labelId);
+                    $ticket->setLabel($label);
+                }
+            } else {
+                throw new \Exception('No Ticket matching id ' . $id);
+            }
+        }
 
         /**
          * Get all tickets from the database.
@@ -40,16 +94,26 @@
          * @since 1.0
          * @version 1.0
          */
-        public function findAll() {
+        public function findAll(): array {
+            // Create SQL request.
             $sql = 'SELECT * FROM np_tickets ORDER BY ticket_id DESC';
-            $result =
-                $this->getDb()
-                     ->fetchAll($sql);
+
+            // Execute request and get object.
+            $result = $this->getDb()
+                           ->fetchAll($sql);
 
             $tickets = array();
             foreach ($result as $row) {
+                // Build Ticket
                 $id = $row['ticket_id'];
                 $tickets[$id] = $this->buildObject($row);
+
+                // If fk_label_id exist, set new label object.
+                if (array_key_exists('fk_label_id', $result)) {
+                    $labelId = $row['fk_label_id'];
+                    $label = $this->labelDao->find($labelId);
+                    $tickets[$id]->setLabel($label);
+                }
             }
 
             return $tickets;

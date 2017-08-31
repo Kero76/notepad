@@ -90,7 +90,7 @@
                         'check_path' => '/login_check',
                     ),
                     'users' => function() use ($app) {
-                        return new Notepad\Dao\UserDAO($app['db']);
+                        return new Notepad\Dao\UserDao($app['db']);
                     },
                 ),
             ),
@@ -108,9 +108,13 @@
 
     // Register DAO's services providers.
     $app['dao.user'] = function($app) {
-        return new Notepad\Dao\UserDAO($app['db']);
+        return new Notepad\Dao\UserDao($app['db']);
     };
 
     $app['dao.ticket'] = function($app) {
         return new Notepad\Dao\TicketDao($app['db']);
+    };
+
+    $app['dao.label'] = function($app) {
+        return new Notepad\Dao\LabelDao($app['db']);
     };
