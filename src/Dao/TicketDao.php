@@ -109,8 +109,8 @@
                 $tickets[$id] = $this->buildEntity($row);
 
                 // If fk_label_id exist, set new label object.
-                if (array_key_exists('fk_label_id', $result)) {
-                    $labelId = $row['fk_label_id'];
+                if (array_key_exists('fk_label_id', $row)) {
+                    $labelId = intval($row['fk_label_id']);
                     $label = $this->labelDao->find($labelId);
                     $tickets[$id]->setLabel($label);
                 }

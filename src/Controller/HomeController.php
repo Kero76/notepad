@@ -49,6 +49,7 @@
          * @version 1.0
          */
         public function homeAction(Application $app) {
+            $app['dao.ticket']->setLabelDao($app['dao.label']);
             $tickets = $app['dao.ticket']->findAll();
             $layout = 'home.html.twig';
 

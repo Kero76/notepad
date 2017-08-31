@@ -129,7 +129,7 @@
     protected
     function buildEntity(array $data) {
         $label = new Label();
-        $label->setId($data['label_id']);
+        $label->setId(intval($data['label_id']));
         $label->setTitle($data['label_title']);
 
         return $label;

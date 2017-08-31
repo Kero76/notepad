@@ -15,9 +15,12 @@
 {% block content %}
     <h1>{% trans %}home{% endtrans %}</h1>
     {% for ticket in tickets %}
-        <article>
+        <article class="ticket-block">
             <h2>{{ ticket.title }}</h2>
             <p>{{ ticket.content }}</p>
+            <div>
+                <p class="label label-info">{{ ticket.label.title }}</p>
+            </div>
         </article>
     {% else %}
         <p>No ticket found.</p>
