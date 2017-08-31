@@ -96,7 +96,7 @@
          */
         public function findAll(): array {
             // Create SQL request.
-            $sql = 'SELECT * FROM np_tickets ORDER BY ticket_id DESC';
+            $sql = 'SELECT * FROM np_tickets ORDER BY fk_label_id ASC, ticket_id DESC';
 
             // Execute request and get object.
             $result = $this->getDb()

@@ -14,15 +14,34 @@
 
 {% block content %}
     <h1>{% trans %}home{% endtrans %}</h1>
-    {% for ticket in tickets %}
-        <article class="ticket-block">
-            <h2>{{ ticket.title }}</h2>
-            <p>{{ ticket.content }}</p>
-            <div>
-                <p class="label label-info">{{ ticket.label.title }}</p>
-            </div>
-        </article>
-    {% else %}
-        <p>No ticket found.</p>
-    {% endfor %}
+
+    {# Tab menu #}
+    <ul class="nav nav-tabs nav-justified">
+        {% for label in labels %}
+            {% if loop.first %}
+                <li class="active">
+            {% else %}
+                <li>
+            {% endif %}
+                <a href="#{{ label.title|lower|replace({' ' : '_'}) }}" data-toggle="tab">
+                    {{ label.title|capitalize }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="tab-content">
+        {% for ticket in tickets %}
+            {% if loop.first %}
+                <section class="tab-pane fade in active" id="{{ ticket.label.title|lower|replace({' ' : '_'}) }}">
+            {% else %}
+                <section class="tab-pane fade" id="{{ ticket.label.title|lower|replace({' ' : '_'}) }}">
+            {% endif %}
+                    <h2>{{ ticket.title }}</h2>
+                    <p>{{ ticket.content|truncate(50, true, '...') }}</p>
+            </section>
+        {% else %}
+            <p>No ticket found.</p>
+        {% endfor %}
+    </div>
 {% endblock %}

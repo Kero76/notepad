@@ -49,11 +49,17 @@
          * @version 1.0
          */
         public function homeAction(Application $app) {
+            // Set the TicketDao with an instance of LabelDao to build correctly the tickets.
             $app['dao.ticket']->setLabelDao($app['dao.label']);
+
+            // Get all tickets and labels.
             $tickets = $app['dao.ticket']->findAll();
             $labels = $app['dao.label']->findAll();
+
+            // Set the layout use to render page.
             $layout = 'home.html.twig';
 
+            // Return the page render by Twig.
             return $app['twig']->render(
                 $layout,
                 array(
