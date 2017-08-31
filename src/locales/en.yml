@@ -7,6 +7,7 @@ logout: Logout
 
 # Page title section
 sign_up_title: Sign up
+add_ticket_title: Add Ticket
 
 # Form section
 login_title: Login
@@ -15,6 +16,9 @@ sign_up_fail_error: Sign up failed!
 clean_form: Clean form
 username_label: Username
 password_label: Password
+ticket_information: Ticket Information
+label_information: Label Information
+save_ticket: Save ticket
 
 # Footer section
 copyright: All Right Reserved

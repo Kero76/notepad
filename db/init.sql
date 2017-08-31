@@ -11,6 +11,11 @@ CREATE TABLE np_users (
   usr_role VARCHAR(50) NOT NULL
 ) ENGINE = innodb CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
+CREATE TABLE np_labels (
+  label_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  label_title VARCHAR(255) NOT NULL
+) ENGINE = innobd CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 CREATE TABLE np_tickets (
   ticket_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   ticket_title VARCHAR(255) NOT NULL,
@@ -19,8 +24,3 @@ CREATE TABLE np_tickets (
   CONSTRAINT fk_label_id FOREIGN KEY(fk_label_id) REFERENCES np_labels(label_id)
 ) ENGINE = innobd CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-
-CREATE TABLE np_labels (
-  label_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  label_title VARCHAR(255) NOT NULL
-) ENGINE = innobd CHARACTER SET utf8 COLLATE utf8_unicode_ci;

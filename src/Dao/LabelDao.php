@@ -81,28 +81,57 @@
             foreach ($result as $row) {
                 // Build label
                 $id = $row['label_id'];
-                $labels[$id] = $this->buildObject($row);
+                $labels[$id] = $this->buildEntity($row);
             }
 
             return $labels;
         }
 
         /**
-         * Build the specific object from the Model.
+         * Save label in Database.
          *
-         * @param array $data
-         *  An array to fill object get from Database.
-         *
-         * @return mixed
-         *  Return the object who corresponding to the DAO.
-         * @since 1.0
+         * @param \Notepad\Entity\Label $label
+         *  New label at saved in Database.
+         * @return \Notepad\Entity\Label
+         *  The label saved in Database.
+         * @since 0.1
          * @version 1.0
          */
-        protected function buildEntity(array $data) {
-            $label = new Label();
-            $label->setId($data['label_id']);
-            $label->setTitle($data['label_title']);
+        public function save(Label $label) {
+            $labelData = array(
+                'label_title' => $label->getTitle(),
+            );
+
+            // The label is save in Database
+            $this->getDb()
+                 ->insert('np_labels', $labelData);
+
+            // Get the id of the newly created user and set it on the entity.
+            $id = $this->getDb()
+                       ->lastInsertId();
+            $label->setId(intval($id));
 
             return $label;
         }
+
+
+    /**
+     * Build the specific object from the Model.
+     *
+     * @param array $data
+     *  An array to fill object get from Database.
+     *
+     * @return mixed
+     *  Return the object who corresponding to the DAO.
+     * @since 1.0
+     * @version 1.0
+     */
+    protected
+    function buildEntity(array $data) {
+        $label = new Label();
+        $label->setId($data['label_id']);
+        $label->setTitle($data['label_title']);
+
+        return $label;
+    }
     }

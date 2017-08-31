@@ -44,6 +44,16 @@
         private $title;
 
         /**
+         * Label constructor.
+         *
+         * @since 0.1
+         * @version 1.0
+         */
+        public function __construct() {
+            $this->title = '';
+        }
+
+        /**
          * @return int
          * @since 0.1
          * @version 1.0

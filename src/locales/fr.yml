@@ -7,6 +7,7 @@ logout: Se déconnecter
 
 # Page title section
 sign_up_title: Inscription
+add_ticket_title: Nouvelle Note
 
 # Form section
 login_title: Connexion
@@ -15,6 +16,9 @@ sign_up_fail_error: Erreur d'inscription!
 clean_form: Effacer les données
 username_label: Nom d'utilisateur
 password_label: Mot de passe
+ticket_information: Informations
+label_information: Catégorie
+save_ticket: Sauvegarder la Note
 
 # Footer section
 copyright: Tous Droits Réservés

@@ -106,7 +106,7 @@
             foreach ($result as $row) {
                 // Build Ticket
                 $id = $row['ticket_id'];
-                $tickets[$id] = $this->buildObject($row);
+                $tickets[$id] = $this->buildEntity($row);
 
                 // If fk_label_id exist, set new label object.
                 if (array_key_exists('fk_label_id', $result)) {
@@ -117,6 +117,33 @@
             }
 
             return $tickets;
+        }
+
+        /**
+         * Save label in Database.
+         *
+         * @param \Notepad\Entity\Ticket $ticket
+         *  New ticket at saved in Database.
+         * @since 0.1
+         * @version 1.0
+         */
+        public function save(Ticket $ticket) {
+            $ticketData = array(
+                'ticket_title' => $ticket->getTitle(),
+                'ticket_content' => $ticket->getContent(),
+                'fk_label_id' => $ticket->getLabel()->getId(),
+            );
+
+            // Update Ticket previously save on system or insert it.
+            if ($ticket->getId() !== -1) {
+                // The ticket must be update with new data.
+                $this->getDb()
+                     ->update('np_tickets', $ticketData, array('ticket_id' => $ticket->getId()));
+            } else {
+                // The ticket has never saved : insert it.
+                $this->getDb()
+                     ->insert('np_tickets', $ticketData);
+            }
         }
 
         /**
@@ -132,7 +159,7 @@
          */
         protected function buildEntity(array $data) {
             $ticket = new Ticket();
-            $ticket->setId($data['ticket_id']);
+            $ticket->setId(intval($data['ticket_id']));
             $ticket->setTitle($data['ticket_title']);
             $ticket->setContent($data['ticket_content']);
 

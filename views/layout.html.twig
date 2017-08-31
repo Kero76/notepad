@@ -46,7 +46,7 @@
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         {# Add tickets menu #}
                         <li role="presentation">
-                            <a role="menuitem" href="{{ path('home') }}">
+                            <a role="menuitem" href="{{ path('add-ticket') }}">
                                 <span class="glyphicon glyphicon-tag"></span> {% trans %}add_ticket{% endtrans %}
                             </a>
                         </li>

@@ -30,3 +30,7 @@
     // Sign in
     $app->match('/sign_up', 'Notepad\Controller\HomeController::signUpAction')
         ->bind('sign_up');
+
+    // Add ticket
+    $app->match('/admin/add-ticket', 'Notepad\Controller\AdminController::addTicketAction')
+        ->bind('add-ticket');

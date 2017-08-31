@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{# Bootstrap theme. #}
+{% form_theme ticket_form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block keywords %}
+    Notepad
+{% endblock %}
+
+{% block meta_tags %}{% endblock %}
+
+{% block stylesheet_block %}{% endblock %}
+
+{% block title %}
+    {% trans %}add_ticket_title{% endtrans %}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ block('title') }}</h1>
+    <div class="well">
+        {{ form_start(ticket_form, {
+            'attr' : {
+                'role' : 'form',
+            }
+        }) }}
+
+        {# Ticket block. #}
+        <fieldset>
+            <legend>{% trans %}ticket_information{% endtrans %}</legend>
+            {{ form_row(ticket_form.title) }}
+            {{ form_widget(ticket_form.title) }}
+
+            {{ form_row(ticket_form.content) }}
+            {{ form_widget(ticket_form.content) }}
+        </fieldset>
+
+        {# Date block. #}
+        <fieldset>
+            <legend>{% trans %}label_information{% endtrans %}</legend>
+            {{ form_widget(ticket_form.label) }}
+        </fieldset>
+
+        {# Submit #}
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2 col-sm-11 col-sm-offset-1">
+                <button type="submit" class="btn btn-default btn-primary">
+                    <span class="glyphicon glyphicon-save"></span> {% trans %}save_ticket{% endtrans %}
+                </button>
+                <button type="reset" class="btn btn-default btn-primary">
+                    <span class="glyphicon glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}
+                </button>
+            </div>
+        </div>
+        {{ form_end(ticket_form) }}
+    </div>
+{% endblock %}

@@ -58,6 +58,19 @@
         private $label;
 
         /**
+         * Ticket constructor.
+         *
+         * @since 0.1
+         * @version 1.0
+         */
+        public function __construct() {
+            $this->id = -1;
+            $this->title = '';
+            $this->content = '';
+            $this->label = new Label();
+        }
+
+        /**
          * @return int
          * @since 0.1
          * @version 1.0
