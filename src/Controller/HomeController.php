@@ -51,12 +51,14 @@
         public function homeAction(Application $app) {
             $app['dao.ticket']->setLabelDao($app['dao.label']);
             $tickets = $app['dao.ticket']->findAll();
+            $labels = $app['dao.label']->findAll();
             $layout = 'home.html.twig';
 
             return $app['twig']->render(
                 $layout,
                 array(
                     'tickets' => $tickets,
+                    'labels' => $labels,
                 )
             );
         }

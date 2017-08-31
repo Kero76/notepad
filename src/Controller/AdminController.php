@@ -61,18 +61,20 @@
                 $labels = $app['dao.label']->findAll();
                 $labelTicket = $ticket->getLabel();
 
-                // and check if current title doesn't exist on list,
-                if (!in_array($labelTicket->getTitle(), $labels)) {
-                    // then, insert new label on Database.
-                    $app['dao.label']->save($labelTicket);
-                } else {
-                    // Or else by looping on all labels
-                    foreach ($labels as $l) {
-                        // and update id of the label present on ticket.
-                        if ($l->getTitle() === $labelTicket->getTitle()) {
-                            $labelTicket->setId($l->getId());
-                        }
+                // Loop on each and check the presence of the ticket's label on loop.
+                $newLabel = true;
+                foreach ($labels as $label) {
+                    // If the label is found, change the value of the boolean and set the id of the ticket's label.
+                    if ($label->getTitle() === $labelTicket->getTitle()) {
+                        $newLabel = false;
+                        $labelTicket->setId($label->getId());
                     }
+                }
+
+                // At the end of the loop, if the boolean can't change, it indicate the label is a new label.
+                if ($newLabel === true) {
+                    // so, the label is save in database.
+                    $app['dao.label']->save($labelTicket);
                 }
 
                 // and insert ticket on Database too.
