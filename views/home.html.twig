@@ -32,7 +32,7 @@
 
     <div class="tab-content">
         {% for ticket in tickets %}
-            {% if loop.first %}
+            {% if loop.first or ticket.label.title == labels|first.title %}
                 <section class="tab-pane fade in active" id="{{ ticket.label.title|lower|replace({' ' : '_'}) }}">
             {% else %}
                 <section class="tab-pane fade" id="{{ ticket.label.title|lower|replace({' ' : '_'}) }}">
