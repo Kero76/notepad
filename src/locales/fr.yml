@@ -19,6 +19,8 @@ password_label: Mot de passe
 ticket_information: Informations
 label_information: Catégorie
 save_ticket: Sauvegarder la Note
+username_placeholder: Entrer votre nom d'utilisateur
+password_placeholder: Entrer votre mot de passe
 
 # Footer section
 copyright: Tous Droits Réservés

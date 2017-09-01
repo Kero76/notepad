@@ -19,6 +19,8 @@ password_label: Password
 ticket_information: Ticket Information
 label_information: Label Information
 save_ticket: Save ticket
+username_placeholder: Enter your username
+password_placeholder: Enter your password
 
 # Footer section
 copyright: All Right Reserved
