@@ -28,8 +28,11 @@
         new Silex\Provider\TwigServiceProvider(),
         array(
             'twig.path' => __DIR__ . '/../views/',
+
         )
     );
+    $app['twig.loader.filesystem']->prependPath(__DIR__.'/../views/forms/');
+
 
     // Extends Twig with some services.
     $app->extend(
@@ -48,6 +51,7 @@
             'assets.version' => 'v1',
         )
     );
+
     // Doctrine service providers.
     $app->register(new Silex\Provider\DoctrineServiceProvider());
 
@@ -110,11 +114,9 @@
     $app['dao.user'] = function($app) {
         return new Notepad\Dao\UserDao($app['db']);
     };
-
     $app['dao.ticket'] = function($app) {
         return new Notepad\Dao\TicketDao($app['db']);
     };
-
     $app['dao.label'] = function($app) {
         return new Notepad\Dao\LabelDao($app['db']);
     };

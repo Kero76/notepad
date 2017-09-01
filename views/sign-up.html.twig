@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {# Bootstrap theme. #}
-{% form_theme sign_up_form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme sign_up_form with ['bootstrap_3_horizontal_layout.html.twig','fields.html.twig'] %}
 
 {# Keywords from meta 'keyword' #}
 {% block keywords %}
@@ -15,45 +15,47 @@
 
 {# Body of the page #}
 {% block content %}
-    <section class="col-md-12 col-sm-12 col-xs-12">
-        <h2 class="text-center">{{ block('title') }}</h2>
-        {% if error %}
-            <div class="alert alert-danger">
-                <strong>{% trans %}sign_up_fail_error{% endtrans %}</strong> {{ error }}
-            </div>
-        {% endif %}
-
-        <div class="well">
-            {{ form_start(sign_up_form, {
-                'attr' : {
-                    'role' : 'form',
-                }
-            }) }}
-
-            {{ form_row(sign_up_form.username) }}
-            {{ form_widget(sign_up_form.username) }}
-
-            {{ form_row(sign_up_form.password.first) }}
-            {{ form_widget(sign_up_form.password.first) }}
-
-            {{ form_row(sign_up_form.password.second) }}
-            {{ form_widget(sign_up_form.password.second) }}
-
-            {{ form_row(sign_up_form.email) }}
-            {{ form_widget(sign_up_form.email) }}
-
-            {# Submit #}
-            <div class="form-group">
-                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                    <button type="submit" class="btn btn-default btn-primary">
-                        <span class="glyphicon glyphicon-log-in"></span> {% trans %}sign_up{% endtrans %}
-                    </button>
-                    <button type="reset" class="btn btn-default btn-primary">
-                        <span class="glyphicon glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}
-                    </button>
+    <section class="row">
+        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <h2 class="text-center">{{ block('title') }}</h2>
+            {% if error %}
+                <div class="alert alert-danger">
+                    <strong>{% trans %}sign_up_fail_error{% endtrans %}</strong> {{ error }}
                 </div>
+            {% endif %}
+
+            <div class="well">
+                {{ form_start(sign_up_form, {
+                    'attr' : {
+                        'role' : 'form',
+                    }
+                }) }}
+
+                {{ form_row(sign_up_form.username) }}
+                {{ form_widget(sign_up_form.username) }}
+
+                {{ form_row(sign_up_form.password.first) }}
+                {{ form_widget(sign_up_form.password.first) }}
+
+                {{ form_row(sign_up_form.password.second) }}
+                {{ form_widget(sign_up_form.password.second) }}
+
+                {{ form_row(sign_up_form.email) }}
+                {{ form_widget(sign_up_form.email) }}
+
+                {# Submit #}
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                        <button type="submit" class="btn btn-default btn-primary">
+                            <span class="glyphicon glyphicon-log-in"></span> {% trans %}sign_up{% endtrans %}
+                        </button>
+                        <button type="reset" class="btn btn-default btn-danger">
+                            <span class="glyphicon glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(sign_up_form) }}
             </div>
-            {{ form_end(sign_up_form) }}
         </div>
     </section>
 {% endblock %}
