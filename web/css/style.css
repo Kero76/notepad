@@ -20,3 +20,14 @@ body {
     margin-top: 50px;
 }
 
+footer {
+    border-top: solid 1px lightgray;
+}
+
+footer p {
+    padding-top: 20px;
+}
+
+#ticket-tab-content {
+    padding-bottom: 10px;
+}
