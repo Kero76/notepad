@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {# Bootstrap theme. #}
-{% form_theme ticket_form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme ticket_form with ['bootstrap_3_horizontal_layout.html.twig','fields.html.twig'] %}
 
 {% block keywords %}
     Notepad
@@ -16,41 +16,49 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ block('title') }}</h1>
-    <div class="well">
-        {{ form_start(ticket_form, {
-            'attr' : {
-                'role' : 'form',
-            }
-        }) }}
+    <section class="row">
+        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <h2 class="text-center">{{ block('title') }}</h2>
+            <div class="well">
+                {{ form_start(ticket_form, {
+                    'attr' : {
+                        'role' : 'form',
+                    }
+                }) }}
 
-        {# Ticket block. #}
-        <fieldset>
-            <legend>{% trans %}ticket_information{% endtrans %}</legend>
-            {{ form_row(ticket_form.title) }}
-            {{ form_widget(ticket_form.title) }}
+                {# Ticket block. #}
+                <fieldset>
+                    <legend class="col-md-10 col-sm-11 col-xs-11 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
+                        {% trans %}ticket_information{% endtrans %}
+                    </legend>
+                    {{ form_row(ticket_form.title) }}
+                    {{ form_widget(ticket_form.title) }}
 
-            {{ form_row(ticket_form.content) }}
-            {{ form_widget(ticket_form.content) }}
-        </fieldset>
+                    {{ form_row(ticket_form.content) }}
+                    {{ form_widget(ticket_form.content) }}
+                </fieldset>
 
-        {# Date block. #}
-        <fieldset>
-            <legend>{% trans %}label_information{% endtrans %}</legend>
-            {{ form_widget(ticket_form.label) }}
-        </fieldset>
+                {# Date block. #}
+                <fieldset>
+                    <legend class="col-md-10 col-sm-11 col-xs-11 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
+                        {% trans %}label_information{% endtrans %}
+                    </legend>
+                    {{ form_widget(ticket_form.label) }}
+                </fieldset>
 
-        {# Submit #}
-        <div class="form-group">
-            <div class="col-md-10 col-md-offset-2 col-sm-11 col-sm-offset-1">
-                <button type="submit" class="btn btn-default btn-primary">
-                    <span class="glyphicon glyphicon-save"></span> {% trans %}save_ticket{% endtrans %}
-                </button>
-                <button type="reset" class="btn btn-default btn-primary">
-                    <span class="glyphicon glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}
-                </button>
+                {# Submit #}
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                        <button type="submit" class="btn btn-default btn-primary">
+                            <span class="glyphicon glyphicon-save"></span> {% trans %}save_ticket{% endtrans %}
+                        </button>
+                        <button type="reset" class="btn btn-default btn-danger">
+                            <span class="glyphicon glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(ticket_form) }}
             </div>
         </div>
-        {{ form_end(ticket_form) }}
-    </div>
+    </section>
 {% endblock %}

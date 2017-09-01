@@ -28,6 +28,10 @@ footer p {
     padding-top: 20px;
 }
 
+fieldset {
+    padding-left: 150px;
+}
+
 #ticket-tab-content {
     padding-bottom: 10px;
 }

@@ -19,19 +19,19 @@
             <div class="well">
                 <form class="form-signin form-horizontal" role="form" action="{{ path('login_check') }}" method="post">
                     <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-3 col-xs-4 col-md-offset-2 col-sm-offset-2 col-xs-offset-1">
-                            {% trans %}username_label{% endtrans %} :
+                        <label class="control-label col-md-2 col-sm-3 col-xs-4 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+                            {% trans %}username_label{% endtrans %}
                         </label>
-                        <div class="col-md-4 col-sm-5 col-xs-6">
+                        <div class="col-md-6 col-sm-7 col-xs-8">
                             <input type="text" name="_username" value="{{ last_username }}" class="form-control"
                                    placeholder="{% trans %}username_placeholder{% endtrans %}" required autofocus>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-3 col-xs-4 col-md-offset-2 col-sm-offset-2 col-xs-offset-1">
-                            {% trans %}password_label{% endtrans %} :
+                        <label class="control-label col-md-2 col-sm-3 col-xs-4 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+                            {% trans %}password_label{% endtrans %}
                         </label>
-                        <div class="col-md-4 col-sm-5 col-xs-6">
+                        <div class="col-md-6 col-sm-7 col-xs-8">
                             <input type="password" name="_password" class="form-control"
                                    placeholder="{% trans %}password_placeholder{% endtrans %}" required>
                         </div>
