@@ -78,6 +78,10 @@
                         'constraints' => array(
                             new NotBlank(),
                         ),
+                        'attr' => array(
+                            'cols' => 50,
+                            'rows' => 10,
+                        ),
                     )
                 )
                 ->add(
