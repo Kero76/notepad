@@ -9,6 +9,10 @@ logout: Logout
 sign_up_title: Sign up
 add_ticket_title: Add Ticket
 
+# Body content
+release_date: Release on
+last_modified: Last modified on
+
 # Form section
 login_title: Login
 login_fail_error: Login failed!

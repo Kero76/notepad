@@ -131,6 +131,8 @@
             $ticketData = array(
                 'ticket_title' => $ticket->getTitle(),
                 'ticket_content' => $ticket->getContent(),
+                'ticket_release_date' => $ticket->getReleaseDate(),
+                'ticket_last_modified' => $ticket->getLastModified(),
                 'fk_label_id' => $ticket->getLabel()->getId(),
             );
 
@@ -162,6 +164,8 @@
             $ticket->setId(intval($data['ticket_id']));
             $ticket->setTitle($data['ticket_title']);
             $ticket->setContent($data['ticket_content']);
+            $ticket->setReleaseDate(new \DateTime($data['ticket_release_date']));
+            $ticket->setLastModified(new \DateTime($data['ticket_last_modified']));
 
             return $ticket;
         }

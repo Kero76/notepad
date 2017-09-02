@@ -9,6 +9,10 @@ logout: Se déconnecter
 sign_up_title: Inscription
 add_ticket_title: Nouvelle Note
 
+# Body content
+release_date: Ecrit le
+last_modified: Dernière modification le
+
 # Form section
 login_title: Connexion
 login_fail_error: Erreur de connexion !

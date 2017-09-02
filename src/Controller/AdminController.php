@@ -21,6 +21,7 @@
 
     namespace Notepad\Controller;
 
+    use DateTime;
     use Notepad\Entity\Ticket;
     use Notepad\Form\TicketType;
     use Silex\Application;
@@ -54,10 +55,25 @@
             $ticket = new Ticket();
             $ticketForm = $app['form.factory']->create(TicketType::class, $ticket);
 
-            // User try to register on website.
+            // User try to saved new ticket app.
             $ticketForm->handleRequest($request);
             if ($ticketForm->isSubmitted() && $ticketForm->isValid()) {
-                // Get all labels and label for the ticket
+                // Get the current datetime to applied at releaseDate and/or lastModified attribute.
+                $now = new DateTime();
+
+                // If the date of release not instantiate, then indicate the ticket is new.
+                if ($ticket->getReleaseDate() === '') {
+                    // so, set releaseDate and lastModified attribute.
+                    $ticket->setReleaseDate($now);
+                    $ticket->setLastModified($now);
+                } else {
+                    // else, the ticket is update, so, only lastModified must update
+                    // and release date is set with release date store in database.
+                    $ticket->setReleaseDate(new DateTime($ticket->getReleaseDate()));
+                    $ticket->setLastModified($now);
+                }
+
+                // Get all labels and the label of the ticket
                 $labels = $app['dao.label']->findAll();
                 $labelTicket = $ticket->getLabel();
 

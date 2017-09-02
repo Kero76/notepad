@@ -52,6 +52,16 @@
                             <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <h2>{{ ticket.title }}</h2>
                                 <p>{{ ticket.content }}</p>
+                                <ul class="date-section list-inline list-unstyled">
+                                    <li>
+                                        {% trans %}release_date{% endtrans %}
+                                        {{ ticket.releaseDate|date('d/m/Y') }}
+                                    </li>
+                                    <li>
+                                        {% trans %}last_modified{% endtrans %}
+                                        {{ ticket.lastModified|date('d/m/Y') }}
+                                    </li>
+                                </ul>
                             </article>
                         {% endif %}
                     {% endfor %}

@@ -21,9 +21,9 @@
 
     namespace Notepad\Form;
 
-    use Notepad\Entity\Label;
     use Notepad\Entity\Ticket;
     use Symfony\Component\Form\AbstractType;
+    use Symfony\Component\Form\Extension\Core\Type\HiddenType;
     use Symfony\Component\Form\Extension\Core\Type\TextareaType;
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\FormBuilderInterface;
@@ -94,13 +94,16 @@
          * Configure option for form.
          *
          * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+         *
          * @since 0.1
          * @version 1.0
          */
         public function configureOptions(OptionsResolver $resolver) {
-            $resolver->setDefaults(array(
-                'data_class' => Ticket::class,
-            ));
+            $resolver->setDefaults(
+                array(
+                    'data_class' => Ticket::class,
+                )
+            );
         }
 
         /**

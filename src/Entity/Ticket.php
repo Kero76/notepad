@@ -20,6 +20,8 @@
 
     namespace Notepad\Entity;
 
+    use DateTime;
+
     /**
      * Class Ticket.
      *
@@ -29,7 +31,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Entity
      * @since 0.1
-     * @version 1.0
+     * @version 1.1
      */
     class Ticket {
 
@@ -58,6 +60,18 @@
         private $label;
 
         /**
+         * @var string
+         * @since 0.2
+         */
+        private $releaseDate;
+
+        /**
+         * @var string
+         * @since 0.2
+         */
+        private $lastModified;
+
+        /**
          * Ticket constructor.
          *
          * @since 0.1
@@ -68,6 +82,8 @@
             $this->title = '';
             $this->content = '';
             $this->label = new Label();
+            $this->releaseDate = '';
+            $this->lastModified = '';
         }
 
         /**
@@ -140,5 +156,41 @@
          */
         public function setLabel(Label $label) {
             $this->label = $label;
+        }
+
+        /**
+         * @return string
+         * @since 0.2
+         * @version 1.0
+         */
+        public function getReleaseDate(): string {
+            return $this->releaseDate;
+        }
+
+        /**
+         * @param \DateTime $releaseDate
+         * @since 0.2
+         * @version 1.0
+         */
+        public function setReleaseDate(\DateTime $releaseDate) {
+            $this->releaseDate = $releaseDate->format('Y-m-d H:i:s');
+        }
+
+        /**
+         * @return string
+         * @since 0.2
+         * @version 1.0
+         */
+        public function getLastModified(): string {
+            return $this->lastModified;
+        }
+
+        /**
+         * @param \DateTime $lastModified
+         * @since 0.2
+         * @version 1.0
+         */
+        public function setLastModified(\DateTime $lastModified) {
+            $this->lastModified = $lastModified->format('Y-m-d H:i:s');
         }
     }
