@@ -78,9 +78,12 @@
                 // If fk_label_id exist, set new label object.
                 if (array_key_exists('fk_label_id', $row)) {
                     $labelId = $row['fk_label_id'];
-                    $label = $this->labelDao->find($labelId);
+                    $label = $this->labelDao->find(intval($labelId));
                     $ticket->setLabel($label);
                 }
+
+                // Return ticket build.
+                return $ticket;
             } else {
                 throw new \Exception('No Ticket matching id ' . $id);
             }
@@ -155,6 +158,7 @@
          *
          * @param int $id
          *  Identifier of the ticket at delete.
+         *
          * @since 0.2
          * @version 1.0
          */

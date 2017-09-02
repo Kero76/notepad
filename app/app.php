@@ -110,7 +110,7 @@
         )
     );
 
-    // Register DAO's services providers.
+    // Register Dao's services providers.
     $app['dao.user'] = function($app) {
         return new Notepad\Dao\UserDao($app['db']);
     };

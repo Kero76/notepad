@@ -51,7 +51,7 @@
          * @version 1.0
          */
         public function addTicketAction(Application $app, Request $request) {
-            // Instantiate a User hydrate by the data get from the registration form.
+            // Instantiate a Ticket hydrate by the data get from the form (currently with initial constructor).
             $ticket = new Ticket();
             $ticketForm = $app['form.factory']->create(TicketType::class, $ticket);
 
@@ -61,17 +61,9 @@
                 // Get the current datetime to applied at releaseDate and/or lastModified attribute.
                 $now = new DateTime();
 
-                // If the date of release not instantiate, then indicate the ticket is new.
-                if ($ticket->getReleaseDate() === '') {
-                    // so, set releaseDate and lastModified attribute.
-                    $ticket->setReleaseDate($now);
-                    $ticket->setLastModified($now);
-                } else {
-                    // else, the ticket is update, so, only lastModified must update
-                    // and release date is set with release date store in database.
-                    $ticket->setReleaseDate(new DateTime($ticket->getReleaseDate()));
-                    $ticket->setLastModified($now);
-                }
+                // Set the release date and the last modified at the current date time.
+                $ticket->setReleaseDate($now);
+                $ticket->setLastModified($now);
 
                 // Get all labels and the label of the ticket
                 $labels = $app['dao.label']->findAll();
@@ -102,7 +94,7 @@
 
             // Generate the view of the register form.
             $ticketFormView = $ticketForm->createView();
-            $layout = 'forms/add-ticket.html.twig';
+            $layout = 'forms/form-ticket.html.twig';
 
             return $app['twig']->render(
                 $layout,
@@ -112,13 +104,13 @@
             );
         }
 
-
-
         /**
          * Get the form to add ticket render by twig with specific layout.
          *
          * @param \Silex\Application $app
          *  Silex application.
+         * @param int $id
+         *  Identifier of the ticket at update.
          * @param \Symfony\Component\HttpFoundation\Request $request
          *  HTTP request send by the form.
          *
@@ -127,14 +119,62 @@
          * @since 1.0
          * @version 1.0
          */
-        public function editTicketAction(Application $app, Request $request) {
+        public function editTicketAction(Application $app, int $id, Request $request) {
+            // Instantiate a Ticket hydrate by the data get from the dao.
+            $app['dao.ticket']->setLabelDao($app['dao.label']);
+            $ticket = $app['dao.ticket']->find($id);
+            $ticketForm = $app['form.factory']->create(TicketType::class, $ticket);
 
+            // User try to update new ticket app.
+            $ticketForm->handleRequest($request);
+            if ($ticketForm->isSubmitted() && $ticketForm->isValid()) {
+                // Get the current datetime to applied at releaseDate and/or lastModified attribute.
+                $now = new DateTime();
+
+                // Update the last modified with the current date time.
+                $ticket->setLastModified($now);
+
+                // Get all labels and the label of the ticket
+                $labels = $app['dao.label']->findAll();
+                $labelTicket = $ticket->getLabel();
+
+                // Loop on each and check the presence of the ticket's label on loop.
+                $newLabel = true;
+                foreach ($labels as $label) {
+                    // If the label is found, change the value of the boolean and set the id of the ticket's label.
+                    if ($label->getTitle() === $labelTicket->getTitle()) {
+                        $newLabel = false;
+                        $labelTicket->setId($label->getId());
+                    }
+                }
+
+                // At the end of the loop, if the boolean can't change, it indicate the label is a new label.
+                if ($newLabel === true) {
+                    // so, the label is save in database.
+                    $app['dao.label']->save($labelTicket);
+                }
+
+                // and update ticket on Database too.
+                $app['dao.ticket']->save($ticket);
+
+                // Finally, it redirect the user on home page.
+                return $app->redirect($app['url_generator']->generate('home'));
+            }
+
+            // Generate the view of the register form.
+            $ticketFormView = $ticketForm->createView();
+            $layout = 'forms/form-ticket.html.twig';
+
+            return $app['twig']->render(
+                $layout,
+                array(
+                    'ticket_form' => $ticketFormView,
+                )
+            );
         }
 
-
-
         /**
-         * Get the form to add ticket render by twig with specific layout.
+         * Method call to delete specific ticket.
          *
          * @param \Silex\Application $app
          *  Silex application.
