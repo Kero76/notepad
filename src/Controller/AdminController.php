@@ -157,6 +157,9 @@
                 // and update ticket on Database too.
                 $app['dao.ticket']->save($ticket);
 
+                // Remove useless label if necessary.
+                $this->removeUselessLabel($app);
+
                 // Finally, it redirect the user on home page.
                 return $app->redirect($app['url_generator']->generate('home'));
             }
@@ -193,9 +196,47 @@
             $app['dao.ticket']->delete($id);
 
             // and add flashbag to show the action was a success.
-            $app['session']->getFlashbag()->add('success', 'The ticket was successfully removed.');
+            $app['session']->getFlashbag()
+                           ->add('success', 'The ticket was successfully removed.');
+
+            // Remove useless label if necessary.
+            $this->removeUselessLabel($app);
 
             // Finally, it redirect the user on home page.
             return $app->redirect($app['url_generator']->generate('home'));
+        }
+
+        /**
+         * Remove useless label.
+         *
+         * An useless label is a label doesn't contain any ticket on it.
+         * So, to avoid problem with view, it remove automatically the label who have 0 ticket.
+         * This method is call when I update or remove a ticket.
+         * In fact, when I delete a ticket, it possibly to delete the last ticket of the label, so I delete it too.
+         * For the update, I can change the label of the ticket and for the same reason of deletion, we can delete
+         * label too.
+         *
+         * @param \Silex\Application $app
+         *  Silex application.
+         *
+         * @access private
+         * @since 0.2
+         * @version 1.0
+         */
+        private function removeUselessLabel(Application $app) {
+            // Get all labels
+            $labels = $app['dao.label']->findAll();
+
+            // For each label, call the method countTicketByLabel() to check if the label have one ticket or more.
+            foreach ($labels as $label) {
+                $labelId = $label->getId();
+                $result = $app['dao.ticket']->countTicketByLabel($labelId);
+
+                // If result equal 0,
+                if (intval($result) === 0) {
+                    // then I delete the label because it's empty.
+                    $app['dao.label']->delete($labelId);
+                }
+            }
         }
     }

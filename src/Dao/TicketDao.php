@@ -90,6 +90,36 @@
         }
 
         /**
+         * Count the number of ticket for the label.
+         *
+         * @param int $labelId
+         *  Id of the label.
+         *
+         * @return int The number of ticket for the label.
+         * The number of ticket for the label.
+         * @throws \Exception
+         * @since 0.2
+         * @version 1.0
+         */
+        public function countTicketByLabel(int $labelId) {
+            // Create SQL request.
+            $sql = 'SELECT COUNT(*) AS "count" FROM np_tickets WHERE fk_label_id = ?';
+
+            // Execute request and get result.
+            $row = $this->getDb()
+                        ->fetchAssoc($sql, array($labelId));
+
+            // If row exist,
+            if ($row) {
+                // then return result.
+                return $row['count'];
+            } else {
+                // else throw an exception.
+                throw new \Exception('An error occurred during process.');
+            }
+        }
+
+        /**
          * Get all tickets from the database.
          *
          * @return array

@@ -92,6 +92,7 @@
          *
          * @param \Notepad\Entity\Label $label
          *  New label at saved in Database.
+         *
          * @return \Notepad\Entity\Label
          *  The label saved in Database.
          * @since 0.1
@@ -114,24 +115,36 @@
             return $label;
         }
 
+        /**
+         * Delete the label specified by the id.
+         *
+         * @param int $id
+         *  Identifier of the label at delete.
+         *
+         * @since 0.2
+         * @version 1.0
+         */
+        public function delete(int $id) {
+            $this->getDb()
+                 ->delete('np_labels', array('label_id' => $id));
+        }
 
-    /**
-     * Build the specific object from the Model.
-     *
-     * @param array $data
-     *  An array to fill object get from Database.
-     *
-     * @return mixed
-     *  Return the object who corresponding to the DAO.
-     * @since 1.0
-     * @version 1.0
-     */
-    protected
-    function buildEntity(array $data) {
-        $label = new Label();
-        $label->setId(intval($data['label_id']));
-        $label->setTitle($data['label_title']);
+        /**
+         * Build the specific object from the Model.
+         *
+         * @param array $data
+         *  An array to fill object get from Database.
+         *
+         * @return mixed
+         *  Return the object who corresponding to the DAO.
+         * @since 1.0
+         * @version 1.0
+         */
+        protected function buildEntity(array $data) {
+            $label = new Label();
+            $label->setId(intval($data['label_id']));
+            $label->setTitle($data['label_title']);
 
-        return $label;
-    }
+            return $label;
+        }
     }
