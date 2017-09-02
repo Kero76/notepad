@@ -12,6 +12,12 @@ add_ticket_title: Add Ticket
 # Body content
 release_date: Release on
 last_modified: Last modified on
+modal_delete_title: Confirmation needed
+modal_delete_content: Do you really want to delete this ticket ?
+cancel_button: Cancel
+confirm_button: Confirm
+edit: Edit
+delete: Delete
 
 # Form section
 login_title: Login

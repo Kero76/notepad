@@ -12,6 +12,48 @@
     {% trans %}home{% endtrans %}
 {% endblock %}
 
+{# Admin buttons #}
+{% block admin_block %}
+    {# Update button #}
+    <a href="{{ path('edit-ticket', {'id' : ticket.id }) }}">
+        <button role="link" class="btn btn-primary btn-sm" title="{% trans %}edit{% endtrans %}">
+            <span class="glyphicon glyphicon-edit"></span>
+        </button>
+    </a>
+
+    {# Delete button #}
+    <button type="button" class="btn btn-danger btn-sm" title="{% trans %}delete{% endtrans %}"
+            data-toggle="modal" data-target="#ticket-dialog-{{ ticket.id }}">
+        <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <div class="modal fade" id="ticket-dialog-{{ ticket.id }}" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        {% trans %}modal_delete_title{% endtrans %}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {% trans %}modal_delete_content{% endtrans %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        {% trans %}cancel_button{% endtrans %}
+                    </button>
+                    <a href="{{ path('delete-ticket', {'id' : ticket.id}) }}" class="btn btn-primary">
+                        {% trans %}confirm_button{% endtrans %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock admin_block %}
+
 {% block content %}
     <section class="row">
         <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
@@ -25,9 +67,9 @@
                     {% else %}
                         <li>
                     {% endif %}
-                        <a href="#{{ label.title|lower|replace({' ' : '_'}) }}" data-toggle="tab">
-                            {{ label.title|capitalize }}
-                        </a>
+                    <a href="#{{ label.title|lower|replace({' ' : '_'}) }}" data-toggle="tab">
+                        {{ label.title|capitalize }}
+                    </a>
                     </li>
                 {% endfor %}
             </ul>
@@ -36,39 +78,41 @@
             <div id="ticket-tab-content" class="row tab-content">
                 {# Loop on each labels present on the Notepad. #}
                 {% for label in labels %}
-                    {% if loop.first %}
-                        <section class="tab-pane fade in active"
-                        id="{{ label.title|lower|replace({' ' : '_'}) }}">
+                {% if loop.first %}
+                <section class="tab-pane fade in active"
+                         id="{{ label.title|lower|replace({' ' : '_'}) }}">
                     {% else %}
-                        <section class="tab-pane fade in"
-                                 id="{{ label.title|lower|replace({' ' : '_'}) }}">
-                    {% endif %}
-
-                    {# Loop on each tickets present on Notepad #}
-                    {% for ticket in tickets %}
-                        {# If the current label is present on the ticket, #}
-                        {% if label.title == ticket.label.title %}
-                            {# add the ticket on block. #}
-                            <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                <h2>{{ ticket.title }}</h2>
-                                <p>{{ ticket.content }}</p>
-                                <ul class="date-section list-inline list-unstyled">
-                                    <li>
-                                        {% trans %}release_date{% endtrans %}
-                                        {{ ticket.releaseDate|date('d/m/Y') }}
-                                    </li>
-                                    <li>
-                                        {% trans %}last_modified{% endtrans %}
-                                        {{ ticket.lastModified|date('d/m/Y') }}
-                                    </li>
-                                </ul>
-                            </article>
+                    <section class="tab-pane fade in"
+                             id="{{ label.title|lower|replace({' ' : '_'}) }}">
                         {% endif %}
-                    {% endfor %}
+
+                        {# Loop on each tickets present on Notepad #}
+                        {% for ticket in tickets %}
+                            {# If the current label is present on the ticket, #}
+                            {% if label.title == ticket.label.title %}
+                                {# add the ticket on block. #}
+                                <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <h2>
+                                        {{ ticket.title }}
+                                        {{ block('admin_block') }}
+                                    </h2>
+                                    <p>{{ ticket.content }}</p>
+                                    <ul class="date-section list-inline list-unstyled">
+                                        <li>
+                                            {% trans %}release_date{% endtrans %}
+                                            {{ ticket.releaseDate|date('d/m/Y') }}
+                                        </li>
+                                        <li>
+                                            {% trans %}last_modified{% endtrans %}
+                                            {{ ticket.lastModified|date('d/m/Y') }}
+                                        </li>
+                                    </ul>
+                                </article>
+                            {% endif %}
+                        {% endfor %}
                     </section>
-                {% endfor %}
+                    {% endfor %}
             </div>
         </div>
     </section>
-
 {% endblock %}

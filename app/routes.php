@@ -34,3 +34,11 @@
     // Add ticket
     $app->match('/admin/add-ticket', 'Notepad\Controller\AdminController::addTicketAction')
         ->bind('add-ticket');
+
+    // Update ticket
+    $app->match('/admin/edit-ticket/{id}', 'Notepad\Controller\AdminController::editTicketAction')
+        ->bind('edit-ticket');
+
+    // Delete ticket
+    $app->match('/admin/delete-ticket/{id}', 'Notepad\Controller\AdminController::deleteTicketAction')
+        ->bind('delete-ticket');

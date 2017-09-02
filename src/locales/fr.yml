@@ -12,6 +12,12 @@ add_ticket_title: Nouvelle Note
 # Body content
 release_date: Ecrit le
 last_modified: Dernière modification le
+modal_delete_title: Confirmation de suppression
+modal_delete_content: Voulez-vous vraiment supprimer cette note ?
+cancel_button: Annuler
+confirm_button: Confirmer
+edit: Editer
+delete: Supprimer
 
 # Form section
 login_title: Connexion

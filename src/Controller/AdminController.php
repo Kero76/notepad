@@ -111,4 +111,42 @@
                 )
             );
         }
+
+
+
+        /**
+         * Get the form to add ticket render by twig with specific layout.
+         *
+         * @param \Silex\Application $app
+         *  Silex application.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  HTTP request send by the form.
+         *
+         * @return mixed
+         *  Twig render page.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function editTicketAction(Application $app, Request $request) {
+
+        }
+
+
+
+        /**
+         * Get the form to add ticket render by twig with specific layout.
+         *
+         * @param \Silex\Application $app
+         *  Silex application.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  HTTP request send by the form.
+         *
+         * @return mixed
+         *  Twig render page.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function deleteTicketAction(Application $app, Request $request) {
+
+        }
     }
