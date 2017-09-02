@@ -94,7 +94,9 @@
                                 <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <h2>
                                         {{ ticket.title }}
-                                        {{ block('admin_block') }}
+                                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                            {{ block('admin_block') }}
+                                        {% endif %}
                                     </h2>
                                     <p>{{ ticket.content }}</p>
                                     <ul class="date-section list-inline list-unstyled">

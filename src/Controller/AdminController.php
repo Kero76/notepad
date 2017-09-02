@@ -138,6 +138,8 @@
          *
          * @param \Silex\Application $app
          *  Silex application.
+         * @param int $id
+         *  Identifier of the ticket at remove.
          * @param \Symfony\Component\HttpFoundation\Request $request
          *  HTTP request send by the form.
          *
@@ -146,7 +148,14 @@
          * @since 1.0
          * @version 1.0
          */
-        public function deleteTicketAction(Application $app, Request $request) {
+        public function deleteTicketAction(Application $app, int $id, Request $request) {
+            // Delete the ticket.
+            $app['dao.ticket']->delete($id);
 
+            // and add flashbag to show the action was a success.
+            $app['session']->getFlashbag()->add('success', 'The ticket was successfully removed.');
+
+            // Finally, it redirect the user on home page.
+            return $app->redirect($app['url_generator']->generate('home'));
         }
     }

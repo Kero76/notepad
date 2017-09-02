@@ -120,10 +120,11 @@
         }
 
         /**
-         * Save label in Database.
+         * Save or update ticket in Database.
          *
          * @param \Notepad\Entity\Ticket $ticket
-         *  New ticket at saved in Database.
+         *  New ticket at save or update in Database.
+         *
          * @since 0.1
          * @version 1.0
          */
@@ -133,7 +134,8 @@
                 'ticket_content' => $ticket->getContent(),
                 'ticket_release_date' => $ticket->getReleaseDate(),
                 'ticket_last_modified' => $ticket->getLastModified(),
-                'fk_label_id' => $ticket->getLabel()->getId(),
+                'fk_label_id' => $ticket->getLabel()
+                                        ->getId(),
             );
 
             // Update Ticket previously save on system or insert it.
@@ -146,6 +148,19 @@
                 $this->getDb()
                      ->insert('np_tickets', $ticketData);
             }
+        }
+
+        /**
+         * Delete the ticket specified by the id.
+         *
+         * @param int $id
+         *  Identifier of the ticket at delete.
+         * @since 0.2
+         * @version 1.0
+         */
+        public function delete(int $id) {
+            $this->getDb()
+                 ->delete('np_tickets', array('ticket_id' => $id));
         }
 
         /**
