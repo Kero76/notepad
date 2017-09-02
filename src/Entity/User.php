@@ -28,7 +28,7 @@
      *
      * @author Nicolas GILLE
      * @package Notepad\Entity
-     * @since 1.0
+     * @since 0.1
      * @version 1.0
      */
     class User implements UserInterface {

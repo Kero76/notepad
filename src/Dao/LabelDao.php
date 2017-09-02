@@ -29,7 +29,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Dao
      * @since 0.1
-     * @version 1.0
+     * @version 1.1
      */
     class LabelDao extends AbstractDao {
 
@@ -43,7 +43,7 @@
          *  An instance of Ticket.
          * @throws \Exception
          *  Throw an exception when fetchAssoc() return nothing.
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function find(int $id): Label {
@@ -95,7 +95,7 @@
          *
          * @return \Notepad\Entity\Label
          *  The label saved in Database.
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function save(Label $label) {
@@ -121,7 +121,7 @@
          * @param int $id
          *  Identifier of the label at delete.
          *
-         * @since 0.2
+         * @since 1.1
          * @version 1.0
          */
         public function delete(int $id) {

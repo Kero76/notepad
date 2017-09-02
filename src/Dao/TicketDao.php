@@ -29,20 +29,20 @@
      * @author Nicolas GILLE
      * @package Notepad\Dao
      * @since 1.0
-     * @version 1.0
+     * @version 1.1
      */
     class TicketDao extends AbstractDao {
 
         /**
          * @var \Notepad\Dao\LabelDao
-         * @since 0.1
+         * @since 1.0
          */
         private $labelDao;
 
         /**
          * @param \Notepad\Dao\LabelDao $labelDao
          *
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function setLabelDao(LabelDao $labelDao) {
@@ -59,7 +59,7 @@
          *  An instance of Ticket.
          * @throws \Exception
          *  Throw an exception when fetchAssoc() return nothing.
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function find(int $id): Ticket {
@@ -98,7 +98,7 @@
          * @return int The number of ticket for the label.
          * The number of ticket for the label.
          * @throws \Exception
-         * @since 0.2
+         * @since 1.1
          * @version 1.0
          */
         public function countTicketByLabel(int $labelId) {
@@ -158,7 +158,7 @@
          * @param \Notepad\Entity\Ticket $ticket
          *  New ticket at save or update in Database.
          *
-         * @since 0.1
+         * @since 1.
          * @version 1.0
          */
         public function save(Ticket $ticket) {
@@ -189,7 +189,7 @@
          * @param int $id
          *  Identifier of the ticket at delete.
          *
-         * @since 0.2
+         * @since 1.1
          * @version 1.0
          */
         public function delete(int $id) {

@@ -26,7 +26,7 @@
      *
      * @author Nicolas GILLE
      * @package Notepad\Utils
-     * @since 1.0
+     * @since 0.1
      * @version 1.0
      */
     class WebBrowser {

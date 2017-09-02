@@ -20,8 +20,6 @@
 
     namespace Notepad\Entity;
 
-    use DateTime;
-
     /**
      * Class Ticket.
      *
@@ -37,45 +35,45 @@
 
         /**
          * @var int
-         * @since 0.1
+         * @since 1.0
          */
         private $id;
 
         /**
          * @var string
-         * @since 0.1
+         * @since 1.0
          */
         private $title;
 
         /**
          * @var string
-         * @since 0.1
+         * @since 1.0
          */
         private $content;
 
         /**
          * @var \Notepad\Entity\Label
-         * @since 0.1
+         * @since 1.0
          */
         private $label;
 
         /**
          * @var string
-         * @since 0.2
+         * @since 1.1
          */
         private $releaseDate;
 
         /**
          * @var string
-         * @since 0.2
+         * @since 1.1
          */
         private $lastModified;
 
         /**
          * Ticket constructor.
          *
-         * @since 0.1
-         * @version 1.0
+         * @since 1.0
+         * @version 1.1
          */
         public function __construct() {
             $this->id = -1;
@@ -88,7 +86,7 @@
 
         /**
          * @return int
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function getId(): int {
@@ -97,7 +95,7 @@
 
         /**
          * @param int $id
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function setId(int $id) {
@@ -106,7 +104,7 @@
 
         /**
          * @return string
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function getTitle(): string {
@@ -115,7 +113,7 @@
 
         /**
          * @param string $title
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function setTitle(string $title) {
@@ -124,7 +122,7 @@
 
         /**
          * @return string
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function getContent(): string {
@@ -133,7 +131,7 @@
 
         /**
          * @param string $content
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function setContent(string $content) {
@@ -142,7 +140,7 @@
 
         /**
          * @return \Notepad\Entity\Label
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function getLabel(): Label {
@@ -151,7 +149,7 @@
 
         /**
          * @param \Notepad\Entity\Label $label
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function setLabel(Label $label) {
@@ -160,7 +158,7 @@
 
         /**
          * @return string
-         * @since 0.2
+         * @since 1.1
          * @version 1.0
          */
         public function getReleaseDate(): string {
@@ -169,7 +167,7 @@
 
         /**
          * @param \DateTime $releaseDate
-         * @since 0.2
+         * @since 1.1
          * @version 1.0
          */
         public function setReleaseDate(\DateTime $releaseDate) {
@@ -178,7 +176,7 @@
 
         /**
          * @return string
-         * @since 0.2
+         * @since 1.1
          * @version 1.0
          */
         public function getLastModified(): string {
@@ -187,7 +185,7 @@
 
         /**
          * @param \DateTime $lastModified
-         * @since 0.2
+         * @since 1.1
          * @version 1.0
          */
         public function setLastModified(\DateTime $lastModified) {

@@ -33,20 +33,20 @@
 
         /**
          * @var integer
-         * @since 0.1
+         * @since 1.0
          */
         private $id;
 
         /**
          * @var string
-         * @since 0.1
+         * @since 1.0
          */
         private $title;
 
         /**
          * Label constructor.
          *
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function __construct() {
@@ -55,7 +55,7 @@
 
         /**
          * @return int
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function getId(): int {
@@ -65,7 +65,7 @@
         /**
          * @param int $id
          *
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function setId(int $id) {
@@ -74,7 +74,7 @@
 
         /**
          * @return string
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function getTitle(): string {
@@ -84,7 +84,7 @@
         /**
          * @param string $title
          *
-         * @since 0.1
+         * @since 1.0
          * @version 1.0
          */
         public function setTitle(string $title) {

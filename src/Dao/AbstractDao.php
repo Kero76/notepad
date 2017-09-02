@@ -36,6 +36,7 @@
          * Database connection.
          *
          * @var \Doctrine\DBAL\Driver\Connection
+         * @since 1.0
          */
         private $db;
 
