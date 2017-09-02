@@ -19,6 +19,14 @@ confirm_button: Confirmer
 edit: Editer
 delete: Supprimer
 
+# Flashbag content section
+ticket_creation: La note a été créée avec succès.
+ticket_update: La note a été mise à jour avec succès.
+ticket_delete: La note a été supprimée avec succès.
+label_creation: La catégorie a été créée avec succès.
+label_update: La catégorie a été mise à jour avec succès.
+label_delete: La catégorie a été supprimée avec succès.
+
 # Form section
 login_title: Connexion
 login_fail_error: Erreur de connexion !

@@ -32,8 +32,8 @@
      *
      * @author Nicolas GILLE
      * @package Notepad\Controller
-     * @since 1.0
-     * @version 1.0
+     * @since 0.1
+     * @version 1.1
      */
     class AdminController {
 
@@ -48,7 +48,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
         public function addTicketAction(Application $app, Request $request) {
             // Instantiate a Ticket hydrate by the data get from the form (currently with initial constructor).
@@ -81,12 +81,20 @@
 
                 // At the end of the loop, if the boolean can't change, it indicate the label is a new label.
                 if ($newLabel === true) {
-                    // so, the label is save in database.
+                    // so, the label is save in database,
                     $app['dao.label']->save($labelTicket);
+
+                    // and add flashbag to show the label was create.
+                    $app['session']->getFlashbag()
+                                   ->add('label_action', $app['translator']->trans('label_creation'));
                 }
 
                 // and insert ticket on Database too.
                 $app['dao.ticket']->save($ticket);
+
+                // and add flashbag to show the action was a success.
+                $app['session']->getFlashbag()
+                               ->add('ticket_action', $app['translator']->trans('ticket_creation'));
 
                 // Finally, it redirect the user on home page.
                 return $app->redirect($app['url_generator']->generate('home'));
@@ -116,8 +124,8 @@
          *
          * @return mixed
          *  Twig render page.
-         * @since 1.0
-         * @version 1.0
+         * @since 1.1
+         * @version 1.1
          */
         public function editTicketAction(Application $app, int $id, Request $request) {
             // Instantiate a Ticket hydrate by the data get from the dao.
@@ -150,8 +158,12 @@
 
                 // At the end of the loop, if the boolean can't change, it indicate the label is a new label.
                 if ($newLabel === true) {
-                    // so, the label is save in database.
+                    // so, the label is save in database,
                     $app['dao.label']->save($labelTicket);
+
+                    // and add flashbag to show the label was create.
+                    $app['session']->getFlashbag()
+                                   ->add('label_action', $app['translator']->trans('label_creation'));
                 }
 
                 // and update ticket on Database too.
@@ -159,6 +171,10 @@
 
                 // Remove useless label if necessary.
                 $this->removeUselessLabel($app);
+
+                // and add flashbag to show the action was a success.
+                $app['session']->getFlashbag()
+                               ->add('ticket_action', $app['translator']->trans('ticket_update'));
 
                 // Finally, it redirect the user on home page.
                 return $app->redirect($app['url_generator']->generate('home'));
@@ -188,8 +204,8 @@
          *
          * @return mixed
          *  Twig render page.
-         * @since 1.0
-         * @version 1.0
+         * @since 1.1
+         * @version 1.1
          */
         public function deleteTicketAction(Application $app, int $id, Request $request) {
             // Delete the ticket.
@@ -197,7 +213,7 @@
 
             // and add flashbag to show the action was a success.
             $app['session']->getFlashbag()
-                           ->add('success', 'The ticket was successfully removed.');
+                           ->add('ticket_action', $app['translator']->trans('ticket_delete'));
 
             // Remove useless label if necessary.
             $this->removeUselessLabel($app);
@@ -220,8 +236,8 @@
          *  Silex application.
          *
          * @access private
-         * @since 0.2
-         * @version 1.0
+         * @since 1.1
+         * @version 1.1
          */
         private function removeUselessLabel(Application $app) {
             // Get all labels
@@ -236,6 +252,10 @@
                 if (intval($result) === 0) {
                     // then I delete the label because it's empty.
                     $app['dao.label']->delete($labelId);
+
+                    // and add flashbag to show the label was removed.
+                    $app['session']->getFlashbag()
+                                   ->add('label_action', $app['translator']->trans('label_delete'));
                 }
             }
         }

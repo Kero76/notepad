@@ -19,6 +19,14 @@ confirm_button: Confirm
 edit: Edit
 delete: Delete
 
+# Flashbag content section
+ticket_creation: The ticket was successfully created.
+ticket_update: The ticket was successfully updated.
+ticket_delete: The ticket was successfully deleted.
+label_creation: The label was successfully created.
+label_update: The label was successfully updated.
+label_delete: The label was successfully deleted.
+
 # Form section
 login_title: Login
 login_fail_error: Login failed!
