@@ -23,7 +23,9 @@
 
     use Notepad\Entity\Ticket;
     use Symfony\Component\Form\AbstractType;
+    use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+    use Symfony\Component\Form\Extension\Core\Type\RadioType;
     use Symfony\Component\Form\Extension\Core\Type\TextareaType;
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\FormBuilderInterface;
@@ -87,6 +89,16 @@
                 ->add(
                     'label',
                     LabelType::class
+                )->add(
+                    'isArchive',
+                    ChoiceType::class,
+                    array(
+                        'expanded' => true,
+                        'choices' => array (
+                            'Yes' => true,
+                            'No' => false,
+                        ),
+                    )
                 );
         }
 

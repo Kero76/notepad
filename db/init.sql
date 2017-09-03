@@ -22,6 +22,7 @@ CREATE TABLE np_tickets (
   ticket_content TEXT NOT NULL,
   ticket_release_date DATETIME NOT NULL,
   ticket_last_modified DATETIME NOT NULL,
+  ticket_is_archive BOOLEAN NOT NULL,
   fk_label_id INTEGER NOT NULL,
   CONSTRAINT fk_label_id FOREIGN KEY(fk_label_id) REFERENCES np_labels(label_id)
 ) ENGINE = innobd CHARACTER SET utf8 COLLATE utf8_unicode_ci;

@@ -23,6 +23,10 @@
     $app->match('/', 'Notepad\Controller\HomeController::homeAction')
         ->bind('home');
 
+    // Archives pages.
+    $app->get('/archives/', 'Notepad\Controller\HomeController::archivesAction')
+        ->bind('archives');
+
     // Login
     $app->match('/login', 'Notepad\Controller\HomeController::loginAction')
         ->bind('login');

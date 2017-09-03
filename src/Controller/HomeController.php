@@ -33,7 +33,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Controller
      * @since 1.0
-     * @version 1.0
+     * @version 1.1
      */
     class HomeController {
 
@@ -58,6 +58,38 @@
 
             // Set the layout use to render page.
             $layout = 'home.html.twig';
+
+            // Return the page render by Twig.
+            return $app['twig']->render(
+                $layout,
+                array(
+                    'tickets' => $tickets,
+                    'labels' => $labels,
+                )
+            );
+        }
+
+        /**
+         * Get all tickets archives on the app.
+         *
+         * @param \Silex\Application $app
+         *  Silex application.
+         *
+         * @return mixed
+         *  Twig render page.
+         * @since 1.1
+         * @version 1.0
+         */
+        public function archivesAction(Application $app) {
+            // Set the TicketDao with an instance of LabelDao to build tickets.
+            $app['dao.ticket']->setLabelDao($app['dao.label']);
+
+            // Get all archives tickets and labels.
+            $tickets = $app['dao.ticket']->findAllArchives();
+            $labels = $app['dao.label']->findAll();
+
+            // Set the layout use to render the page.
+            $layout = 'archives.html.twig';
 
             // Return the page render by Twig.
             return $app['twig']->render(

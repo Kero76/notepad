@@ -4,6 +4,7 @@ add_ticket: Add Ticket
 sign_up: Sign Up
 login: Login
 logout: Logout
+archive: Archives
 
 # Page title section
 sign_up_title: Sign up

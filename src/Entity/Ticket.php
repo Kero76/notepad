@@ -29,7 +29,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Entity
      * @since 0.1
-     * @version 1.1
+     * @version 1.2
      */
     class Ticket {
 
@@ -70,6 +70,12 @@
         private $lastModified;
 
         /**
+         * @var bool
+         * @since 1.2
+         */
+        private $isArchive;
+
+        /**
          * Ticket constructor.
          *
          * @since 1.0
@@ -82,6 +88,7 @@
             $this->label = new Label();
             $this->releaseDate = '';
             $this->lastModified = '';
+            $this->isArchive = false;
         }
 
         /**
@@ -190,5 +197,23 @@
          */
         public function setLastModified(\DateTime $lastModified) {
             $this->lastModified = $lastModified->format('Y-m-d H:i:s');
+        }
+
+        /**
+         * @return bool
+         * @since 1.2
+         * @version 1.0
+         */
+        public function isArchive(): bool {
+            return $this->isArchive;
+        }
+
+        /**
+         * @param bool $isArchive
+         * @since 1.2
+         * @version 1.0
+         */
+        public function setIsArchive(bool $isArchive) {
+            $this->isArchive = $isArchive;
         }
     }

@@ -4,6 +4,7 @@ add_ticket: Créer une Note
 sign_up: S'inscrire
 login: Se connecter
 logout: Se déconnecter
+archive: Archives
 
 # Page title section
 sign_up_title: Inscription

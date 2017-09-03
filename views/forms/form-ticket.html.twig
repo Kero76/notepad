@@ -36,9 +36,14 @@
 
                     {{ form_row(ticket_form.content) }}
                     {{ form_widget(ticket_form.content) }}
+
+                    {{ form_row(ticket_form.isArchive) }}
+                    {% for archive_choice in ticket_form.isArchive %}
+                        {{ form_widget(archive_choice) }}
+                    {% endfor %}
                 </fieldset>
 
-                {# Date block. #}
+                {# Label block. #}
                 <fieldset>
                     <legend class="col-md-10 col-sm-11 col-xs-11 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
                         {% trans %}label_information{% endtrans %}

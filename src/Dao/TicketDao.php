@@ -29,7 +29,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Dao
      * @since 1.0
-     * @version 1.1
+     * @version 1.2
      */
     class TicketDao extends AbstractDao {
 
@@ -153,6 +153,39 @@
         }
 
         /**
+         * Get all tickets are archive in notepad.
+         *
+         * @return array
+         *  An array with all tickets archives.
+         * @since 1.2
+         * @version 1.0
+         */
+        public function findAllArchives() : array {
+            // Create SQL request.
+            $sql = 'SELECT * FROM np_tickets WHERE ticket_is_archive = TRUE ORDER BY fk_label_id ASC, ticket_id DESC';
+
+            // Execute request and get object.
+            $result = $this->getDb()
+                           ->fetchAll($sql);
+
+            $tickets = array();
+            foreach ($result as $row) {
+                // Build Ticket
+                $id = $row['ticket_id'];
+                $tickets[$id] = $this->buildEntity($row);
+
+                // If fk_label_id exist, set new label object.
+                if (array_key_exists('fk_label_id', $row)) {
+                    $labelId = intval($row['fk_label_id']);
+                    $label = $this->labelDao->find($labelId);
+                    $tickets[$id]->setLabel($label);
+                }
+            }
+
+            return $tickets;
+        }
+
+        /**
          * Save or update ticket in Database.
          *
          * @param \Notepad\Entity\Ticket $ticket
@@ -167,6 +200,7 @@
                 'ticket_content' => $ticket->getContent(),
                 'ticket_release_date' => $ticket->getReleaseDate(),
                 'ticket_last_modified' => $ticket->getLastModified(),
+                'ticket_is_archive' => $ticket->isArchive(),
                 'fk_label_id' => $ticket->getLabel()
                                         ->getId(),
             );
