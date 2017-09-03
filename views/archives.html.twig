@@ -37,39 +37,41 @@
             <div id="ticket-tab-content" class="row tab-content">
                 {# Loop on each labels present on the Notepad. #}
                 {% for label in labels %}
-                {% if loop.first %}
-                <section class="tab-pane fade in active"
-                         id="{{ label.title|lower|replace({' ' : '_'}) }}">
-                    {% else %}
+                    {% if loop.first %}
+                    <section class="tab-pane fade in active"
+                             id="{{ label.title|lower|replace({' ' : '_'}) }}">
+                        {% else %}
                     <section class="tab-pane fade in"
                              id="{{ label.title|lower|replace({' ' : '_'}) }}">
-                        {% endif %}
+                    {% endif %}
 
-                        {# Loop on each tickets present on Notepad #}
-                        {% for ticket in tickets %}
-                            {# If the current label is present on the ticket, #}
-                            {% if label.title == ticket.label.title %}
-                                {# add the ticket on block. #}
-                                <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                    <h2>
-                                        {{ ticket.title }}
-                                    </h2>
-                                    <p>{{ ticket.content }}</p>
-                                    <ul class="date-section list-inline list-unstyled">
-                                        <li>
-                                            {% trans %}release_date{% endtrans %}
-                                            {{ ticket.releaseDate|date('d/m/Y') }}
-                                        </li>
-                                        <li>
-                                            {% trans %}last_modified{% endtrans %}
-                                            {{ ticket.lastModified|date('d/m/Y') }}
-                                        </li>
-                                    </ul>
-                                </article>
-                            {% endif %}
-                        {% endfor %}
-                    </section>
+                    {# Loop on each tickets present on Notepad #}
+                    {% for ticket in tickets %}
+                        {# If the current label is present on the ticket, #}
+                        {% if label.title == ticket.label.title %}
+                            {# add the ticket on block. #}
+                            <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <h2>
+                                    {{ ticket.title }}
+                                </h2>
+                                <p>{{ ticket.content }}</p>
+                                <ul class="date-section list-inline list-unstyled">
+                                    <li>
+                                        {% trans %}release_date{% endtrans %}
+                                        {{ ticket.releaseDate|date('d/m/Y') }}
+                                    </li>
+                                    <li>
+                                        {% trans %}last_modified{% endtrans %}
+                                        {{ ticket.lastModified|date('d/m/Y') }}
+                                    </li>
+                                </ul>
+                            </article>
+                        {% endif %}
+                    {% else %}
+                        <p>{% trans %}no_ticket_found{% endtrans %}</p>
                     {% endfor %}
+                    </section>
+                {% endfor %}
             </div>
         </div>
     </section>

@@ -41,6 +41,11 @@
                     {% for archive_choice in ticket_form.isArchive %}
                         {{ form_widget(archive_choice) }}
                     {% endfor %}
+
+                    {{ form_row(ticket_form.isStar) }}
+                    {% for star_choice in ticket_form.isStar %}
+                        {{ form_widget(star_choice) }}
+                    {% endfor %}
                 </fieldset>
 
                 {# Label block. #}

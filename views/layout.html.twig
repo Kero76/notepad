@@ -50,6 +50,12 @@
                             <span class="glyphicon glyphicon-bookmark"></span> {% trans %}archive{% endtrans %}
                         </a>
                     </li>
+                    {# Stars menu #}
+                    <li role="presentation">
+                        <a role="menuitem" href="{{ path('stars') }}">
+                            <span class="glyphicon glyphicon-star"></span> {% trans %}star{% endtrans %}
+                        </a>
+                    </li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         {# Add tickets menu #}
                         <li role="presentation">

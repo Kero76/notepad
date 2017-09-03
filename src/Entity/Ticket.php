@@ -76,6 +76,12 @@
         private $isArchive;
 
         /**
+         * @var bool
+         * @since 1.2
+         */
+        private $isStar;
+
+        /**
          * Ticket constructor.
          *
          * @since 1.0
@@ -89,6 +95,7 @@
             $this->releaseDate = '';
             $this->lastModified = '';
             $this->isArchive = false;
+            $this->isStar = false;
         }
 
         /**
@@ -215,5 +222,23 @@
          */
         public function setIsArchive(bool $isArchive) {
             $this->isArchive = $isArchive;
+        }
+
+        /**
+         * @return bool
+         * @since 1.2
+         * @version 1.0
+         */
+        public function isStar(): bool {
+            return $this->isStar;
+        }
+
+        /**
+         * @param bool $isStar
+         * @since 1.2
+         * @version 1.0
+         */
+        public function setIsStar(bool $isStar) {
+            $this->isStar = $isStar;
         }
     }

@@ -5,6 +5,7 @@ sign_up: S'inscrire
 login: Se connecter
 logout: Se déconnecter
 archive: Archives
+star: Favoris
 
 # Page title section
 sign_up_title: Inscription
@@ -19,6 +20,7 @@ cancel_button: Annuler
 confirm_button: Confirmer
 edit: Editer
 delete: Supprimer
+no_ticket_found: Aucune note trouvée.
 
 # Flashbag content section
 ticket_creation: La note a été créée avec succès.

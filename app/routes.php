@@ -27,6 +27,10 @@
     $app->get('/archives/', 'Notepad\Controller\HomeController::archivesAction')
         ->bind('archives');
 
+    // Starred pages.
+    $app->get('/stars/', 'Notepad\Controller\HomeController::starsAction')
+        ->bind('stars');
+
     // Login
     $app->match('/login', 'Notepad\Controller\HomeController::loginAction')
         ->bind('login');

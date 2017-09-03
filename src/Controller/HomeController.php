@@ -102,6 +102,38 @@
         }
 
         /**
+         * Get all tickets archives on the app.
+         *
+         * @param \Silex\Application $app
+         *  Silex application.
+         *
+         * @return mixed
+         *  Twig render page.
+         * @since 1.1
+         * @version 1.0
+         */
+        public function starsAction(Application $app) {
+            // Set the TicketDao with an instance of LabelDao to build tickets.
+            $app['dao.ticket']->setLabelDao($app['dao.label']);
+
+            // Get all starred tickets and labels.
+            $tickets = $app['dao.ticket']->findAllStarred();
+            $labels = $app['dao.label']->findAll();
+
+            // Set the layout use to render the page.
+            $layout = 'stars.html.twig';
+
+            // Return the page render by Twig.
+            return $app['twig']->render(
+                $layout,
+                array(
+                    'tickets' => $tickets,
+                    'labels' => $labels,
+                )
+            );
+        }
+
+        /**
          * Login page.
          *
          * @param \Silex\Application $app

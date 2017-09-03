@@ -5,6 +5,7 @@ sign_up: Sign Up
 login: Login
 logout: Logout
 archive: Archives
+star: Stars
 
 # Page title section
 sign_up_title: Sign up
@@ -19,6 +20,7 @@ cancel_button: Cancel
 confirm_button: Confirm
 edit: Edit
 delete: Delete
+no_ticket_found: No ticket found
 
 # Flashbag content section
 ticket_creation: The ticket was successfully created.
