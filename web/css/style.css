@@ -35,3 +35,11 @@ fieldset {
 #ticket-tab-content {
     padding-bottom: 10px;
 }
+
+.white-text {
+    color: #FFF;
+}
+
+.stars {
+    display: inline-block;
+}

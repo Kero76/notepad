@@ -73,13 +73,17 @@
 {# Starred block #}
 {% block starred_block %}
     {% if ticket.isStar == true %}
-        <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
-            <span class="glyphicon glyphicon-star"></span>
-        </a>
+        <div class="stars">
+            <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
+                <span class="glyphicon glyphicon-star"></span>
+            </a>
+        </div>
     {% else %}
-        <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
-            <span class="glyphicon glyphicon-star-empty"></span>
-        </a>
+        <div class="stars">
+            <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </a>
+        </div>
     {% endif %}
 {% endblock starred_block %}
 
