@@ -23,6 +23,7 @@ delete: Supprimer
 no_ticket_found: Aucune note trouvée.
 yes: Oui
 no: Non
+read_more: Voir tout ...
 
 # Flashbag content section
 ticket_creation: La note a été créée avec succès.

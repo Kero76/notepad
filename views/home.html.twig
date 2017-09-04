@@ -73,11 +73,26 @@
 {# Starred block #}
 {% block starred_block %}
     {% if ticket.isStar == true %}
-        <span class="glyphicon glyphicon-star"></span>
+        <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
+            <span class="glyphicon glyphicon-star"></span>
+        </a>
     {% else %}
-        <span class="glyphicon glyphicon-star-empty"></span>
+        <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
+            <span class="glyphicon glyphicon-star-empty"></span>
+        </a>
     {% endif %}
 {% endblock starred_block %}
+
+{# Link about block #}
+{% block about_block %}
+    {% if ticket.content|length > truncate %}
+        <a href="{{ path('ticket', {'id' : ticket.id}) }}">
+            <button role="link" class="btn btn-info btn-sm" title="{% trans %}read_more{% endtrans %}">
+                {% trans %}read_more{% endtrans %}
+            </button>
+        </a>
+    {% endif %}
+{% endblock about_block %}
 
 {# All content block #}
 {% block content %}
@@ -129,7 +144,12 @@
                                             {{ block('admin_block') }}
                                         {% endif %}
                                     </h2>
-                                    <p>{{ ticket.content }}</p>
+                                    <p>
+                                        {{ ticket.content|truncate(truncate, true, '...') }}
+                                    </p>
+                                    <p>
+                                        {{ block('about_block') }}
+                                    </p>
                                     <ul class="date-section list-inline list-unstyled">
                                         <li>
                                             {% trans %}release_date{% endtrans %}

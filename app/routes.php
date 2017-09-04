@@ -23,6 +23,10 @@
     $app->match('/', 'Notepad\Controller\HomeController::homeAction')
         ->bind('home');
 
+    // Ticket page..
+    $app->match('/ticket/{id}', 'Notepad\Controller\HomeController::ticketAction')
+        ->bind('ticket');
+
     // Archives pages.
     $app->get('/archives/', 'Notepad\Controller\HomeController::archivesAction')
         ->bind('archives');
@@ -50,3 +54,7 @@
     // Delete ticket
     $app->match('/admin/delete-ticket/{id}', 'Notepad\Controller\AdminController::deleteTicketAction')
         ->bind('delete-ticket');
+
+    // Toggle star.
+    $app->match('/admin/toggle-stars/{id}', 'Notepad\Controller\AdminController::toggleStarAction')
+        ->bind('toggle-star');

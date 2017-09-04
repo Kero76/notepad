@@ -23,6 +23,7 @@ delete: Delete
 no_ticket_found: No ticket found
 yes: Yes
 no: No
+read_more: Read more ...
 
 # Flashbag content section
 ticket_creation: The ticket was successfully created.

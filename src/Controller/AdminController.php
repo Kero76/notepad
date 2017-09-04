@@ -33,7 +33,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Controller
      * @since 0.1
-     * @version 1.1
+     * @version 1.2
      */
     class AdminController {
 
@@ -217,6 +217,35 @@
 
             // Remove useless label if necessary.
             $this->removeUselessLabel($app);
+
+            // Finally, it redirect the user on home page.
+            return $app->redirect($app['url_generator']->generate('home'));
+        }
+
+        /**
+         * Toggle star status of the specific ticket.
+         *
+         * @param \Silex\Application $app
+         *  Silex application.
+         * @param int $id
+         *  Id of the ticket to toggle star status.
+         *
+         * @return mixed
+         *  Redirect user on home page.
+         * @since 1.2
+         * @version 1.0
+         */
+        public function toggleStarAction(Application $app, int $id) {
+            // Get ticket.
+            $app['dao.ticket']->setLabelDao($app['dao.label']);
+            $ticket = $app['dao.ticket']->find($id);
+
+            // Toggle isStar attribute,
+            $toggleStar = !$ticket->isStar();
+            $ticket->setIsStar($toggleStar);
+
+            // and update ticket on Database.
+            $app['dao.ticket']->save($ticket);
 
             // Finally, it redirect the user on home page.
             return $app->redirect($app['url_generator']->generate('home'));

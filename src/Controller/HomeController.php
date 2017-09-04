@@ -58,6 +58,7 @@
 
             // Set the layout use to render page.
             $layout = 'home.html.twig';
+            $truncate = 255;
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -65,6 +66,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
+                    'truncate' => $truncate,
                 )
             );
         }
@@ -154,6 +156,38 @@
                 array(
                     'error' => $app['security.last_error']($request),
                     'last_username' => $app['session']->get('_security.last_username'),
+                )
+            );
+        }
+
+        /**
+         * Get specific ticket on the app.
+         *
+         * @param \Silex\Application $app
+         *  Silex application.
+         * @param int $id
+         *  Id of the ticket at displayed.
+         *
+         * @return mixed
+         *  Twig render page.
+         * @since 1.1
+         * @version 1.0
+         */
+        public function ticketAction(Application $app, int $id) {
+            // Set the TicketDao with an instance of LabelDao to build tickets.
+            $app['dao.ticket']->setLabelDao($app['dao.label']);
+
+            // Get ticket.
+            $ticket = $app['dao.ticket']->find($id);
+
+            // Set the layout use to render the page.
+            $layout = 'ticket.html.twig';
+
+            // Return the page render by Twig.
+            return $app['twig']->render(
+                $layout,
+                array(
+                    'ticket' => $ticket,
                 )
             );
         }

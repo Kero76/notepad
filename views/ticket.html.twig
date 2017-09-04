@@ -1,0 +1,99 @@
+{% extends 'layout.html.twig' %}
+
+{% block keywords %}
+    Notepad
+{% endblock %}
+
+{% block meta_tags %}{% endblock %}
+
+{% block stylesheet_block %}{% endblock %}
+
+{% block title %}
+    {% trans %}home{% endtrans %}
+{% endblock %}
+
+{# Admin buttons #}
+{% block admin_block %}
+    {# Update button #}
+    <a href="{{ path('edit-ticket', {'id' : ticket.id }) }}">
+        <button role="link" class="btn btn-primary btn-sm" title="{% trans %}edit{% endtrans %}">
+            <span class="glyphicon glyphicon-edit"></span>
+        </button>
+    </a>
+
+    {# Delete button #}
+    <button type="button" class="btn btn-danger btn-sm" title="{% trans %}delete{% endtrans %}"
+            data-toggle="modal" data-target="#ticket-dialog-{{ ticket.id }}">
+        <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <div class="modal fade" id="ticket-dialog-{{ ticket.id }}" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        {% trans %}modal_delete_title{% endtrans %}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {% trans %}modal_delete_content{% endtrans %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        {% trans %}cancel_button{% endtrans %}
+                    </button>
+                    <a href="{{ path('delete-ticket', {'id' : ticket.id}) }}" class="btn btn-primary">
+                        {% trans %}confirm_button{% endtrans %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock admin_block %}
+
+{# Flashbag content #}
+{% block flashbag_content %}
+    {% for flashMessage in app.session.flashbag.get('label_action') %}
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('ticket_action') %}
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+{% endblock flashbag_content %}
+
+{# Starred block #}
+{% block starred_block %}
+    {% if ticket.isStar == true %}
+        <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
+            <span class="glyphicon glyphicon-star"></span>
+        </a>
+    {% else %}
+        <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
+            <span class="glyphicon glyphicon-star-empty"></span>
+        </a>
+    {% endif %}
+{% endblock starred_block %}
+
+{# All content block #}
+{% block content %}
+    <section class="row">
+        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <h1>
+                {{ block('starred_block') }}
+                {{ ticket.title }}
+            </h1>
+            <p>
+                {{ ticket.content }}
+            </p>
+        </div>
+    </section>
+{% endblock %}
