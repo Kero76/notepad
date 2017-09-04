@@ -85,13 +85,11 @@
 
 {# Link about block #}
 {% block about_block %}
-    {% if ticket.content|length > truncate %}
-        <a href="{{ path('ticket', {'id' : ticket.id}) }}">
-            <button role="link" class="btn btn-info btn-sm" title="{% trans %}read_more{% endtrans %}">
-                {% trans %}read_more{% endtrans %}
-            </button>
-        </a>
-    {% endif %}
+    <a href="{{ path('ticket', {'id' : ticket.id}) }}">
+        <button role="link" class="btn btn-info btn-sm" title="{% trans %}read_more{% endtrans %}">
+            {% trans %}read_more{% endtrans %}
+        </button>
+    </a>
 {% endblock about_block %}
 
 {# All content block #}
@@ -123,46 +121,46 @@
             <div id="ticket-tab-content" class="row tab-content">
                 {# Loop on each labels present on the Notepad. #}
                 {% for label in labels %}
-                {% if loop.first %}
-                <section class="tab-pane fade in active"
+                    {% if loop.first %}
+                    <section class="tab-pane fade in active"
                          id="{{ label.title|lower|replace({' ' : '_'}) }}">
                     {% else %}
                     <section class="tab-pane fade in"
                              id="{{ label.title|lower|replace({' ' : '_'}) }}">
-                        {% endif %}
+                    {% endif %}
 
-                        {# Loop on each tickets present on Notepad #}
-                        {% for ticket in tickets %}
-                            {# If the current label is present on the ticket, #}
-                            {% if label.title == ticket.label.title %}
-                                {# add the ticket on block. #}
-                                <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                    <h2>
-                                        {{ block('starred_block') }}
-                                        {{ ticket.title }}
-                                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                            {{ block('admin_block') }}
-                                        {% endif %}
-                                    </h2>
-                                    <p>
-                                        {{ ticket.content|truncate(truncate, true, '...') }}
-                                    </p>
-                                    <p>
-                                        {{ block('about_block') }}
-                                    </p>
-                                    <ul class="date-section list-inline list-unstyled">
-                                        <li>
-                                            {% trans %}release_date{% endtrans %}
-                                            {{ ticket.releaseDate|date('d/m/Y') }}
-                                        </li>
-                                        <li>
-                                            {% trans %}last_modified{% endtrans %}
-                                            {{ ticket.lastModified|date('d/m/Y') }}
-                                        </li>
-                                    </ul>
-                                </article>
-                            {% endif %}
-                        {% endfor %}
+                    {# Loop on each tickets present on Notepad #}
+                    {% for ticket in tickets %}
+                        {# If the current label is present on the ticket, #}
+                        {% if label.title == ticket.label.title %}
+                            {# add the ticket on block. #}
+                            <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <h2>
+                                    {{ block('starred_block') }}
+                                    {{ ticket.title }}
+                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                        {{ block('admin_block') }}
+                                    {% endif %}
+                                </h2>
+                                <p>
+                                    {{ ticket.content|truncate(truncate, true, '...') }}
+                                </p>
+                                <p>
+                                    {{ block('about_block') }}
+                                </p>
+                                <ul class="date-section list-inline list-unstyled">
+                                    <li>
+                                        {% trans %}release_date{% endtrans %}
+                                        {{ ticket.releaseDate|date('d/m/Y') }}
+                                    </li>
+                                    <li>
+                                        {% trans %}last_modified{% endtrans %}
+                                        {{ ticket.lastModified|date('d/m/Y') }}
+                                    </li>
+                                </ul>
+                            </article>
+                        {% endif %}
+                    {% endfor %}
                     </section>
                 {% endfor %}
             </div>

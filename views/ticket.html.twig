@@ -54,22 +54,6 @@
     </div>
 {% endblock admin_block %}
 
-{# Flashbag content #}
-{% block flashbag_content %}
-    {% for flashMessage in app.session.flashbag.get('label_action') %}
-        <div class="alert alert-success fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
-    {% for flashMessage in app.session.flashbag.get('ticket_action') %}
-        <div class="alert alert-success fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
-{% endblock flashbag_content %}
-
 {# Starred block #}
 {% block starred_block %}
     {% if ticket.isStar == true %}
@@ -90,10 +74,23 @@
             <h1>
                 {{ block('starred_block') }}
                 {{ ticket.title }}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ block('admin_block') }}
+                {% endif %}
             </h1>
             <p>
                 {{ ticket.content }}
             </p>
+            <ul class="date-section list-inline list-unstyled">
+                <li>
+                    {% trans %}release_date{% endtrans %}
+                    {{ ticket.releaseDate|date('d/m/Y') }}
+                </li>
+                <li>
+                    {% trans %}last_modified{% endtrans %}
+                    {{ ticket.lastModified|date('d/m/Y') }}
+                </li>
+            </ul>
         </div>
     </section>
 {% endblock %}
