@@ -95,6 +95,9 @@
                     ChoiceType::class,
                     array(
                         'label_format' => 'is_archive_label',
+                        'label_attr' => array(
+                            'class' => 'radio-inline',
+                        ),
                         'expanded' => true,
                         'choices' => array(
                             'Yes' => true,
@@ -114,6 +117,9 @@
                     ChoiceType::class,
                     array(
                         'label_format' => 'is_star_label',
+                        'label_attr' => array(
+                            'class' => 'radio-inline',
+                        ),
                         'expanded' => true,
                         'choices' => array(
                             'Yes' => true,

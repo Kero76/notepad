@@ -43,8 +43,8 @@ repeat_password_label: Répéter le mot de passe
 title_label: Titre
 email_label: Email
 content_label: Contenu
-is_archive_label: Archiver la note ?
-is_star_label: Marquer comme favori ?
+is_archive_label: Archiver la note
+is_star_label: Marquer comme favori
 ticket_information: Informations
 label_information: Catégorie
 save_ticket: Sauvegarder la Note

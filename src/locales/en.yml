@@ -43,8 +43,8 @@ repeat_password_label: Repeat password
 title_label: Title
 email_label: Email
 content_label: Content
-is_archive_label: Mark as archive ?
-is_star_label: Mark as favorite ?
+is_archive_label: Mark as archive
+is_star_label: Mark as favorite
 ticket_information: Ticket Information
 label_information: Label Information
 save_ticket: Save ticket
