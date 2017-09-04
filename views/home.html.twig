@@ -15,11 +15,11 @@
 {# Admin buttons #}
 {% block admin_block %}
     {# Update button #}
-    <a href="{{ path('edit-ticket', {'id' : ticket.id }) }}">
-        <button role="link" class="btn btn-primary btn-sm" title="{% trans %}edit{% endtrans %}">
-            <span class="glyphicon glyphicon-edit"></span>
-        </button>
-    </a>
+    <button type="button" class="btn btn-primary btn-sm" title="{% trans %}edit{% endtrans %}">
+        <a href="{{ path('edit-ticket', {'id' : ticket.id }) }}">
+            <span class="glyphicon glyphicon-edit white-text"></span>
+        </a>
+    </button>
 
     {# Delete button #}
     <button type="button" class="btn btn-danger btn-sm" title="{% trans %}delete{% endtrans %}"

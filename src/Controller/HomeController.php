@@ -92,6 +92,7 @@
 
             // Set the layout use to render the page.
             $layout = 'archives.html.twig';
+            $truncate = 255;
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -99,6 +100,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
+                    'truncate' => $truncate,
                 )
             );
         }
@@ -124,6 +126,7 @@
 
             // Set the layout use to render the page.
             $layout = 'stars.html.twig';
+            $truncate = 255;
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -131,6 +134,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
+                    'truncate' => $truncate,
                 )
             );
         }
