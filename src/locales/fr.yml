@@ -21,6 +21,8 @@ confirm_button: Confirmer
 edit: Editer
 delete: Supprimer
 no_ticket_found: Aucune note trouvée.
+yes: Oui
+no: Non
 
 # Flashbag content section
 ticket_creation: La note a été créée avec succès.
@@ -37,6 +39,12 @@ sign_up_fail_error: Erreur d'inscription!
 clean_form: Effacer les données
 username_label: Nom d'utilisateur
 password_label: Mot de passe
+repeat_password_label: Répéter le mot de passe
+title_label: Titre
+email_label: Email
+content_label: Contenu
+is_archive_label: Archiver la note ?
+is_star_label: Marquer comme favori ?
 ticket_information: Informations
 label_information: Catégorie
 save_ticket: Sauvegarder la Note

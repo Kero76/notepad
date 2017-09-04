@@ -56,6 +56,7 @@
                     'title',
                     TextType::class,
                     array(
+                        'label_format' => 'title_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),

@@ -21,6 +21,8 @@ confirm_button: Confirm
 edit: Edit
 delete: Delete
 no_ticket_found: No ticket found
+yes: Yes
+no: No
 
 # Flashbag content section
 ticket_creation: The ticket was successfully created.
@@ -37,6 +39,12 @@ sign_up_fail_error: Sign up failed!
 clean_form: Clean form
 username_label: Username
 password_label: Password
+repeat_password_label: Repeat password
+title_label: Title
+email_label: Email
+content_label: Content
+is_archive_label: Mark as archive ?
+is_star_label: Mark as favorite ?
 ticket_information: Ticket Information
 label_information: Label Information
 save_ticket: Save ticket

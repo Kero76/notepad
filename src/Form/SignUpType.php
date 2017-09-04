@@ -58,6 +58,7 @@
                     'username',
                     TextType::class,
                     array(
+                        'label_format' => 'username_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -75,8 +76,8 @@
                     RepeatedType::class,
                     array(
                         'type' => PasswordType::class,
-                        'first_options' => array('label' => 'Password'),
-                        'second_options' => array('label' => 'Repeat Password'),
+                        'first_options' => array('label' => 'password_label'),
+                        'second_options' => array('label' => 'repeat_password_label'),
                         'required' => true,
                         'constraints' => array(
                             new Length(
@@ -92,6 +93,7 @@
                     'email',
                     EmailType::class,
                     array(
+                        'label_format' => 'email_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),

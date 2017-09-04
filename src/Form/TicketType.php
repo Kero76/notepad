@@ -58,6 +58,7 @@
                     'title',
                     TextType::class,
                     array(
+                        'label_format' => 'title_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -74,6 +75,7 @@
                     'content',
                     TextareaType::class,
                     array(
+                        'label_format' => 'content_label',
                         'required' => true,
                         'constraints' => array(
                             new NotBlank(),
@@ -92,22 +94,38 @@
                     'isArchive',
                     ChoiceType::class,
                     array(
+                        'label_format' => 'is_archive_label',
                         'expanded' => true,
                         'choices' => array(
                             'Yes' => true,
                             'No' => false,
                         ),
+                        'choice_label' => function($value) {
+                            if ($value === true) {
+                                return 'yes';
+                            }
+
+                            return 'no';
+                        },
                     )
                 )
                 ->add(
                     'isStar',
                     ChoiceType::class,
                     array(
+                        'label_format' => 'is_star_label',
                         'expanded' => true,
                         'choices' => array(
                             'Yes' => true,
                             'No' => false,
                         ),
+                        'choice_label' => function($value) {
+                            if ($value === true) {
+                                return 'yes';
+                            }
+
+                            return 'no';
+                        },
                     )
                 );
         }
