@@ -13,6 +13,7 @@ Notepad is an online notepad used to stored important information and get it fro
 - Sign up on app to create and manage ticket.
 
 # Changelog
+- Notepad v0.3 - Released September 04, 2017
 - Notepad v0.2 - Released September 02, 2017
 - Notepad v0.1 - Released September 01, 2017
 

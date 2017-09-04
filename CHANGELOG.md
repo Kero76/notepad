@@ -1,11 +1,17 @@
 # Changelog
 
+## Notepad v0.3 - Released September 04, 2017
+### Features
+- Add archiving feature.
+- Add favorite feature.
+- Translate all elements of the application.
+
 ## Notepad v0.2 - Released September 02, 2017
 ### Features
- - Edit ticket.
- - Delete ticket.
- - Auto-remove useless label (when no ticket have the label).
- - Add flashbag to show result of action.
+- Edit ticket.
+- Delete ticket.
+- Auto-remove useless label (when no ticket have the label).
+- Add flashbag to show result of action.
 
 ## Notepad v0.1 - Released September 01, 2017
 ### Features
