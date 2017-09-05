@@ -147,7 +147,9 @@
                                     {% endif %}
                                 </h2>
                                 <p>
-                                    {{ ticket.content|truncate(truncate, true, '...') }}
+                                    {% autoescape false %}
+                                        {{ ticket.content|truncate(truncate, true, '...') }}
+                                    {% endautoescape %}
                                 </p>
                                 <p>
                                     {{ block('about_block') }}

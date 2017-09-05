@@ -79,7 +79,9 @@
                 {% endif %}
             </h1>
             <p>
-                {{ ticket.content }}
+                {% autoescape false %}
+                    {{ ticket.content }}
+                {% endautoescape %}
             </p>
             <ul class="date-section list-inline list-unstyled">
                 <li>
