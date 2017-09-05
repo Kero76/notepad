@@ -76,7 +76,7 @@
                     TextareaType::class,
                     array(
                         'label_format' => 'content_label',
-                        'required' => true,
+                        'required' => false,
                         'constraints' => array(
                             new NotBlank(),
                         ),

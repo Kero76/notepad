@@ -32,8 +32,7 @@
         )
     );
     $app['twig.loader.filesystem']->prependPath(__DIR__.'/../views/forms/');
-
-
+    
     // Extends Twig with some services.
     $app->extend(
         'twig',
