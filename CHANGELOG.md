@@ -1,5 +1,14 @@
 # Changelog
 
+## Notepad v0.4 - Released September 05, 2017
+### Features
+- Replace Textarea field by TinyMCE.
+- Update method to starred a ticket by clicking on star present beside ticket title.
+- Display link as web link to improve accessibility.
+
+### Bugs fixed
+- Fix hitbox buttons for starred and edit button.
+
 ## Notepad v0.3 - Released September 04, 2017
 ### Features
 - Add archiving feature.
