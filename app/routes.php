@@ -28,11 +28,11 @@
         ->bind('ticket');
 
     // Archives pages.
-    $app->get('/archives/', 'Notepad\Controller\HomeController::archivesAction')
+    $app->get('/archives', 'Notepad\Controller\HomeController::archivesAction')
         ->bind('archives');
 
     // Starred pages.
-    $app->get('/stars/', 'Notepad\Controller\HomeController::starsAction')
+    $app->get('/stars', 'Notepad\Controller\HomeController::starsAction')
         ->bind('stars');
 
     // Login
