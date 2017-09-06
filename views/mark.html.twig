@@ -1,0 +1,171 @@
+{% extends 'layout.html.twig' %}
+
+{% block keywords %}
+    Notepad
+{% endblock %}
+
+{% block meta_tags %}{% endblock %}
+
+{% block stylesheet_block %}{% endblock %}
+
+{% block title %}
+    {% trans %}home{% endtrans %}
+{% endblock %}
+
+{# Admin buttons #}
+{% block admin_block %}
+    {# Update button #}
+    <button type="button" class="btn btn-primary btn-sm" title="{% trans %}edit{% endtrans %}">
+        <a href="{{ path('edit-ticket', {'id' : ticket.id }) }}">
+            <span class="glyphicon glyphicon-edit white-text"></span>
+        </a>
+    </button>
+
+    {# Delete button #}
+    <button type="button" class="btn btn-danger btn-sm" title="{% trans %}delete{% endtrans %}"
+            data-toggle="modal" data-target="#ticket-dialog-{{ ticket.id }}">
+        <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <div class="modal fade" id="ticket-dialog-{{ ticket.id }}" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        {% trans %}modal_delete_title{% endtrans %}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {% trans %}modal_delete_content{% endtrans %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        {% trans %}cancel_button{% endtrans %}
+                    </button>
+                    <a href="{{ path('delete-ticket', {'id' : ticket.id}) }}" class="btn btn-primary">
+                        {% trans %}confirm_button{% endtrans %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock admin_block %}
+
+{# Flashbag content #}
+{% block flashbag_content %}
+    {% for flashMessage in app.session.flashbag.get('label_action') %}
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('ticket_action') %}
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+{% endblock flashbag_content %}
+
+{# Starred block #}
+{% block starred_block %}
+    {% if ticket.isStar == true %}
+        <div class="stars">
+            <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
+                <span class="glyphicon glyphicon-star"></span>
+            </a>
+        </div>
+    {% else %}
+        <div class="stars">
+            <a href="{{ path('toggle-star', {'id' : ticket.id}) }}">
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </a>
+        </div>
+    {% endif %}
+{% endblock starred_block %}
+
+{# Archive block #}
+{% block archived_block %}
+    {% if ticket.isArchive %}
+        <span class="fa fa-archive" aria-hidden="true"></span>
+    {% endif %}
+{% endblock archived_block %}
+
+{# Link about block #}
+{% block about_block %}
+    <li>
+        <a href="{{ path('ticket', {'id' : ticket.id}) }}">
+            <button role="link" class="btn btn-info btn-sm" title="{% trans %}read_more{% endtrans %}">
+                {% trans %}read_more{% endtrans %}
+            </button>
+        </a>
+    </li>
+    <li>
+        <div class="btn btn-default cursor-default disabled" title="{{ ticket.label.title }}">
+            {{ ticket.label.title }}
+        </div>
+    </li>
+{% endblock about_block %}
+
+{# All content block #}
+{% block content %}
+    <section class="row">
+        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <h1>{% trans %}home{% endtrans %}</h1>
+
+            <article>
+                {{ block('flashbag_content') }}
+            </article>
+
+            {# Tab content #}
+            <section id="ticket-tab-content" class="row">
+                {# Loop on each tickets present on Notepad #}
+                {% for ticket in tickets %}
+                    {# add the ticket on block. #}
+                    <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <h2>
+                            {{ block('starred_block') }}
+                            {{ block('archived_block') }}
+                            {{ ticket.title }}
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                {{ block('admin_block') }}
+                            {% endif %}
+                        </h2>
+                        <p>
+                            {% autoescape false %}
+                                {{ ticket.content|truncate(truncate, true, '...') }}
+                            {% endautoescape %}
+                        </p>
+                        <ul class="list-inline list-unstyled">
+                            {{ block('about_block') }}
+                        </ul>
+                        <ul class="date-section list-inline list-unstyled">
+                            <li>
+                                {% trans %}release_date{% endtrans %}
+                                {{ ticket.releaseDate|date('d/m/Y') }}
+                            </li>
+                            <li>
+                                {% trans %}last_modified{% endtrans %}
+                                {{ ticket.lastModified|date('d/m/Y') }}
+                            </li>
+                        </ul>
+                    </article>
+                {% endfor %}
+                <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {# Add tickets menu #}
+                        <h2>{% trans %}add_ticket{% endtrans %}</h2>
+                        <p>
+                            <a role="menuitem" href="{{ path('add-ticket') }}">
+                                {% trans %}add_ticket{% endtrans %}
+                            </a>
+                        </p>
+                    {% endif %}
+                </article>
+            </section>
+        </div>
+    </section>
+{% endblock %}

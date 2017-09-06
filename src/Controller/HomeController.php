@@ -91,7 +91,7 @@
             $labels = $app['dao.label']->findAll();
 
             // Set the layout use to render the page.
-            $layout = 'home.html.twig';
+            $layout = 'mark.html.twig';
             $truncate = 255;
 
             // Return the page render by Twig.
@@ -125,7 +125,7 @@
             $labels = $app['dao.label']->findAll();
 
             // Set the layout use to render the page.
-            $layout = 'home.html.twig';
+            $layout = 'mark.html.twig';
             $truncate = 255;
 
             // Return the page render by Twig.

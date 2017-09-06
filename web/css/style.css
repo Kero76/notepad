@@ -43,3 +43,8 @@ fieldset {
 .stars {
     display: inline-block;
 }
+
+/* Unchanged cursor when it's hover disabled button. */
+.cursor-default:hover {
+    cursor: default;
+}
