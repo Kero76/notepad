@@ -74,6 +74,11 @@
 {% endblock %}
 
 {% block javascript_block %}
-    <script type="text/javascript" src="{{ asset('../vendor/tinymce/tinymce/tinymce.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('../web//js/tinymce.js') }}"></script>
+    {% if settings.debug == true %}
+        <script type="text/javascript" src="{{ asset('../vendor/tinymce/tinymce/tinymce.js') }}"></script>
+    {% else %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.6/tinymce.min.js"
+                integrity="sha256-XSa07kJ61pc+fHQ1EZNXAMSj8n8ZoEPovGv2Z692Cxk=" crossorigin="anonymous"></script>
+    {% endif %}
+    <script type="text/javascript" src="{{ asset('../web/js/tinymce.js') }}"></script>
 {% endblock %}

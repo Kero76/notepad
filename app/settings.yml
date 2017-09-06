@@ -1,0 +1,3 @@
+website:
+  debug: false
+  truncate: 255

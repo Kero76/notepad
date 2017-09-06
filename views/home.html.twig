@@ -156,7 +156,7 @@
                                 </h2>
                                 <p>
                                     {% autoescape false %}
-                                        {{ ticket.content|truncate(truncate, true, '...') }}
+                                        {{ ticket.content|truncate(settings.truncate, true, '...') }}
                                     {% endautoescape %}
                                 </p>
                                 <p>

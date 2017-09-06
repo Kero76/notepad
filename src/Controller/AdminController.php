@@ -24,6 +24,7 @@
     use DateTime;
     use Notepad\Entity\Ticket;
     use Notepad\Form\TicketType;
+    use Notepad\Utils\Settings;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
 
@@ -108,6 +109,7 @@
                 $layout,
                 array(
                     'ticket_form' => $ticketFormView,
+                    'settings' => new Settings(),
                 )
             );
         }
@@ -188,6 +190,7 @@
                 $layout,
                 array(
                     'ticket_form' => $ticketFormView,
+                    'settings' => new Settings(),
                 )
             );
         }

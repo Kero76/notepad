@@ -24,6 +24,7 @@
 
     use Notepad\Entity\User;
     use Notepad\Form\SignUpType;
+    use Notepad\Utils\Settings;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
 
@@ -33,7 +34,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Controller
      * @since 1.0
-     * @version 1.1
+     * @version 1.2
      */
     class HomeController {
 
@@ -46,7 +47,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
         public function homeAction(Application $app) {
             // Set the TicketDao with an instance of LabelDao to build correctly the tickets.
@@ -58,7 +59,6 @@
 
             // Set the layout use to render page.
             $layout = 'home.html.twig';
-            $truncate = 255;
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -66,7 +66,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
-                    'truncate' => $truncate,
+                    'settings' => new Settings(),
                 )
             );
         }
@@ -80,7 +80,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.1
-         * @version 1.0
+         * @version 1.1
          */
         public function archivesAction(Application $app) {
             // Set the TicketDao with an instance of LabelDao to build tickets.
@@ -92,7 +92,6 @@
 
             // Set the layout use to render the page.
             $layout = 'mark.html.twig';
-            $truncate = 255;
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -100,7 +99,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
-                    'truncate' => $truncate,
+                    'settings' => new Settings(),
                 )
             );
         }
@@ -114,7 +113,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.1
-         * @version 1.0
+         * @version 1.1
          */
         public function starsAction(Application $app) {
             // Set the TicketDao with an instance of LabelDao to build tickets.
@@ -126,7 +125,6 @@
 
             // Set the layout use to render the page.
             $layout = 'mark.html.twig';
-            $truncate = 255;
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -134,7 +132,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
-                    'truncate' => $truncate,
+                    'settings' => new Settings(),
                 )
             );
         }
@@ -150,7 +148,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
         public function loginAction(Application $app, Request $request) {
             $layout = 'login.html.twig';
@@ -160,6 +158,7 @@
                 array(
                     'error' => $app['security.last_error']($request),
                     'last_username' => $app['session']->get('_security.last_username'),
+                    'settings' => new Settings(),
                 )
             );
         }
@@ -175,7 +174,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.1
-         * @version 1.0
+         * @version 1.1
          */
         public function ticketAction(Application $app, int $id) {
             // Set the TicketDao with an instance of LabelDao to build tickets.
@@ -192,6 +191,7 @@
                 $layout,
                 array(
                     'ticket' => $ticket,
+                    'settings' => new Settings(),
                 )
             );
         }
@@ -207,7 +207,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
         public function signUpAction(Application $app, Request $request) {
             // Instantiate a User hydrate by the data get from the registration form.
@@ -246,6 +246,7 @@
                     'error' => $app['security.last_error']($request),
                     'last_username' => $app['session']->get('_security.last_username'),
                     'sign_up_form' => $signUpFormView,
+                    'settings' => new Settings(),
                 )
             );
         }
