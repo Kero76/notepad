@@ -1,3 +1,8 @@
+# Redirect incoming URLs to index.php
 <IfModule mod_rewrite.c>
-    FallbackResource index.php
+    Options -MultiViews
+
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [QSA,L]
 </IfModule>
