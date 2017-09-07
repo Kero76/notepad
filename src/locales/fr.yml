@@ -10,6 +10,7 @@ star: Favoris
 # Page title section
 sign_up_title: Inscription
 add_ticket_title: Nouvelle Note
+edit_ticket_title: Mettre à jour la Note
 
 # Body content
 release_date: Ecrit le

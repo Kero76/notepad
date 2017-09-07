@@ -110,12 +110,14 @@
             // Generate the view of the register form.
             $ticketFormView = $ticketForm->createView();
             $layout = 'forms/form-ticket.html.twig';
+            $title = 'add_ticket_title';
 
             return $app['twig']->render(
                 $layout,
                 array(
                     'ticket_form' => $ticketFormView,
                     'settings' => new Settings(),
+                    'title' => $title,
                 )
             );
         }
@@ -191,12 +193,14 @@
             // Generate the view of the register form.
             $ticketFormView = $ticketForm->createView();
             $layout = 'forms/form-ticket.html.twig';
+            $title = 'edit_ticket_title';
 
             return $app['twig']->render(
                 $layout,
                 array(
                     'ticket_form' => $ticketFormView,
                     'settings' => new Settings(),
+                    'title' => $title,
                 )
             );
         }

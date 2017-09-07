@@ -10,6 +10,7 @@ star: Stars
 # Page title section
 sign_up_title: Sign up
 add_ticket_title: Add Ticket
+edit_ticket_title: Edit Ticket
 
 # Body content
 release_date: Release on
