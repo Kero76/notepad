@@ -1,5 +1,16 @@
 # Changelog
 
+## Notepad v0.5 - Released September 07, 2017
+### Features
+- Add specific layout for archive and favorite ticket.
+- Update TinyMCE with _codesample_ and _lists_ elements.
+- Outsource website settings on Yaml file like debug mode, truncate size and title separator for title tag.
+- Fill automatically title label when you create a ticket from a specific tab.
+
+### Bugs fixed
+- Fix problem to load home on Google Chrome.
+- Fix title value for add, edit, favorite and archive ticket.
+
 ## Notepad v0.4 - Released September 05, 2017
 ### Features
 - Replace Textarea field by TinyMCE.
