@@ -27,8 +27,8 @@ function init_tinyMCE(selector, height) {
     tinymce.init({
         selector: selector,
         height: height,
-        plugins: 'autolink anchor codesample hr link preview searchreplace textcolor visualblocks wordcount',
-        toolbar1: 'bold italic underline | cut, copy, paste | link codesample | undo redo',
+        plugins: 'autolink anchor codesample hr link lists preview searchreplace textcolor visualblocks wordcount',
+        toolbar1: 'bold italic underline | cut, copy, paste | link codesample | bullist numlist | undo redo',
         style_formats: [
             { title: 'Headers', items: [
                 { title: 'h1', block: 'h1' },
