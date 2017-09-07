@@ -58,7 +58,7 @@
             $labels = $app['dao.label']->findAll();
 
             // Set the layout use to render page.
-            $layout = 'home.html.twig';
+            $layout = 'tickets/home.html.twig';
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -91,7 +91,7 @@
             $labels = $app['dao.label']->findAll();
 
             // Set the layout use to render the page.
-            $layout = 'mark.html.twig';
+            $layout = 'tickets/mark.html.twig';
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -124,7 +124,7 @@
             $labels = $app['dao.label']->findAll();
 
             // Set the layout use to render the page.
-            $layout = 'mark.html.twig';
+            $layout = 'tickets/mark.html.twig';
 
             // Return the page render by Twig.
             return $app['twig']->render(

@@ -29,7 +29,10 @@
 
 {# Title tag present on head. #}
 {% block title_tag_block %}
-    <title>Notepad | {% block title %}{% endblock %}</title>
+    <title>
+        Notepad
+        {{ settings.titleSeparator }}
+        {% block title %}{% endblock %}</title>
 {% endblock title_tag_block %}
 
 

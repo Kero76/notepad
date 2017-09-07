@@ -1,3 +1,4 @@
 website:
+  title_separator: "|"
   debug: false
   truncate: 255

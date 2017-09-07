@@ -28,17 +28,17 @@
         new Silex\Provider\TwigServiceProvider(),
         array(
             'twig.path' => __DIR__ . '/../views/',
-
         )
     );
-    $app['twig.loader.filesystem']->prependPath(__DIR__.'/../views/forms/');
-    
+    $app['twig.loader.filesystem']->prependPath(__DIR__ . '/../views/forms/');
+
     // Extends Twig with some services.
     $app->extend(
         'twig',
         function(Twig_Environment $twig, $app) {
             $twig->addExtension(new Twig_Extensions_Extension_Intl());
             $twig->addExtension(new Twig_Extensions_Extension_Text());
+
             return $twig;
         }
     );
@@ -74,6 +74,7 @@
             $translator->addLoader('yaml', new \Symfony\Component\Translation\Loader\YamlFileLoader());
             $translator->addResource('yaml', __DIR__ . '/../src/locales/fr.yml', 'fr');
             $translator->addResource('yaml', __DIR__ . '/../src/locales/en.yml', 'en');
+
             return $translator;
         }
     );

@@ -25,6 +25,7 @@
      * @since 0.5
      * @version 1.0
      */
+
     namespace Notepad\Utils;
 
     use Symfony\Component\Yaml\Yaml;
@@ -50,6 +51,12 @@
         private $truncate;
 
         /**
+         * @var string
+         * @since 1.0
+         */
+        private $titleSeparator;
+
+        /**
          * Settings constructor.
          *
          * @since 1.0
@@ -59,6 +66,7 @@
             $settings = Yaml::parse(file_get_contents(Settings::$SETTING_PATH_FILE));
             $this->debug = $settings['website']['debug'];
             $this->truncate = $settings['website']['truncate'];
+            $this->titleSeparator = $settings['website']['title_separator'];
         }
 
         /**
@@ -97,5 +105,24 @@
          */
         public function setTruncate(int $truncateSize) {
             $this->truncate = $truncateSize;
+        }
+
+        /**
+         * @return string
+         * @since 1.0
+         * @version 1.0
+         */
+        public function getTitleSeparator(): string {
+            return $this->titleSeparator;
+        }
+
+        /**
+         * @param string $titleSeparator
+         *
+         * @since 1.0
+         * @version 1.0
+         */
+        public function setTitleSeparator(string $titleSeparator) {
+            $this->titleSeparator = $titleSeparator;
         }
     }
