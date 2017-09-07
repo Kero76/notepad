@@ -1,16 +1,14 @@
-{% extends 'layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block keywords %}
     Notepad
 {% endblock %}
 
-{% block meta_tags %}{% endblock %}
-
-{% block stylesheet_block %}{% endblock %}
 
 {% block title %}
     {% trans %}home{% endtrans %}
 {% endblock %}
+
 
 {# Admin buttons #}
 {% block admin_block %}
@@ -54,6 +52,7 @@
     </div>
 {% endblock admin_block %}
 
+
 {# Flashbag content #}
 {% block flashbag_content %}
     {% for flashMessage in app.session.flashbag.get('label_action') %}
@@ -62,6 +61,7 @@
             {{ flashMessage }}
         </div>
     {% endfor %}
+
     {% for flashMessage in app.session.flashbag.get('ticket_action') %}
         <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -69,6 +69,7 @@
         </div>
     {% endfor %}
 {% endblock flashbag_content %}
+
 
 {# Starred block #}
 {% block starred_block %}
@@ -87,12 +88,14 @@
     {% endif %}
 {% endblock starred_block %}
 
+
 {# Archive block #}
 {% block archived_block %}
     {% if ticket.isArchive %}
         <span class="fa fa-archive" aria-hidden="true"></span>
     {% endif %}
 {% endblock archived_block %}
+
 
 {# Link about block #}
 {% block about_block %}
@@ -102,6 +105,27 @@
         </button>
     </a>
 {% endblock about_block %}
+
+
+{# Create ticket block #}
+{% block add_ticket %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# Add tickets menu #}
+        <h2>{% trans %}add_ticket{% endtrans %}</h2>
+        <p>
+            {% if label is defined %}
+                <a role="menuitem" href="{{ path('add-ticket', {'label_title' : label.title}) }}">
+                    {% trans %}add_ticket{% endtrans %}
+                </a>
+            {% else %}
+                <a role="menuitem" href="{{ path('add-ticket') }}">
+                    {% trans %}add_ticket{% endtrans %}
+                </a>
+            {% endif %}
+        </p>
+    {% endif %}
+{% endblock add_ticket %}
+
 
 {# All content block #}
 {% block content %}
@@ -177,16 +201,18 @@
                     {% endfor %}
                         <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                {# Add tickets menu #}
-                                <h2>{% trans %}add_ticket{% endtrans %}</h2>
-                                <p>
-                                    <a role="menuitem" href="{{ path('add-ticket') }}">
-                                        {% trans %}add_ticket{% endtrans %}
-                                    </a>
-                                </p>
+                                {{ block('add_ticket') }}
                             {% endif %}
                         </article>
                     </section>
+                {% else %}
+                    <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            {{ block('add_ticket') }}
+                        {% else %}
+                            <p>{% trans %}no_ticket_found{% endtrans %}</p>
+                        {% endif %}
+                    </article>
                 {% endfor %}
             </div>
         </div>

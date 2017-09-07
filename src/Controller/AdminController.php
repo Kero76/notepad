@@ -22,6 +22,7 @@
     namespace Notepad\Controller;
 
     use DateTime;
+    use Notepad\Entity\Label;
     use Notepad\Entity\Ticket;
     use Notepad\Form\TicketType;
     use Notepad\Utils\Settings;
@@ -54,6 +55,11 @@
         public function addTicketAction(Application $app, Request $request) {
             // Instantiate a Ticket hydrate by the data get from the form (currently with initial constructor).
             $ticket = new Ticket();
+            if($request->get('label_title') !== null) {
+                $label = new Label();
+                $label->setTitle($request->get('label_title'));
+                $ticket->setLabel($label);
+            }
             $ticketForm = $app['form.factory']->create(TicketType::class, $ticket);
 
             // User try to saved new ticket app.
