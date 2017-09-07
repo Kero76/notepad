@@ -117,3 +117,17 @@
 {% endblock add_ticket %}
 
 
+
+{# Date block #}
+{% block date_block %}
+    <ul class="date-section list-inline list-unstyled">
+        <li>
+            {% trans %}release_date{% endtrans %}
+            {{ ticket.releaseDate|date('d/m/Y') }}
+        </li>
+        <li>
+            {% trans %}last_modified{% endtrans %}
+            {{ ticket.lastModified|date('d/m/Y') }}
+        </li>
+    </ul>
+{% endblock date_block %}

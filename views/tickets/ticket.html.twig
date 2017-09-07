@@ -1,11 +1,7 @@
 {% extends 'tickets/base-tickets.html.twig' %}
 
 
-{% block keywords %}
-    Notepad
-{% endblock %}
-
-
+{# Title of the page. #}
 {% block title %}
     {% trans %}home{% endtrans %}
 {% endblock %}
@@ -13,30 +9,21 @@
 
 {# All content block #}
 {% block content %}
-    <section class="row">
-        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-            <h1>
-                {{ block('starred_block') }}
-                {{ ticket.title }}
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    {{ block('admin_block') }}
-                {% endif %}
-            </h1>
-            <p>
-                {% autoescape false %}
-                    {{ ticket.content }}
-                {% endautoescape %}
-            </p>
-            <ul class="date-section list-inline list-unstyled">
-                <li>
-                    {% trans %}release_date{% endtrans %}
-                    {{ ticket.releaseDate|date('d/m/Y') }}
-                </li>
-                <li>
-                    {% trans %}last_modified{% endtrans %}
-                    {{ ticket.lastModified|date('d/m/Y') }}
-                </li>
-            </ul>
-        </div>
-    </section>
+<section class="row">
+    <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+        <h1>
+            {{ block('starred_block') }}
+            {{ ticket.title }}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {{ block('admin_block') }}
+            {% endif %}
+        </h1>
+        <p>
+            {% autoescape false %}
+                {{ ticket.content }}
+            {% endautoescape %}
+        </p>
+        {{ block('date_block') }}
+    </div>
+</section>
 {% endblock %}

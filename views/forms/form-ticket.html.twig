@@ -3,77 +3,75 @@
 {# Bootstrap theme. #}
 {% form_theme ticket_form with ['bootstrap_3_horizontal_layout.html.twig','fields.html.twig'] %}
 
-{% block keywords %}
-    Notepad
-{% endblock %}
 
-{% block meta_tags %}{% endblock %}
-
-{% block stylesheet_block %}{% endblock %}
-
+{# Title of the page. #}
 {% block title %}
     {% trans %}add_ticket_title{% endtrans %}
 {% endblock %}
 
+
+{# Block content. #}
 {% block content %}
-    <section class="row">
-        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-            <h2 class="text-center">{{ block('title') }}</h2>
-            <div class="well">
-                {{ form_start(ticket_form, {
-                    'attr' : {
-                        'role' : 'form',
-                    }
-                }) }}
+<section class="row">
+    <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+        <h2 class="text-center">{{ block('title') }}</h2>
+        <div class="well">
+            {{ form_start(ticket_form, {
+                'attr' : {
+                    'role' : 'form',
+                }
+            }) }}
 
-                {# Ticket block. #}
-                <fieldset>
-                    <legend class="col-md-10 col-sm-11 col-xs-11 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
-                        {% trans %}ticket_information{% endtrans %}
-                    </legend>
-                    {{ form_row(ticket_form.title) }}
-                    {{ form_widget(ticket_form.title) }}
+            {# Ticket block. #}
+            <fieldset>
+                <legend class="col-md-10 col-sm-11 col-xs-11 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
+                    {% trans %}ticket_information{% endtrans %}
+                </legend>
+                {{ form_row(ticket_form.title) }}
+                {{ form_widget(ticket_form.title) }}
 
-                    {{ form_row(ticket_form.content) }}
-                    {{ form_widget(ticket_form.content) }}
+                {{ form_row(ticket_form.content) }}
+                {{ form_widget(ticket_form.content) }}
 
-                    {{ form_row(ticket_form.isArchive) }}
-                    {% for archive_choice in ticket_form.isArchive %}
-                        {{ form_widget(archive_choice) }}
-                    {% endfor %}
+                {{ form_row(ticket_form.isArchive) }}
+                {% for archive_choice in ticket_form.isArchive %}
+                    {{ form_widget(archive_choice) }}
+                {% endfor %}
 
-                    {{ form_row(ticket_form.isStar) }}
-                    {% for star_choice in ticket_form.isStar %}
-                        {{ form_widget(star_choice) }}
-                    {% endfor %}
-                </fieldset>
+                {{ form_row(ticket_form.isStar) }}
+                {% for star_choice in ticket_form.isStar %}
+                    {{ form_widget(star_choice) }}
+                {% endfor %}
+            </fieldset>
 
-                {# Label block. #}
-                <fieldset>
-                    <legend class="col-md-10 col-sm-11 col-xs-11 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
-                        {% trans %}label_information{% endtrans %}
-                    </legend>
-                    {{ form_widget(ticket_form.label) }}
-                </fieldset>
+            {# Label block. #}
+            <fieldset>
+                <legend class="col-md-10 col-sm-11 col-xs-11 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
+                    {% trans %}label_information{% endtrans %}
+                </legend>
+                {{ form_widget(ticket_form.label) }}
+            </fieldset>
 
-                {# Submit #}
-                <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <button type="submit" class="btn btn-default btn-primary">
-                            <span class="glyphicon glyphicon-save"></span> {% trans %}save_ticket{% endtrans %}
-                        </button>
-                        <button type="reset" class="btn btn-default btn-danger">
-                            <span class="glyphicon glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}
-                        </button>
-                    </div>
+            {# Submit #}
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <button type="submit" class="btn btn-default btn-primary">
+                        <span class="glyphicon glyphicon-save"></span> {% trans %}save_ticket{% endtrans %}
+                    </button>
+                    <button type="reset" class="btn btn-default btn-danger">
+                        <span class="glyphicon glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}
+                    </button>
                 </div>
-                {{ form_end(ticket_form) }}
             </div>
+            {{ form_end(ticket_form) }}
         </div>
-    </section>
+    </div>
+</section>
 {% endblock %}
 
-{% block javascript_block %}
+
+{# Load new script. #}
+{% block extends_javascript_block %}
     {% if settings.debug == true %}
         <script type="text/javascript" src="{{ asset('../vendor/tinymce/tinymce/tinymce.js') }}"></script>
     {% else %}
@@ -81,4 +79,4 @@
                 integrity="sha256-XSa07kJ61pc+fHQ1EZNXAMSj8n8ZoEPovGv2Z692Cxk=" crossorigin="anonymous"></script>
     {% endif %}
     <script type="text/javascript" src="{{ asset('../web/js/tinymce.js') }}"></script>
-{% endblock %}
+{% endblock extends_javascript_block %}

@@ -92,6 +92,7 @@
 
             // Set the layout use to render the page.
             $layout = 'tickets/mark.html.twig';
+            $title = 'archive';
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -100,6 +101,7 @@
                     'tickets' => $tickets,
                     'labels' => $labels,
                     'settings' => new Settings(),
+                    'title' => $title,
                 )
             );
         }
@@ -125,6 +127,7 @@
 
             // Set the layout use to render the page.
             $layout = 'tickets/mark.html.twig';
+            $title = 'star';
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -133,6 +136,7 @@
                     'tickets' => $tickets,
                     'labels' => $labels,
                     'settings' => new Settings(),
+                    'title' => $title,
                 )
             );
         }
@@ -151,7 +155,7 @@
          * @version 1.1
          */
         public function loginAction(Application $app, Request $request) {
-            $layout = 'login.html.twig';
+            $layout = 'forms/login.html.twig';
 
             return $app['twig']->render(
                 $layout,
@@ -184,7 +188,7 @@
             $ticket = $app['dao.ticket']->find($id);
 
             // Set the layout use to render the page.
-            $layout = 'ticket.html.twig';
+            $layout = 'tickets/ticket.html.twig';
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -238,7 +242,7 @@
 
             // Generate the view of the register form.
             $signUpFormView = $signUpForm->createView();
-            $layout = 'sign-up.html.twig';
+            $layout = 'forms/sign-up.html.twig';
 
             return $app['twig']->render(
                 $layout,

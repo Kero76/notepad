@@ -1,10 +1,7 @@
 {% extends 'tickets/base-tickets.html.twig' %}
 
-{% block keywords %}
-    Notepad
-{% endblock %}
 
-
+{# Title of the page. #}
 {% block title %}
     {% trans %}home{% endtrans %}
 {% endblock %}
@@ -12,92 +9,77 @@
 
 {# All content block #}
 {% block content %}
-    <section class="row">
-        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-            <h1>{% trans %}home{% endtrans %}</h1>
+<section class="row">
+    <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+        <h1>{% trans %}home{% endtrans %}</h1>
 
-            <article>
-                {{ block('flashbag_content') }}
-            </article>
+        <article>
+            {{ block('flashbag_content') }}
+        </article>
 
-            {# Tab menu #}
-            <ul class="nav nav-tabs nav-justified">
-                {% for label in labels %}
-                    {% if loop.first %}
-                        <li class="active">
-                    {% else %}
-                        <li>
-                    {% endif %}
-                    <a href="#{{ label.title|lower|replace({' ' : '_'}) }}" data-toggle="tab">
-                        {{ label.title|capitalize }}
-                    </a>
-                    </li>
-                {% endfor %}
-            </ul>
-
-            {# Tab content #}
-            <div id="ticket-tab-content" class="row tab-content">
-                {# Loop on each labels present on the Notepad. #}
-                {% for label in labels %}
-                    {% if loop.first %}
-                    <section class="tab-pane fade in active"
-                         id="{{ label.title|lower|replace({' ' : '_'}) }}">
-                    {% else %}
-                    <section class="tab-pane fade in"
-                             id="{{ label.title|lower|replace({' ' : '_'}) }}">
-                    {% endif %}
-
-                    {# Loop on each tickets present on Notepad #}
-                    {% for ticket in tickets %}
-                        {# If the current label is present on the ticket, #}
-                        {% if label.title == ticket.label.title %}
-                            {# add the ticket on block. #}
-                            <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                <h2>
-                                    {{ block('starred_block') }}
-                                    {{ block('archived_block') }}
-                                    {{ ticket.title }}
-                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                        {{ block('admin_block') }}
-                                    {% endif %}
-                                </h2>
-                                <p>
-                                    {% autoescape false %}
-                                        {{ ticket.content|truncate(settings.truncate, true, '...') }}
-                                    {% endautoescape %}
-                                </p>
-                                <p>
-                                    {{ block('about_block') }}
-                                </p>
-                                <ul class="date-section list-inline list-unstyled">
-                                    <li>
-                                        {% trans %}release_date{% endtrans %}
-                                        {{ ticket.releaseDate|date('d/m/Y') }}
-                                    </li>
-                                    <li>
-                                        {% trans %}last_modified{% endtrans %}
-                                        {{ ticket.lastModified|date('d/m/Y') }}
-                                    </li>
-                                </ul>
-                            </article>
-                        {% endif %}
-                    {% endfor %}
-                        <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                {{ block('add_ticket') }}
-                            {% endif %}
-                        </article>
-                    </section>
+        {# Tab menu #}
+        <ul class="nav nav-tabs nav-justified">
+            {% for label in labels %}
+                {% if loop.first %}
+                    <li class="active">
                 {% else %}
-                    <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            {{ block('add_ticket') }}
-                        {% else %}
-                            <p>{% trans %}no_ticket_found{% endtrans %}</p>
-                        {% endif %}
-                    </article>
+                    <li>
+                {% endif %}
+                <a href="#{{ label.title|lower|replace({' ' : '_'}) }}" data-toggle="tab">
+                    {{ label.title|capitalize }}
+                </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {# Tab content #}
+        <div id="ticket-tab-content" class="row tab-content">
+            {# Loop on each labels present on the Notepad. #}
+            {% for label in labels %}
+                {% if loop.first %}
+                <section class="tab-pane fade in active"
+                     id="{{ label.title|lower|replace({' ' : '_'}) }}">
+                {% else %}
+                <section class="tab-pane fade in"
+                         id="{{ label.title|lower|replace({' ' : '_'}) }}">
+                {% endif %}
+
+                {# Loop on each tickets present on Notepad #}
+                {% for ticket in tickets %}
+                    {# If the current label is present on the ticket, #}
+                    {% if label.title == ticket.label.title %}
+                        {# add the ticket on block. #}
+                        <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <h2>
+                                {{ block('starred_block') }}
+                                {{ block('archived_block') }}
+                                {{ ticket.title }}
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    {{ block('admin_block') }}
+                                {% endif %}
+                            </h2>
+                            <p>
+                                {% autoescape false %}
+                                    {{ ticket.content|truncate(settings.truncate, true, '...') }}
+                                {% endautoescape %}
+                            </p>
+                            <p>
+                                {{ block('about_block') }}
+                            </p>
+                            {{ block('date_block') }}
+                        </article>
+                    {% endif %}
                 {% endfor %}
-            </div>
+                    <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        {{ block('add_ticket') }}
+                    </article>
+                </section>
+            {% else %}
+                <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    {{ block('add_ticket') }}
+                </article>
+            {% endfor %}
         </div>
-    </section>
+    </div>
+</section>
 {% endblock %}
