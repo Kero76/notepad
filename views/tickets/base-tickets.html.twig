@@ -1,15 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block keywords %}
-    Notepad
-{% endblock %}
-
-
-{% block title %}
-    {% trans %}home{% endtrans %}
-{% endblock %}
-
-
 {# Admin buttons #}
 {% block admin_block %}
     {# Update button #}
@@ -127,65 +117,3 @@
 {% endblock add_ticket %}
 
 
-{# All content block #}
-{% block content %}
-    <section class="row">
-        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-            <h1>{% trans %}home{% endtrans %}</h1>
-
-            <article>
-                {{ block('flashbag_content') }}
-            </article>
-
-            {# Tab content #}
-            <section id="ticket-tab-content" class="row">
-                {# Loop on each tickets present on Notepad #}
-                {% for ticket in tickets %}
-                    {# add the ticket on block. #}
-                    <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <h2>
-                            {{ block('starred_block') }}
-                            {{ block('archived_block') }}
-                            {{ ticket.title }}
-                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                {{ block('admin_block') }}
-                            {% endif %}
-                        </h2>
-                        <p>
-                            {% autoescape false %}
-                                {{ ticket.content|truncate(settings.truncate, true, '...') }}
-                            {% endautoescape %}
-                        </p>
-                        <ul class="list-inline list-unstyled">
-                            {{ block('about_block') }}
-                        </ul>
-                        <ul class="date-section list-inline list-unstyled">
-                            <li>
-                                {% trans %}release_date{% endtrans %}
-                                {{ ticket.releaseDate|date('d/m/Y') }}
-                            </li>
-                            <li>
-                                {% trans %}last_modified{% endtrans %}
-                                {{ ticket.lastModified|date('d/m/Y') }}
-                            </li>
-                        </ul>
-                    </article>
-                {% endfor %}
-
-                <article class="ticket col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        {# Add tickets menu #}
-                        <h2>{% trans %}add_ticket{% endtrans %}</h2>
-                        <p>
-                            <a role="menuitem" href="{{ path('add-ticket') }}">
-                                {% trans %}add_ticket{% endtrans %}
-                            </a>
-                        </p>
-                    {% else %}
-                        <p>{% trans %}no_ticket_found{% endtrans %}</p>
-                    {% endif %}
-                </article>
-            </section>
-        </div>
-    </section>
-{% endblock %}
