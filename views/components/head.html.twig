@@ -1,0 +1,44 @@
+{# Meta tag block #}
+{% block meta_tag_block %}
+    <meta charset="utf-8">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+{% endblock meta_tag_block %}
+
+
+{# Links tag block #}
+{% block link_tag_block %}
+    <link href="{{ asset('favicon.ico') }}" rel="icon">
+    {% if settings.debug == true %}
+        <link href="{{ asset('../vendor/twbs/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('../vendor/fortawesome/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('../vendor/components/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet">
+    {% else %}
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+              integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/css/flag-icon.css"
+              integrity="sha256-uNjm68xPD+6gnVc/JWO6c0TgsEu/PqsXTc9djrPqhOw=" crossorigin="anonymous" />
+    {% endif %}
+    {% block extends_stylesheet_block %}{% endblock %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+{% endblock link_tag_block %}
+
+
+{# Title tag present on head. #}
+{% block title_tag_block %}
+    <title>Notepad | {% block title %}{% endblock %}</title>
+{% endblock title_tag_block %}
+
+
+{# Main head block #}
+{% block head_block %}
+    {{ block('meta_tag_block') }}
+    {{ block('link_tag_block') }}
+    {{ block('title_tag_block') }}
+{% endblock head_block %}
+
+
+
