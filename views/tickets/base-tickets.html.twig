@@ -113,6 +113,10 @@
                 </a>
             {% endif %}
         </p>
+    {% else %}
+        {% if tickets|length == 0 %}
+            <p>{% trans %}no_ticket_found{% endtrans %}</p>
+        {% endif %}
     {% endif %}
 {% endblock add_ticket %}
 
