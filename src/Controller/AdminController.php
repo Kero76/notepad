@@ -55,7 +55,7 @@
         public function addTicketAction(Application $app, Request $request) {
             // Instantiate a Ticket hydrate by the data get from the form (currently with initial constructor).
             $ticket = new Ticket();
-            if($request->get('label_title') !== null) {
+            if ($request->get('label_title') !== null) {
                 $label = new Label();
                 $label->setTitle($request->get('label_title'));
                 $ticket->setLabel($label);
@@ -212,24 +212,30 @@
          *  Silex application.
          * @param int $id
          *  Identifier of the ticket at remove.
-         * @param \Symfony\Component\HttpFoundation\Request $request
-         *  HTTP request send by the form.
          *
          * @return mixed
          *  Twig render page.
          * @since 1.1
          * @version 1.1
          */
-        public function deleteTicketAction(Application $app, int $id, Request $request) {
-            // Delete the ticket.
-            $app['dao.ticket']->delete($id);
+        public function deleteTicketAction(Application $app, int $id) {
+            // Get ticket to check if he's mark as archive.
+            $app['dao.ticket']->setLabelDao($app['dao.label']);
+            $ticket = $app['dao.ticket']->find($id);
+            if ($ticket->isArchive() === true) {
+                $app['session']->getFlashbag()
+                               ->add('errors', $app['translator']->trans('ticket_no_deleted'));
+            } else {
+                // Delete the ticket.
+                $app['dao.ticket']->delete($id);
 
-            // and add flashbag to show the action was a success.
-            $app['session']->getFlashbag()
-                           ->add('success', $app['translator']->trans('ticket_delete'));
+                // and add flashbag to show the action was a success.
+                $app['session']->getFlashbag()
+                               ->add('success', $app['translator']->trans('ticket_delete'));
 
-            // Remove useless label if necessary.
-            $this->removeUselessLabel($app);
+                // Remove useless label if necessary.
+                $this->removeUselessLabel($app);
+            }
 
             // Finally, it redirect the user on home page.
             return $app->redirect($app['url_generator']->generate('home'));
