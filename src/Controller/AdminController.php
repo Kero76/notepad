@@ -93,7 +93,7 @@
 
                     // and add flashbag to show the label was create.
                     $app['session']->getFlashbag()
-                                   ->add('label_action', $app['translator']->trans('label_creation'));
+                                   ->add('success', $app['translator']->trans('label_creation'));
                 }
 
                 // and insert ticket on Database too.
@@ -101,7 +101,7 @@
 
                 // and add flashbag to show the action was a success.
                 $app['session']->getFlashbag()
-                               ->add('ticket_action', $app['translator']->trans('ticket_creation'));
+                               ->add('success', $app['translator']->trans('ticket_creation'));
 
                 // Finally, it redirect the user on home page.
                 return $app->redirect($app['url_generator']->generate('home'));
@@ -173,7 +173,7 @@
 
                     // and add flashbag to show the label was create.
                     $app['session']->getFlashbag()
-                                   ->add('label_action', $app['translator']->trans('label_creation'));
+                                   ->add('success', $app['translator']->trans('label_creation'));
                 }
 
                 // and update ticket on Database too.
@@ -184,7 +184,7 @@
 
                 // and add flashbag to show the action was a success.
                 $app['session']->getFlashbag()
-                               ->add('ticket_action', $app['translator']->trans('ticket_update'));
+                               ->add('success', $app['translator']->trans('ticket_update'));
 
                 // Finally, it redirect the user on home page.
                 return $app->redirect($app['url_generator']->generate('home'));
@@ -226,7 +226,7 @@
 
             // and add flashbag to show the action was a success.
             $app['session']->getFlashbag()
-                           ->add('ticket_action', $app['translator']->trans('ticket_delete'));
+                           ->add('success', $app['translator']->trans('ticket_delete'));
 
             // Remove useless label if necessary.
             $this->removeUselessLabel($app);
@@ -297,7 +297,7 @@
 
                     // and add flashbag to show the label was removed.
                     $app['session']->getFlashbag()
-                                   ->add('label_action', $app['translator']->trans('label_delete'));
+                                   ->add('success', $app['translator']->trans('label_delete'));
                 }
             }
         }

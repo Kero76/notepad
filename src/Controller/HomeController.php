@@ -157,6 +157,10 @@
         public function loginAction(Application $app, Request $request) {
             $layout = 'forms/login.html.twig';
 
+            // Add flashbag to confirm sign up action.
+            $app['session']->getFlashbag()
+                           ->add('success', $app['translator']->trans('log_in_success'));
+
             return $app['twig']->render(
                 $layout,
                 array(
@@ -233,6 +237,10 @@
                 $password = $encoder->encodePassword($plainPassword, $user->getSalt());
                 $user->setPassword($password);
                 $user->setRole('ROLE_ADMIN');
+
+                // Add flashbag to confirm sign up action.
+                $app['session']->getFlashbag()
+                               ->add('success', $app['translator']->trans('sign_up_success'));
 
                 // Save the user on database and redirect the user on home page.
                 $app['dao.user']->save($user);

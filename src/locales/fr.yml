@@ -33,6 +33,8 @@ ticket_delete: La note a été supprimée avec succès.
 label_creation: La catégorie a été créée avec succès.
 label_update: La catégorie a été mise à jour avec succès.
 label_delete: La catégorie a été supprimée avec succès.
+sign_up_success: Inscription réalisée avec succès.
+log_in_success: Connexion réalisée avec succès.
 
 # Form section
 login_title: Connexion

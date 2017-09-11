@@ -45,14 +45,7 @@
 
 {# Flashbag content #}
 {% block flashbag_content %}
-    {% for flashMessage in app.session.flashbag.get('label_action') %}
-        <div class="alert alert-success fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
-
-    {% for flashMessage in app.session.flashbag.get('ticket_action') %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
         <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             {{ flashMessage }}

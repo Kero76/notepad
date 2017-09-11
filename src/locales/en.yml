@@ -33,6 +33,8 @@ ticket_delete: The ticket was successfully deleted.
 label_creation: The label was successfully created.
 label_update: The label was successfully updated.
 label_delete: The label was successfully deleted.
+sign_up_success: Sign up successfully.
+log_in_success: Sign up successfully.
 
 # Form section
 login_title: Login
