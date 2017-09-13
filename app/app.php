@@ -23,6 +23,7 @@
     // Register global errors and exceptions handler.
     ErrorHandler::register();
     ExceptionHandler::register();
+
     // Register Twig services providers.
     $app->register(
         new Silex\Provider\TwigServiceProvider(),

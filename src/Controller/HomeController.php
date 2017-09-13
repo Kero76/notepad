@@ -28,6 +28,7 @@
     use Notepad\Utils\Settings;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
     /**
      * Class HomeController.
@@ -266,6 +267,10 @@
 
                 // Save the user on database and redirect the user on home page.
                 $app['dao.user']->save($user);
+
+                // Generate token to connect user after registration.
+                $token = new UsernamePasswordToken($user, null, 'secured', $user->getRoles());
+                $app['security.token_storage']->setToken($token);
 
                 return $app->redirect($app['url_generator']->generate('home'));
             }
