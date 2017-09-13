@@ -23,7 +23,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Utils
      * @since 0.5
-     * @version 1.0
+     * @version 1.1
      */
     namespace Notepad\Utils;
 
@@ -56,6 +56,12 @@
         private $titleSeparator;
 
         /**
+         * @var \Notepad\Utils\Theme
+         * @since 1.1
+         */
+        private $theme;
+
+        /**
          * Settings constructor.
          *
          * @since 1.0
@@ -66,6 +72,11 @@
             $this->debug = $settings['website']['debug'];
             $this->truncate = $settings['website']['truncate'];
             $this->titleSeparator = $settings['website']['title_separator'];
+            $this->theme = new Theme(array(
+                'name' => $settings['theme']['name'],
+                'link' => $settings['theme']['link'],
+                'integrity' => $settings['theme']['integrity'],
+            ));
         }
 
         /**
@@ -124,4 +135,24 @@
         public function setTitleSeparator(string $titleSeparator) {
             $this->titleSeparator = $titleSeparator;
         }
+
+        /**
+         * @return \Notepad\Utils\Theme
+         * @since 1.1
+         * @version 1.0
+         */
+        public function getTheme(): Theme {
+            return $this->theme;
+        }
+
+        /**
+         * @param \Notepad\Utils\Theme $theme
+         * @since 1.1
+         * @version 1.0
+         */
+        public function setTheme(Theme $theme) {
+            $this->theme = $theme;
+        }
+
+
     }
