@@ -22,6 +22,7 @@
     namespace Notepad\Controller;
 
     use DateTime;
+    use GravatarLib\Gravatar\Gravatar;
     use Notepad\Entity\Label;
     use Notepad\Entity\Ticket;
     use Notepad\Form\TicketType;
@@ -35,7 +36,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Controller
      * @since 0.1
-     * @version 1.2
+     * @version 1.3
      */
     class AdminController {
 
@@ -50,7 +51,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.0
-         * @version 1.1
+         * @version 1.2
          */
         public function addTicketAction(Application $app, Request $request) {
             // Instantiate a Ticket hydrate by the data get from the form (currently with initial constructor).
@@ -111,12 +112,16 @@
             $ticketFormView = $ticketForm->createView();
             $layout = 'forms/form-ticket.html.twig';
             $title = 'add_ticket_title';
+            $settings = new Settings();
+            $gravatar = new Gravatar();
+            $gravatar->setSize(20);
 
             return $app['twig']->render(
                 $layout,
                 array(
                     'ticket_form' => $ticketFormView,
-                    'settings' => new Settings(),
+                    'settings' => $settings,
+                    'gravatar' => $gravatar,
                     'title' => $title,
                 )
             );
@@ -135,7 +140,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.1
-         * @version 1.1
+         * @version 1.2
          */
         public function editTicketAction(Application $app, int $id, Request $request) {
             // Instantiate a Ticket hydrate by the data get from the dao.
@@ -194,12 +199,16 @@
             $ticketFormView = $ticketForm->createView();
             $layout = 'forms/form-ticket.html.twig';
             $title = 'edit_ticket_title';
+            $settings = new Settings();
+            $gravatar = new Gravatar();
+            $gravatar->setSize(20);
 
             return $app['twig']->render(
                 $layout,
                 array(
                     'ticket_form' => $ticketFormView,
-                    'settings' => new Settings(),
+                    'settings' => $settings,
+                    'gravatar' => $gravatar,
                     'title' => $title,
                 )
             );

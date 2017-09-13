@@ -38,7 +38,7 @@
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <li role="presentation">
             <a role="menuitem" href="{{ path('home') }}">
-                <span class="glyphicon glyphicon-user"></span> {{ app.user.username }}
+                <img alt="{{ app.user.username }}'s avatar" src="{{ gravatar.uri(app.user.email) }}"> {{ app.user.username }}
             </a>
         </li>
         <li role="presentation">

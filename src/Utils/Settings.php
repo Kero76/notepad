@@ -25,7 +25,6 @@
      * @since 0.5
      * @version 1.0
      */
-
     namespace Notepad\Utils;
 
     use Symfony\Component\Yaml\Yaml;

@@ -22,6 +22,7 @@
 
     namespace Notepad\Controller;
 
+    use GravatarLib\Gravatar\Gravatar;
     use Notepad\Entity\User;
     use Notepad\Form\SignUpType;
     use Notepad\Utils\Settings;
@@ -34,7 +35,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Controller
      * @since 1.0
-     * @version 1.2
+     * @version 1.3
      */
     class HomeController {
 
@@ -47,7 +48,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.0
-         * @version 1.1
+         * @version 1.2
          */
         public function homeAction(Application $app) {
             // Set the TicketDao with an instance of LabelDao to build correctly the tickets.
@@ -59,6 +60,9 @@
 
             // Set the layout use to render page.
             $layout = 'tickets/home.html.twig';
+            $settings = new Settings();
+            $gravatar = new Gravatar();
+            $gravatar->setSize(20);
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -66,7 +70,8 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
-                    'settings' => new Settings(),
+                    'settings' => $settings,
+                    'gravatar' => $gravatar,
                 )
             );
         }
@@ -80,7 +85,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.1
-         * @version 1.1
+         * @version 1.2
          */
         public function archivesAction(Application $app) {
             // Set the TicketDao with an instance of LabelDao to build tickets.
@@ -93,6 +98,9 @@
             // Set the layout use to render the page.
             $layout = 'tickets/mark.html.twig';
             $title = 'archive';
+            $settings = new Settings();
+            $gravatar = new Gravatar();
+            $gravatar->setSize(20);
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -100,7 +108,8 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
-                    'settings' => new Settings(),
+                    'settings' => $settings,
+                    'gravatar' => $gravatar,
                     'title' => $title,
                 )
             );
@@ -115,7 +124,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.1
-         * @version 1.1
+         * @version 1.2
          */
         public function starsAction(Application $app) {
             // Set the TicketDao with an instance of LabelDao to build tickets.
@@ -128,6 +137,9 @@
             // Set the layout use to render the page.
             $layout = 'tickets/mark.html.twig';
             $title = 'star';
+            $settings = new Settings();
+            $gravatar = new Gravatar();
+            $gravatar->setSize(20);
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -135,7 +147,8 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
-                    'settings' => new Settings(),
+                    'settings' => $settings,
+                    'gravatar' => $gravatar,
                     'title' => $title,
                 )
             );
@@ -152,10 +165,14 @@
          * @return mixed
          *  Twig render page.
          * @since 1.0
-         * @version 1.1
+         * @version 1.2
          */
         public function loginAction(Application $app, Request $request) {
+            // Set layout, settings and gravatar.
             $layout = 'forms/login.html.twig';
+            $settings = new Settings();
+            $gravatar = new Gravatar();
+            $gravatar->setSize(20);
 
             // Add flashbag to confirm sign up action.
             $app['session']->getFlashbag()
@@ -166,7 +183,8 @@
                 array(
                     'error' => $app['security.last_error']($request),
                     'last_username' => $app['session']->get('_security.last_username'),
-                    'settings' => new Settings(),
+                    'settings' => $settings,
+                    'gravatar' => $gravatar,
                 )
             );
         }
@@ -193,13 +211,17 @@
 
             // Set the layout use to render the page.
             $layout = 'tickets/ticket.html.twig';
+            $settings = new Settings();
+            $gravatar = new Gravatar();
+            $gravatar->setSize(20);
 
             // Return the page render by Twig.
             return $app['twig']->render(
                 $layout,
                 array(
                     'ticket' => $ticket,
-                    'settings' => new Settings(),
+                    'settings' => $settings,
+                    'gravatar' => $gravatar,
                 )
             );
         }
@@ -251,6 +273,9 @@
             // Generate the view of the register form.
             $signUpFormView = $signUpForm->createView();
             $layout = 'forms/sign-up.html.twig';
+            $settings = new Settings();
+            $gravatar = new Gravatar();
+            $gravatar->setSize(20);
 
             return $app['twig']->render(
                 $layout,
@@ -258,7 +283,8 @@
                     'error' => $app['security.last_error']($request),
                     'last_username' => $app['session']->get('_security.last_username'),
                     'sign_up_form' => $signUpFormView,
-                    'settings' => new Settings(),
+                    'settings' => $settings,
+                    'gravatar' => $gravatar,
                 )
             );
         }
