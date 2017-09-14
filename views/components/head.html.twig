@@ -25,7 +25,7 @@
     {% block extends_stylesheet_block %}{% endblock %}
 
     {% if theme.name|length > 0 %}
-        <link href="{{ settings.theme.link }}" rel="stylesheet" integrity="{{ settings.theme.integrity }}" crossorigin="anonymous"> <!-- Theme Stylesheet -->
+        <link href="{{ theme.link }}" rel="stylesheet" integrity="{{ theme.integrity }}" crossorigin="anonymous"> <!-- Theme Stylesheet -->
     {% endif %}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 {% endblock link_tag_block %}
