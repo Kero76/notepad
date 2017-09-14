@@ -22,10 +22,10 @@
 
     namespace Notepad\Controller;
 
-    use GravatarLib\Gravatar\Gravatar;
+    use Notepad\Entity\Settings;
     use Notepad\Entity\User;
     use Notepad\Form\SignUpType;
-    use Notepad\Utils\Settings;
+    use Notepad\Utils\SetUp;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -61,9 +61,9 @@
 
             // Set the layout use to render page.
             $layout = 'tickets/home.html.twig';
-            $settings = new Settings();
-            $gravatar = new Gravatar();
-            $gravatar->setSize(20);
+            $settings = Settings::getInstance();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -73,6 +73,7 @@
                     'labels' => $labels,
                     'settings' => $settings,
                     'gravatar' => $gravatar,
+                    'theme' => $theme,
                 )
             );
         }
@@ -99,9 +100,9 @@
             // Set the layout use to render the page.
             $layout = 'tickets/mark.html.twig';
             $title = 'archive';
-            $settings = new Settings();
-            $gravatar = new Gravatar();
-            $gravatar->setSize(20);
+            $settings = Settings::getInstance();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -111,6 +112,7 @@
                     'labels' => $labels,
                     'settings' => $settings,
                     'gravatar' => $gravatar,
+                    'theme' => $theme,
                     'title' => $title,
                 )
             );
@@ -138,9 +140,9 @@
             // Set the layout use to render the page.
             $layout = 'tickets/mark.html.twig';
             $title = 'star';
-            $settings = new Settings();
-            $gravatar = new Gravatar();
-            $gravatar->setSize(20);
+            $settings = Settings::getInstance();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -150,6 +152,7 @@
                     'labels' => $labels,
                     'settings' => $settings,
                     'gravatar' => $gravatar,
+                    'theme' => $theme,
                     'title' => $title,
                 )
             );
@@ -171,9 +174,9 @@
         public function loginAction(Application $app, Request $request) {
             // Set layout, settings and gravatar.
             $layout = 'forms/login.html.twig';
-            $settings = new Settings();
-            $gravatar = new Gravatar();
-            $gravatar->setSize(20);
+            $settings = Settings::getInstance();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
 
             // Add flashbag to confirm sign up action.
             $app['session']->getFlashbag()
@@ -186,6 +189,7 @@
                     'last_username' => $app['session']->get('_security.last_username'),
                     'settings' => $settings,
                     'gravatar' => $gravatar,
+                    'theme' => $theme,
                 )
             );
         }
@@ -212,9 +216,9 @@
 
             // Set the layout use to render the page.
             $layout = 'tickets/ticket.html.twig';
-            $settings = new Settings();
-            $gravatar = new Gravatar();
-            $gravatar->setSize(20);
+            $settings = Settings::getInstance();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
 
             // Return the page render by Twig.
             return $app['twig']->render(
@@ -223,6 +227,7 @@
                     'ticket' => $ticket,
                     'settings' => $settings,
                     'gravatar' => $gravatar,
+                    'theme' => $theme,
                 )
             );
         }
@@ -278,9 +283,9 @@
             // Generate the view of the register form.
             $signUpFormView = $signUpForm->createView();
             $layout = 'forms/sign-up.html.twig';
-            $settings = new Settings();
-            $gravatar = new Gravatar();
-            $gravatar->setSize(20);
+            $settings = Settings::getInstance();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
 
             return $app['twig']->render(
                 $layout,
@@ -290,6 +295,7 @@
                     'sign_up_form' => $signUpFormView,
                     'settings' => $settings,
                     'gravatar' => $gravatar,
+                    'theme' => $theme,
                 )
             );
         }

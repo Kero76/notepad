@@ -22,11 +22,11 @@
     namespace Notepad\Controller;
 
     use DateTime;
-    use GravatarLib\Gravatar\Gravatar;
     use Notepad\Entity\Label;
+    use Notepad\Entity\Settings;
     use Notepad\Entity\Ticket;
     use Notepad\Form\TicketType;
-    use Notepad\Utils\Settings;
+    use Notepad\Utils\SetUp;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
 
@@ -112,9 +112,9 @@
             $ticketFormView = $ticketForm->createView();
             $layout = 'forms/form-ticket.html.twig';
             $title = 'add_ticket_title';
-            $settings = new Settings();
-            $gravatar = new Gravatar();
-            $gravatar->setSize(20);
+            $settings = Settings::getInstance();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
 
             return $app['twig']->render(
                 $layout,
@@ -122,6 +122,7 @@
                     'ticket_form' => $ticketFormView,
                     'settings' => $settings,
                     'gravatar' => $gravatar,
+                    'theme' => $theme,
                     'title' => $title,
                 )
             );
@@ -199,9 +200,10 @@
             $ticketFormView = $ticketForm->createView();
             $layout = 'forms/form-ticket.html.twig';
             $title = 'edit_ticket_title';
-            $settings = new Settings();
-            $gravatar = new Gravatar();
-            $gravatar->setSize(20);
+            $settings =
+            $settings = Settings::getInstance();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
 
             return $app['twig']->render(
                 $layout,
@@ -209,6 +211,7 @@
                     'ticket_form' => $ticketFormView,
                     'settings' => $settings,
                     'gravatar' => $gravatar,
+                    'theme' => $theme,
                     'title' => $title,
                 )
             );

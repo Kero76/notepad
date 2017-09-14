@@ -7,3 +7,10 @@ theme:
   name: ""
   link: ""
   integrity: ""
+
+gravatar:
+  size: 32
+  rating: "g"
+  default_image: ""
+  force_default_image: false
+  secure_request: true
