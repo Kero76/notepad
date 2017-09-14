@@ -8,7 +8,7 @@
 {# Links tag block #}
 {% block link_tag_block %}
     <link href="{{ asset('favicon.ico') }}" rel="icon">
-    {% if settings.debug == true %}
+    {% if website.debug == true %}
         <link href="{{ asset('../vendor/twbs/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('../vendor/fortawesome/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
         <link href="{{ asset('../vendor/components/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet">
@@ -35,7 +35,7 @@
 {% block title_tag_block %}
     <title>
         Notepad
-        {{ settings.titleSeparator }}
+        {{ website.separator }}
         {% block title %}{% endblock %}</title>
 {% endblock title_tag_block %}
 

@@ -9,7 +9,7 @@ theme:
   integrity: ""
 
 gravatar:
-  size: 32
+  size: 20
   rating: "g"
   default_image: ""
   force_default_image: false

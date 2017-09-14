@@ -72,7 +72,7 @@
 
 {# Load new script. #}
 {% block extends_javascript_block %}
-    {% if settings.debug == true %}
+    {% if website.debug == true %}
         <script type="text/javascript" src="{{ asset('../vendor/tinymce/tinymce/tinymce.js') }}"></script>
     {% else %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.6/tinymce.min.js"

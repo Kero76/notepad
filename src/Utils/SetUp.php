@@ -24,6 +24,7 @@
     use GravatarLib\Gravatar\Gravatar;
     use Notepad\Entity\Settings;
     use Notepad\Entity\Theme;
+    use Notepad\Entity\Website;
 
     /**
      * Class SetUp.
@@ -68,6 +69,23 @@
                 $settings->isGravatarForceDefaultImage(),
                 $settings->getGravatarRating(),
                 $settings->isGravatarSecureRequest()
+            );
+        }
+
+        /**
+         * Set up the settings for the website.
+         *
+         * @return \Notepad\Entity\Website
+         *  Return the object Website with all website settings.
+         * @since 1.0
+         * @version 1.0
+         */
+        public static function setUpWebsite() {
+            $settings = Settings::getInstance();
+            return new Website(
+                $settings->getWebsiteTitleSeparator(),
+                $settings->isWebsiteDebug(),
+                $settings->getWebsiteTruncate()
             );
         }
     }

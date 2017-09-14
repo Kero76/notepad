@@ -112,7 +112,7 @@
             $ticketFormView = $ticketForm->createView();
             $layout = 'forms/form-ticket.html.twig';
             $title = 'add_ticket_title';
-            $settings = Settings::getInstance();
+            $website = SetUp::setUpWebsite();
             $gravatar = SetUp::setUpGravatar();
             $theme = SetUp::setUpTheme();
 
@@ -120,7 +120,7 @@
                 $layout,
                 array(
                     'ticket_form' => $ticketFormView,
-                    'settings' => $settings,
+                    'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,
                     'title' => $title,
@@ -200,8 +200,8 @@
             $ticketFormView = $ticketForm->createView();
             $layout = 'forms/form-ticket.html.twig';
             $title = 'edit_ticket_title';
-            $settings =
-            $settings = Settings::getInstance();
+            $website = SetUp::setUpWebsite();
+            $website = SetUp::setUpWebsite();
             $gravatar = SetUp::setUpGravatar();
             $theme = SetUp::setUpTheme();
 
@@ -209,7 +209,7 @@
                 $layout,
                 array(
                     'ticket_form' => $ticketFormView,
-                    'settings' => $settings,
+                    'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,
                     'title' => $title,

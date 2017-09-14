@@ -32,7 +32,7 @@
                     </h2>
                     <p>
                         {% autoescape false %}
-                            {{ ticket.content|truncate(settings.truncate, true, '...') }}
+                            {{ ticket.content|truncate(website.truncate, true, '...') }}
                         {% endautoescape %}
                     </p>
                     <ul class="list-inline list-unstyled">

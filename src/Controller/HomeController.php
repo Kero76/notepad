@@ -61,7 +61,7 @@
 
             // Set the layout use to render page.
             $layout = 'tickets/home.html.twig';
-            $settings = Settings::getInstance();
+            $website = SetUp::setUpWebsite();
             $gravatar = SetUp::setUpGravatar();
             $theme = SetUp::setUpTheme();
 
@@ -71,7 +71,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
-                    'settings' => $settings,
+                    'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,
                 )
@@ -100,7 +100,7 @@
             // Set the layout use to render the page.
             $layout = 'tickets/mark.html.twig';
             $title = 'archive';
-            $settings = Settings::getInstance();
+            $website = SetUp::setUpWebsite();
             $gravatar = SetUp::setUpGravatar();
             $theme = SetUp::setUpTheme();
 
@@ -110,7 +110,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
-                    'settings' => $settings,
+                    'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,
                     'title' => $title,
@@ -140,7 +140,7 @@
             // Set the layout use to render the page.
             $layout = 'tickets/mark.html.twig';
             $title = 'star';
-            $settings = Settings::getInstance();
+            $website = SetUp::setUpWebsite();
             $gravatar = SetUp::setUpGravatar();
             $theme = SetUp::setUpTheme();
 
@@ -150,7 +150,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
-                    'settings' => $settings,
+                    'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,
                     'title' => $title,
@@ -174,7 +174,7 @@
         public function loginAction(Application $app, Request $request) {
             // Set layout, settings and gravatar.
             $layout = 'forms/login.html.twig';
-            $settings = Settings::getInstance();
+            $website = SetUp::setUpWebsite();
             $gravatar = SetUp::setUpGravatar();
             $theme = SetUp::setUpTheme();
 
@@ -187,7 +187,7 @@
                 array(
                     'error' => $app['security.last_error']($request),
                     'last_username' => $app['session']->get('_security.last_username'),
-                    'settings' => $settings,
+                    'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,
                 )
@@ -216,7 +216,7 @@
 
             // Set the layout use to render the page.
             $layout = 'tickets/ticket.html.twig';
-            $settings = Settings::getInstance();
+            $website = SetUp::setUpWebsite();
             $gravatar = SetUp::setUpGravatar();
             $theme = SetUp::setUpTheme();
 
@@ -225,7 +225,7 @@
                 $layout,
                 array(
                     'ticket' => $ticket,
-                    'settings' => $settings,
+                    'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,
                 )
@@ -283,7 +283,7 @@
             // Generate the view of the register form.
             $signUpFormView = $signUpForm->createView();
             $layout = 'forms/sign-up.html.twig';
-            $settings = Settings::getInstance();
+            $website = SetUp::setUpWebsite();
             $gravatar = SetUp::setUpGravatar();
             $theme = SetUp::setUpTheme();
 
@@ -293,7 +293,7 @@
                     'error' => $app['security.last_error']($request),
                     'last_username' => $app['session']->get('_security.last_username'),
                     'sign_up_form' => $signUpFormView,
-                    'settings' => $settings,
+                    'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,
                 )

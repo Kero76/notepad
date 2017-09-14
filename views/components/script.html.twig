@@ -1,6 +1,6 @@
 {# Script loader block #}
 {% block scripts_block %}
-    {% if settings.debug == true %}
+    {% if website.debug == true %}
         <script src="{{ asset('../vendor/components/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('../vendor/twbs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     {% else %}

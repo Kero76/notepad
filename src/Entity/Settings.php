@@ -49,19 +49,19 @@
          * @var bool
          * @since 1.0
          */
-        private $debug;
+        private $websiteDebug;
 
         /**
          * @var int
          * @since 1.0
          */
-        private $truncate;
+        private $websiteTruncate;
 
         /**
          * @var string
          * @since 1.0
          */
-        private $titleSeparator;
+        private $websiteTitleSeparator;
 
         /**
          * @var string
@@ -119,9 +119,10 @@
          */
         public function __construct() {
             $settings = Yaml::parse(file_get_contents(Settings::$SETTING_PATH_FILE));
-            $this->debug = $settings['website']['debug'];
-            $this->truncate = $settings['website']['truncate'];
-            $this->titleSeparator = $settings['website']['title_separator'];
+            $this->websiteDebug = $settings['website']['debug'];
+            $this->websiteTruncate = $settings['website']['truncate'];
+            $this->websiteTitleSeparator = $settings['website']['title_separator'];
+
             $this->themeName = $settings['theme']['name'];
             $this->themeLink = $settings['theme']['link'];
             $this->themeIntegrity = $settings['theme']['integrity'];
@@ -137,7 +138,7 @@
          * Get the unique instance of Settings and instantiate it if necessary.
          *
          * @see https://www.tutorialspoint.com/design_pattern/singleton_pattern.htm
-         * @return \Notepad\Utils\Settings
+         * @return \Notepad\Entity\Settings
          *  Return the unique instance of Setting.
          * @since 1.1
          * @version 1.0
@@ -153,58 +154,58 @@
         /**
          * @return bool
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
-        public function isDebug(): bool {
-            return $this->debug;
+        public function isWebsiteDebug(): bool {
+            return $this->websiteDebug;
         }
 
         /**
-         * @param bool $debug
+         * @param bool $websiteDebug
          *
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
-        public function setDebug(bool $debug) {
-            $this->debug = $debug;
+        public function setWebsiteDebug(bool $websiteDebug) {
+            $this->websiteDebug = $websiteDebug;
         }
 
         /**
          * @return int
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
-        public function getTruncate(): int {
-            return $this->truncate;
+        public function getWebsiteTruncate(): int {
+            return $this->websiteTruncate;
         }
 
         /**
-         * @param int $truncateSize
+         * @param int $websiteTruncate
          *
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
-        public function setTruncate(int $truncateSize) {
-            $this->truncate = $truncateSize;
+        public function setWebsiteTruncate(int $websiteTruncate) {
+            $this->websiteTruncate = $websiteTruncate;
         }
 
         /**
          * @return string
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
-        public function getTitleSeparator(): string {
-            return $this->titleSeparator;
+        public function getWebsiteTitleSeparator(): string {
+            return $this->websiteTitleSeparator;
         }
 
         /**
-         * @param string $titleSeparator
+         * @param string $websiteTitleSeparator
          *
          * @since 1.0
-         * @version 1.0
+         * @version 1.1
          */
-        public function setTitleSeparator(string $titleSeparator) {
-            $this->titleSeparator = $titleSeparator;
+        public function setWebsiteTitleSeparator(string $websiteTitleSeparator) {
+            $this->websiteTitleSeparator = $websiteTitleSeparator;
         }
 
         /**
