@@ -2,26 +2,26 @@
 {% block left_navigation_block %}
 <ul class="nav navbar-nav">
     {# Home menu #}
-    <li role="presentation">
+    <li role="presentation" class="nav-item">
         <a role="menuitem" href="{{ path('home') }}">
             <span class="glyphicon glyphicon-home"></span> {% trans %}home{% endtrans %}
         </a>
     </li>
     {# Archives menu #}
-    <li role="presentation">
+    <li role="presentation" class="nav-item">
         <a role="menuitem" href="{{ path('archives') }}">
             <span class="glyphicon glyphicon-bookmark"></span> {% trans %}archive{% endtrans %}
         </a>
     </li>
     {# Stars menu #}
-    <li role="presentation">
+    <li role="presentation" class="nav-item">
         <a role="menuitem" href="{{ path('stars') }}">
             <span class="glyphicon glyphicon-star"></span> {% trans %}star{% endtrans %}
         </a>
     </li>
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         {# Add tickets menu #}
-        <li role="presentation">
+        <li role="presentation" class="nav-item">
             <a role="menuitem" href="{{ path('add-ticket') }}">
                 <span class="glyphicon glyphicon-tag"></span> {% trans %}add_ticket{% endtrans %}
             </a>
@@ -36,23 +36,23 @@
 {# Login / Sign in menu #}
 <ul class="nav navbar-nav navbar-right">
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <li role="presentation">
+        <li role="presentation" class="nav-item">
             <a role="menuitem" href="{{ path('home') }}">
                 <img alt="{{ app.user.username }}'s avatar" src="{{ gravatar.uri(app.user.email) }}"> {{ app.user.username }}
             </a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="nav-item">
             <a role="menuitem" href="{{ path('logout') }}">
                 <span class="glyphicon glyphicon-log-out"></span> {% trans %}logout{% endtrans %}
             </a>
         </li>
     {% else %}
-        <li role="presentation">
+        <li role="presentation" class="nav-item">
             <a role="menuitem" href="{{ path('sign_up') }}">
                 <i class="fa fa-user" aria-hidden="true"></i> {% trans %}sign_up{% endtrans %}
             </a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="nav-item">
             <a role="menuitem" href="{{ path('login') }}">
                 <span class="glyphicon glyphicon-log-in"></span> {% trans %}login{% endtrans %}
             </a>
@@ -63,7 +63,7 @@
 
 
 {% block navigation_block %}
-<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
