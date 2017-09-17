@@ -1,5 +1,4 @@
 <?php
-
     /**
      * Notepad.
      * Copyright (C) 2017 Nicolas GILLE
@@ -17,6 +16,7 @@
      * You should have received a copy of the GNU General Public License
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
+
     declare(strict_types=1);
 
     namespace Notepad\Dao;
@@ -160,7 +160,7 @@
          * @since 1.2
          * @version 1.0
          */
-        public function findAllArchives() : array {
+        public function findAllArchives(): array {
             // Create SQL request.
             $sql = 'SELECT * FROM np_tickets WHERE ticket_is_archive = TRUE ORDER BY fk_label_id ASC, ticket_id DESC';
 
@@ -193,7 +193,7 @@
          * @since 1.2
          * @version 1.0
          */
-        public function findAllStarred() : array {
+        public function findAllStarred(): array {
             // Create SQL request.
             $sql = 'SELECT * FROM np_tickets WHERE ticket_is_star = TRUE ORDER BY fk_label_id ASC, ticket_id DESC';
 

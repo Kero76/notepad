@@ -54,6 +54,12 @@
             $tickets = $app['dao.ticket']->findAll();
             $labels = $app['dao.label']->findAll();
 
+            // Get number of ticket for each label and create array stats with number.
+            $stats = array();
+            foreach ($labels as $label) {
+                $stats[$label->getId()] = $app['dao.ticket']->countTicketByLabel($label->getId());
+            }
+
             // Set the layout use to render page.
             $layout = 'tickets/home.html.twig';
             $website = SetUp::setUpWebsite();
@@ -66,6 +72,7 @@
                 array(
                     'tickets' => $tickets,
                     'labels' => $labels,
+                    'stats' => $stats,
                     'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,

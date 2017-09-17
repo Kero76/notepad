@@ -27,6 +27,7 @@
                 {% endif %}
                 <a href="#{{ label.title|lower|replace({' ' : '_'}) }}" data-toggle="tab">
                     {{ label.title|capitalize }}
+                    <span class="badge">{{ stats[label.id] }}</span>
                 </a>
                 </li>
             {% endfor %}
