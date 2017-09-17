@@ -23,7 +23,6 @@
 
     use DateTime;
     use Notepad\Entity\Label;
-    use Notepad\Entity\Settings;
     use Notepad\Entity\Ticket;
     use Notepad\Form\TicketType;
     use Notepad\Utils\SetUp;
@@ -31,14 +30,53 @@
     use Symfony\Component\HttpFoundation\Request;
 
     /**
-     * Class AdminController.
+     * Class TicketController.
      *
      * @author Nicolas GILLE
      * @package Notepad\Controller
-     * @since 0.1
-     * @version 1.3
+     * @since 0.6
+     * @version 1.0
      */
-    class AdminController {
+    class TicketController {
+
+        /**
+         * Get specific ticket on the app.
+         *
+         * @param \Silex\Application $app
+         *  Silex application.
+         * @param int $id
+         *  Id of the ticket at displayed.
+         *
+         * @return mixed
+         *  Twig render page.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function ticketAction(Application $app, int $id) {
+            // Set the TicketDao with an instance of LabelDao to build tickets.
+            $app['dao.ticket']->setLabelDao($app['dao.label']);
+
+            // Get ticket.
+            $ticket = $app['dao.ticket']->find($id);
+
+            // Set the layout use to render the page.
+            $layout = 'tickets/ticket.html.twig';
+            $website = SetUp::setUpWebsite();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
+
+            // Return the page render by Twig.
+            return $app['twig']->render(
+                $layout,
+                array(
+                    'ticket' => $ticket,
+                    'website' => $website,
+                    'gravatar' => $gravatar,
+                    'theme' => $theme,
+                )
+            );
+        }
+
 
         /**
          * Get the form to add ticket render by twig with specific layout.
@@ -51,7 +89,7 @@
          * @return mixed
          *  Twig render page.
          * @since 1.0
-         * @version 1.2
+         * @version 1.0
          */
         public function addTicketAction(Application $app, Request $request) {
             // Instantiate a Ticket hydrate by the data get from the form (currently with initial constructor).
@@ -140,8 +178,8 @@
          *
          * @return mixed
          *  Twig render page.
-         * @since 1.1
-         * @version 1.2
+         * @since 1.0
+         * @version 1.0
          */
         public function editTicketAction(Application $app, int $id, Request $request) {
             // Instantiate a Ticket hydrate by the data get from the dao.
@@ -227,8 +265,8 @@
          *
          * @return mixed
          *  Twig render page.
-         * @since 1.1
-         * @version 1.1
+         * @since 1.0
+         * @version 1.0
          */
         public function deleteTicketAction(Application $app, int $id) {
             // Get ticket to check if he's mark as archive.
@@ -263,7 +301,7 @@
          *
          * @return mixed
          *  Redirect user on home page.
-         * @since 1.2
+         * @since 1.0
          * @version 1.0
          */
         public function toggleStarAction(Application $app, int $id) {
@@ -296,8 +334,8 @@
          *  Silex application.
          *
          * @access private
-         * @since 1.1
-         * @version 1.1
+         * @since 1.0
+         * @version 1.0
          */
         private function removeUselessLabel(Application $app) {
             // Get all labels
@@ -319,4 +357,5 @@
                 }
             }
         }
+
     }

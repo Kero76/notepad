@@ -24,7 +24,7 @@
         ->bind('home');
 
     // Ticket page..
-    $app->match('/ticket/{id}', 'Notepad\Controller\HomeController::ticketAction')
+    $app->match('/ticket/{id}', 'Notepad\Controller\TicketController::ticketAction')
         ->bind('ticket');
 
     // Archives pages.
@@ -36,25 +36,25 @@
         ->bind('stars');
 
     // Login
-    $app->match('/login', 'Notepad\Controller\HomeController::loginAction')
+    $app->match('/login', 'Notepad\Controller\UserController::loginAction')
         ->bind('login');
 
     // Sign in
-    $app->match('/sign_up', 'Notepad\Controller\HomeController::signUpAction')
-        ->bind('sign_up');
+    $app->match('/sign-up', 'Notepad\Controller\UserController::signUpAction')
+        ->bind('sign-up');
 
     // Add ticket
-    $app->match('/admin/add-ticket', 'Notepad\Controller\AdminController::addTicketAction')
+    $app->match('/admin/add-ticket', 'Notepad\Controller\TicketController::addTicketAction')
         ->bind('add-ticket');
 
     // Update ticket
-    $app->match('/admin/edit-ticket/{id}', 'Notepad\Controller\AdminController::editTicketAction')
+    $app->match('/admin/edit-ticket/{id}', 'Notepad\Controller\TicketController::editTicketAction')
         ->bind('edit-ticket');
 
     // Delete ticket
-    $app->match('/admin/delete-ticket/{id}', 'Notepad\Controller\AdminController::deleteTicketAction')
+    $app->match('/admin/delete-ticket/{id}', 'Notepad\Controller\TicketController::deleteTicketAction')
         ->bind('delete-ticket');
 
     // Toggle star.
-    $app->match('/admin/toggle-stars/{id}', 'Notepad\Controller\AdminController::toggleStarAction')
+    $app->match('/admin/toggle-stars/{id}', 'Notepad\Controller\TicketController::toggleStarAction')
         ->bind('toggle-star');
