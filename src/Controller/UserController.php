@@ -1,28 +1,23 @@
 <?php
-/**
- * Notepad.
- * Copyright (C) 2017 Nicolas GILLE
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
     /**
-     * Created by PhpStorm.
-     * User: Kero76
-     * Date: 17/09/17
-     * Time: 16:36
+     * Notepad.
+     * Copyright (C) 2017 Nicolas GILLE
+     *
+     * This program is free software: you can redistribute it and/or modify
+     * it under the terms of the GNU General Public License as published by
+     * the Free Software Foundation, either version 3 of the License, or
+     * (at your option) any later version.
+     *
+     * This program is distributed in the hope that it will be useful,
+     * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     * GNU General Public License for more details.
+     *
+     * You should have received a copy of the GNU General Public License
+     * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
+
+    declare(strict_types=1);
 
     namespace Notepad\Controller;
 
@@ -42,7 +37,6 @@
      * @version 1.0
      */
     class UserController {
-
 
         /**
          * Login page.
@@ -141,6 +135,41 @@
                     'error' => $app['security.last_error']($request),
                     'last_username' => $app['session']->get('_security.last_username'),
                     'sign_up_form' => $signUpFormView,
+                    'website' => $website,
+                    'gravatar' => $gravatar,
+                    'theme' => $theme,
+                )
+            );
+        }
+
+        /**
+         * Get user profile.
+         *
+         * @param \Silex\Application $app
+         *  Silex Application.
+         * @param int $id
+         *  Id of the user.
+         *
+         * @since 1.0
+         * @version 1.0
+         */
+        public function userProfileAction(Application $app, int $id) {
+            // Get user info.
+            $user = $app['dao.user']->find($id);
+
+            // Set up all necessary object to render view.
+            $layout = 'users/user.html.twig';
+            $website = SetUp::setUpWebsite();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
+            $gravatarProfile = SetUp::setUpGravatar();
+            $gravatarProfile->setSize(256);
+
+            return $app['twig']->render(
+                $layout,
+                array(
+                    'user' => $user,
+                    'gravatar_profile' => $gravatarProfile,
                     'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,

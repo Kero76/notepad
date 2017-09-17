@@ -11,6 +11,7 @@ star: Favoris
 sign_up_title: Inscription
 add_ticket_title: Nouvelle Note
 edit_ticket_title: Mettre à jour la Note
+user_profile_title: Profil utilisateur
 
 # Body content
 release_date: Ecrit le

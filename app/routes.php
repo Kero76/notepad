@@ -19,13 +19,12 @@
 
     declare(strict_types=1);
 
+    /*
+     * Homepage Route section.
+     */
     // Homepage.
     $app->match('/', 'Notepad\Controller\HomeController::homeAction')
         ->bind('home');
-
-    // Ticket page..
-    $app->match('/ticket/{id}', 'Notepad\Controller\TicketController::ticketAction')
-        ->bind('ticket');
 
     // Archives pages.
     $app->get('/archives', 'Notepad\Controller\HomeController::archivesAction')
@@ -35,6 +34,9 @@
     $app->get('/stars', 'Notepad\Controller\HomeController::starsAction')
         ->bind('stars');
 
+    /*
+     * User route section.
+     */
     // Login
     $app->match('/login', 'Notepad\Controller\UserController::loginAction')
         ->bind('login');
@@ -42,6 +44,17 @@
     // Sign in
     $app->match('/sign-up', 'Notepad\Controller\UserController::signUpAction')
         ->bind('sign-up');
+
+    // Profile
+    $app->get('/profile/{id}', 'Notepad\Controller\UserController::userProfileAction')
+        ->bind('profile');
+
+    /*
+     * Ticket Route section.
+     */
+    // Ticket page..
+    $app->match('/ticket/{id}', 'Notepad\Controller\TicketController::ticketAction')
+        ->bind('ticket');
 
     // Add ticket
     $app->match('/admin/add-ticket', 'Notepad\Controller\TicketController::addTicketAction')
