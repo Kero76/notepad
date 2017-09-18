@@ -21,6 +21,8 @@
 
     namespace Notepad\Entity;
 
+    use DateTime;
+
     /**
      * Class Website
      *
@@ -50,19 +52,37 @@
         private $truncate;
 
         /**
+         * @var string
+         * @since 1.0
+         */
+        private $releaseYear;
+
+        /**
+         * @var string
+         * @since 1.0
+         */
+        private $currentYear;
+
+        /**
          * Website constructor.
          *
          * @param string $separator
          * @param bool $debug
          * @param int $truncate
+         * @param string $releaseYear
          *
          * @since 1.0
          * @version 1.0
          */
-        public function __construct(string $separator, bool $debug, int $truncate) {
+        public function __construct(string $separator, bool $debug, int $truncate, string $releaseYear) {
             $this->separator = $separator;
             $this->debug = $debug;
             $this->truncate = $truncate;
+            $this->releaseYear = $releaseYear;
+
+            // Get current date.
+            $currentYear = new DateTime();
+            $this->currentYear = $currentYear->format('Y');
         }
 
         /**
@@ -76,6 +96,7 @@
 
         /**
          * @param string $separator
+         *
          * @since 1.0
          * @version 1.0
          */
@@ -94,6 +115,7 @@
 
         /**
          * @param bool $debug
+         *
          * @since 1.0
          * @version 1.0
          */
@@ -112,10 +134,39 @@
 
         /**
          * @param int $truncate
+         *
          * @since 1.0
          * @version 1.0
          */
         public function setTruncate(int $truncate) {
             $this->truncate = $truncate;
+        }
+
+        /**
+         * @return string
+         * @since 1.0
+         * @version 1.0
+         */
+        public function getReleaseYear(): string {
+            return $this->releaseYear;
+        }
+
+        /**
+         * @param string $releaseYear
+         *
+         * @since 1.0
+         * @version 1.0
+         */
+        public function setReleaseYear(string $releaseYear) {
+            $this->releaseYear = $releaseYear;
+        }
+
+        /**
+         * @return string
+         * @since 1.0
+         * @version 1.0
+         */
+        public function getCurrentYear(): string {
+            return $this->currentYear;
         }
     }

@@ -2,6 +2,7 @@ website:
   title_separator: "|"
   debug: false
   truncate: 255
+  release_year: "2017"
 
 theme:
   name: ""

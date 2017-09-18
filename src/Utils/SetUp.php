@@ -85,7 +85,8 @@
             return new Website(
                 $settings->getWebsiteTitleSeparator(),
                 $settings->isWebsiteDebug(),
-                $settings->getWebsiteTruncate()
+                $settings->getWebsiteTruncate(),
+                $settings->getWebsiteReleaseYear()
             );
         }
     }

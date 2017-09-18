@@ -67,6 +67,12 @@
          * @var string
          * @since 1.1
          */
+        private $websiteReleaseYear;
+
+        /**
+         * @var string
+         * @since 1.1
+         */
         private $themeName;
 
         /**
@@ -122,6 +128,7 @@
             $this->websiteDebug = $settings['website']['debug'];
             $this->websiteTruncate = $settings['website']['truncate'];
             $this->websiteTitleSeparator = $settings['website']['title_separator'];
+            $this->websiteReleaseYear = $settings['website']['release_year'];
 
             $this->themeName = $settings['theme']['name'];
             $this->themeLink = $settings['theme']['link'];
@@ -206,6 +213,25 @@
          */
         public function setWebsiteTitleSeparator(string $websiteTitleSeparator) {
             $this->websiteTitleSeparator = $websiteTitleSeparator;
+        }
+
+        /**
+         * @return string
+         * @since 1.1
+         * @version 1.0
+         */
+        public function getWebsiteReleaseYear(): string {
+            return $this->websiteReleaseYear;
+        }
+
+        /**
+         * @param string $websiteReleaseYear
+         *
+         * @since 1.1
+         * @version 1.0
+         */
+        public function setWebsiteReleaseYear(string $websiteReleaseYear) {
+            $this->websiteReleaseYear = $websiteReleaseYear;
         }
 
         /**
