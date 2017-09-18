@@ -16,6 +16,7 @@
      * You should have received a copy of the GNU General Public License
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
+
     declare(strict_types=1);
 
     namespace Notepad\Dao;
@@ -42,6 +43,10 @@
                 'usr_password' => $user->getPassword(),
                 'usr_salt' => $user->getSalt(),
                 'usr_role' => $user->getRole(),
+                'usr_biography' => $user->getBiography(),
+                'usr_website' => $user->getWebsite(),
+                'usr_twitter' => $user->getTwitter(),
+                'usr_goodreads' => $user->getGoodreads(),
             );
             // Update user previously register on system.
             if ($user->getId() !== -1) {
@@ -141,6 +146,10 @@
             $user->setPassword($data['usr_password']);
             $user->setSalt($data['usr_salt']);
             $user->setRole($data['usr_role']);
+            $user->setBiography($data['usr_biography']);
+            $user->setWebsite($data['usr_website']);
+            $user->setTwitter($data['usr_twitter']);
+            $user->setGoodreads($data['usr_goodreads']);
 
             return $user;
         }

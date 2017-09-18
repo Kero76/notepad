@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{# Bootstrap theme. #}
+{% form_theme user_form with ['bootstrap_3_horizontal_layout.html.twig','fields.html.twig'] %}
+
+
+{# Title of the page. #}
+{% block title %}
+    {% trans %}user_edit_title{% endtrans %}
+{% endblock %}
+
+
+{# Block content. #}
+{% block content %}
+    <section class="row">
+        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <h2 class="text-center">{{ block('title') }}</h2>
+            <div class="well">
+                {{ form_start(user_form, {
+                    'attr' : {
+                        'role' : 'form',
+                    }
+                }) }}
+
+                {# Ticket block. #}
+                <fieldset>
+                    <legend class="col-md-10 col-sm-11 col-xs-11 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
+                        {% trans %}ticket_information{% endtrans %}
+                    </legend>
+                    {{ form_row(user_form.username) }}
+                    {{ form_widget(user_form.username) }}
+
+                    {{ form_row(user_form.email) }}
+                    {{ form_widget(user_form.email) }}
+
+                    {{ form_row(user_form.website) }}
+                    {{ form_widget(user_form.website) }}
+
+                    {{ form_row(user_form.twitter) }}
+                    {{ form_widget(user_form.twitter) }}
+
+                    {{ form_row(user_form.goodreads) }}
+                    {{ form_widget(user_form.goodreads) }}
+
+                    {{ form_row(user_form.biography) }}
+                    {{ form_widget(user_form.biography) }}
+                </fieldset>
+
+                {# Submit #}
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                        <button type="submit" class="btn btn-default btn-primary">
+                            <span class="glyphicon glyphicon-save"></span> {% trans %}update_user{% endtrans %}
+                        </button>
+                        <button type="reset" class="btn btn-default btn-danger">
+                            <span class="glyphicon glyphicon-erase"></span> {% trans %}clean_form{% endtrans %}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(user_form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{# Load new script. #}
+{% block extends_javascript_block %}
+    {% if website.debug == true %}
+        <script type="text/javascript" src="{{ asset('../vendor/tinymce/tinymce/tinymce.js') }}"></script>
+    {% else %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.6/tinymce.min.js"
+                integrity="sha256-XSa07kJ61pc+fHQ1EZNXAMSj8n8ZoEPovGv2Z692Cxk=" crossorigin="anonymous"></script>
+    {% endif %}
+    <script type="text/javascript" src="{{ asset('../web/js/tinymce.js') }}"></script>
+{% endblock extends_javascript_block %}

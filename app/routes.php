@@ -49,6 +49,10 @@
     $app->get('/profile/{id}', 'Notepad\Controller\UserController::userProfileAction')
         ->bind('profile');
 
+    // Profile
+    $app->match('/edit-user/{id}', 'Notepad\Controller\UserController::userProfileEditAction')
+        ->bind('edit-user');
+
     /*
      * Ticket Route section.
      */

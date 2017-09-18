@@ -7,18 +7,55 @@
 {% endblock title %}
 
 
+{# Admin buttons #}
+{% block admin_user_block %}
+    <button type="button" class="btn btn-primary btn-sm" title="{% trans %}edit{% endtrans %}">
+        <a href="{{ path('edit-user', {'id' : user.id }) }}">
+            <span class="glyphicon glyphicon-edit white-text"></span>
+        </a>
+    </button>
+{% endblock admin_user_block %}
+
+
 {% block content %}
     <section class="row">
-        {# Gravatar's section #}
-        <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+        <aside id="user_information" class="col-md-2 col-sm-2 col-xs-2 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            {# Gravatar's section #}
             <img alt="{{ app.user.username }}'s avatar" src="{{ gravatar_profile.uri(app.user.email) }}">
-        </div>
+
+            {# Other information section #}
+            <ul class="list-unstyled">
+                <li>
+                    <span class="fa fa-envelope fa-fw"></span>
+                    <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+                </li>
+                <li>
+                    <span class="fa fa-link fa-fw"></span>
+                    <a href="{{ user.website }}">{{ user.website }}</a>
+                </li>
+                <li>
+                    <span class="fa fa-twitter fa-fw"></span>
+                    <a href="https://twitter.com/{{ user.twitter }}">{{ user.twitter }}</a>
+                </li>
+                <li>
+                    <img class="icon" src="{{ asset('images/goodreads-icon.png') }}">
+                    <a href="https://www.goodreads.com/{{ user.goodreads }}">{{ user.goodreads }}</a>
+                </li>
+            </ul>
+        </aside>
 
         {# Username section #}
         <div class="col-md-7 col-sm-7 col-xs-7">
-            <h1>{{ user.username}}</h1>
+            <h1>
+                {{ user.username }}
+                {{ block('admin_user_block') }}
+            </h1>
             <p>
-
+            {% if user.biography is not empty %}
+                {{ user.biography }}
+            {% else %}
+                {% trans %}no_biography_found{% endtrans %}
+            {% endif %}
             </p>
         </div>
     </section>

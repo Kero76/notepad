@@ -1,5 +1,4 @@
 <?php
-
     /**
      * Notepad.
      * Copyright (C) 2017 Nicolas GILLE
@@ -17,6 +16,7 @@
      * You should have received a copy of the GNU General Public License
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
+
     declare(strict_types=1);
 
     namespace Notepad\Entity;
@@ -29,7 +29,7 @@
      * @author Nicolas GILLE
      * @package Notepad\Entity
      * @since 0.1
-     * @version 1.0
+     * @version 1.1
      */
     class User implements UserInterface {
 
@@ -37,6 +37,7 @@
          * Identifier of the user.
          *
          * @var integer
+         * @since 1.0
          */
         private $id = -1;
 
@@ -44,29 +45,33 @@
          * Username of the user.
          *
          * @var string
+         * @since 1.0
          */
-        private $username = "";
+        private $username = '';
 
         /**
          * Email of the user.
          *
          * @var string
+         * @since 1.0
          */
-        private $email = "";
+        private $email = '';
 
         /**
          * Password of the user.
          *
          * @var string
+         * @since 1.0
          */
-        private $password = "";
+        private $password = '';
 
         /**
          * Salt to improve security of the app.
          *
          * @var string
+         * @since 1.0
          */
-        private $salt = "";
+        private $salt = '';
 
         /**
          * Role of the user :
@@ -76,8 +81,39 @@
          * </ul>
          *
          * @var string
+         * @since 1.0
          */
-        private $role = "";
+        private $role = '';
+
+        /**
+         * @var string
+         * @since 1.1
+         */
+        private $biography = '';
+
+        /**
+         * Link for personal website.
+         *
+         * @var string
+         * @since 1.1
+         */
+        private $website = '';
+
+        /**
+         * Twitter username.
+         *
+         * @var string
+         * @since 1.1
+         */
+        private $twitter = '';
+
+        /**
+         * GoodReads username.
+         *
+         * @var string
+         * @since 1.1
+         */
+        private $goodreads = '';
 
         /**
          * Return the id of the user.
@@ -227,4 +263,81 @@
         public function setUsername(string $username) {
             $this->username = $username;
         }
+
+        /**
+         * @return string
+         * @since 1.1
+         * @version 1.0
+         */
+        public function getBiography(): string {
+            return $this->biography;
+        }
+
+        /**
+         * @param string $biography
+         *
+         * @since 1.1
+         * @version 1.0
+         */
+        public function setBiography(string $biography) {
+            $this->biography = $biography;
+        }
+
+        /**
+         * @return string
+         * @since 1.1
+         * @version 1.0
+         */
+        public function getWebsite(): string {
+            return $this->website;
+        }
+
+        /**
+         * @param string $website
+         *
+         * @since 1.1
+         * @version 1.0
+         */
+        public function setWebsite(string $website) {
+            $this->website = $website;
+        }
+
+        /**
+         * @return string
+         * @since 1.1
+         * @version 1.0
+         */
+        public function getTwitter(): string {
+            return $this->twitter;
+        }
+
+        /**
+         * @param string $twitter
+         *
+         * @since 1.1
+         * @version 1.0
+         */
+        public function setTwitter(string $twitter) {
+            $this->twitter = $twitter;
+        }
+
+        /**
+         * @return string
+         * @since 1.1
+         * @version 1.0
+         */
+        public function getGoodreads() : string {
+            return $this->goodreads;
+        }
+
+        /**
+         * @param string $goodreads
+         *
+         * @since 1.1
+         * @version 1.0
+         */
+        public function setGoodreads(string $goodreads) {
+            $this->goodreads = $goodreads;
+        }
+
     }

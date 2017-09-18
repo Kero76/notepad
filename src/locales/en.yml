@@ -12,6 +12,7 @@ sign_up_title: Sign up
 add_ticket_title: Add Ticket
 edit_ticket_title: Edit Ticket
 user_profile_title: User Profile
+user_edit_title: User Profile Edit
 
 # Body content
 release_date: Release on
@@ -26,6 +27,7 @@ no_ticket_found: No ticket found
 yes: Yes
 no: No
 read_more: Read more ...
+no_biography_found: No biography found for the user.
 
 # Flashbag content section
 ticket_creation: The ticket was successfully created.
@@ -37,12 +39,19 @@ label_delete: The label was successfully deleted.
 sign_up_success: Sign up successfully.
 log_in_success: Sign up successfully.
 ticket_no_deleted: The ticket cannot be deleted.
+user_update: User profile was successfully updated.
 
 # Form section
 login_title: Login
 login_fail_error: Login failed!
 sign_up_fail_error: Sign up failed!
 clean_form: Clean form
+ticket_information: Ticket Information
+label_information: Label Information
+save_ticket: Save ticket
+update_user: Update user
+
+## Label section
 username_label: Username
 password_label: Password
 repeat_password_label: Repeat password
@@ -51,9 +60,14 @@ email_label: Email
 content_label: Content
 is_archive_label: Mark as archive
 is_star_label: Mark as favorite
-ticket_information: Ticket Information
-label_information: Label Information
-save_ticket: Save ticket
+username_label: Username
+email_label: Email
+website_label: Personnal Website
+twitter_label: Twitter username
+goodreads_label:  GoodReads username
+biography_label: Biography
+
+## Placeholder section
 username_placeholder: Enter your username
 password_placeholder: Enter your password
 

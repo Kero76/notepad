@@ -23,6 +23,7 @@
 
     use Notepad\Entity\User;
     use Notepad\Form\SignUpType;
+    use Notepad\Form\UserType;
     use Notepad\Utils\SetUp;
     use Silex\Application;
     use Symfony\Component\HttpFoundation\Request;
@@ -163,13 +164,65 @@
             $gravatar = SetUp::setUpGravatar();
             $theme = SetUp::setUpTheme();
             $gravatarProfile = SetUp::setUpGravatar();
-            $gravatarProfile->setSize(256);
+            $gravatarProfile->setSize(128);
 
             return $app['twig']->render(
                 $layout,
                 array(
                     'user' => $user,
                     'gravatar_profile' => $gravatarProfile,
+                    'website' => $website,
+                    'gravatar' => $gravatar,
+                    'theme' => $theme,
+                )
+            );
+        }
+
+        /**
+         * Edit user profile.
+         *
+         * @param \Silex\Application $app
+         *  Silex Application.
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         *  Request who contains user information.
+         * @param int $id
+         *  Id of the user.
+         *
+         * @return mixed
+         *  The form render or redirect user on homepage.
+         * @since 1.0
+         * @version 1.0
+         */
+        public function userProfileEditAction(Application $app, Request $request, int $id) {
+            // Get user with id and create user form.
+            $user = $app['dao.user']->find($id);
+            $userForm = $app['form.factory']->create(UserType::class, $user);
+
+            // User try to update information.
+            $userForm->handleRequest($request);
+            if ($userForm->isSubmitted() && $userForm->isValid()) {
+                // Update user on Database.
+                $app['dao.user']->save($user);
+
+                // and add flashbag to show the action was a success.
+                $app['session']->getFlashbag()
+                               ->add('success', $app['translator']->trans('user_update'));
+
+                // Finally, it redirect the user on home page.
+                return $app->redirect($app['url_generator']->generate('home'));
+            }
+
+            // Generate the view of the update user form.
+            $userFormView = $userForm->createView();
+            $layout = 'forms/form-user.html.twig';
+            $website = SetUp::setUpWebsite();
+            $gravatar = SetUp::setUpGravatar();
+            $theme = SetUp::setUpTheme();
+
+            return $app['twig']->render(
+                $layout,
+                array(
+                    'user_form' => $userFormView,
                     'website' => $website,
                     'gravatar' => $gravatar,
                     'theme' => $theme,

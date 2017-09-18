@@ -32,6 +32,12 @@ fieldset {
     padding-left: 150px;
 }
 
+/* Icon format for goodreads icon on user profile. */
+.icon {
+    width: 16px;
+    height: 16px;
+}
+
 #ticket-tab-content {
     padding-bottom: 10px;
 }

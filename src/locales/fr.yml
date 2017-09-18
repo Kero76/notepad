@@ -12,6 +12,7 @@ sign_up_title: Inscription
 add_ticket_title: Nouvelle Note
 edit_ticket_title: Mettre à jour la Note
 user_profile_title: Profil utilisateur
+user_edit_title: Mise à jour du profil
 
 # Body content
 release_date: Ecrit le
@@ -26,6 +27,7 @@ no_ticket_found: Aucune note trouvée.
 yes: Oui
 no: Non
 read_more: Voir tout ...
+no_biography_found: L'utilisateur n'a fourni aucune biographie.
 
 # Flashbag content section
 ticket_creation: La note a été créée avec succès.
@@ -37,12 +39,19 @@ label_delete: La catégorie a été supprimée avec succès.
 sign_up_success: Inscription réalisée avec succès.
 log_in_success: Connexion réalisée avec succès.
 ticket_no_deleted: La note ne peut être supprimée.
+user_update: Le profil utilisateur à été mis à jour avec succès.
 
 # Form section
 login_title: Connexion
 login_fail_error: Erreur de connexion !
 sign_up_fail_error: Erreur d'inscription!
 clean_form: Effacer les données
+ticket_information: Informations
+label_information: Catégorie
+save_ticket: Sauvegarder la Note
+update_user: Mettre à jour l'utilisateur
+
+## Label section
 username_label: Nom d'utilisateur
 password_label: Mot de passe
 repeat_password_label: Répéter le mot de passe
@@ -51,9 +60,14 @@ email_label: Email
 content_label: Contenu
 is_archive_label: Archiver la note
 is_star_label: Marquer comme favori
-ticket_information: Informations
-label_information: Catégorie
-save_ticket: Sauvegarder la Note
+username_label: Nom d'utilisateur
+email_label: Email
+website_label: Site personnel
+twitter_label: Nom d'utilisateur sur Twitter
+goodreads_label:  Nom d'utilisateur sur GoodReads
+biography_label: Biographie
+
+## Placeholder section
 username_placeholder: Entrer votre nom d'utilisateur
 password_placeholder: Entrer votre mot de passe
 
