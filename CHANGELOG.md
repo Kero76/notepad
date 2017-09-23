@@ -1,5 +1,18 @@
 # Changelog
 
+## Notepad v0.6 - Released September 23, 2017
+### Features
+- Add flashbag on sign up and sign in action.
+- Add autologin after registration.
+- Add theme feature.
+- Add gravatar feature.
+- Add user profile information.
+- Prevent archived ticket deletion.
+- Update style.  
+
+### Bugs Fixed
+- Fix empty section sentence.
+
 ## Notepad v0.5 - Released September 07, 2017
 ### Features
 - Add specific layout for archive and favorite ticket.
