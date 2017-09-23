@@ -23,4 +23,4 @@
     require __DIR__ . '/prod.php';
 
     // Debug mode
-    $app['debug'] = true;
+    $app['debug'] = \Notepad\Utils\SetUp::setUpWebsite()->isDebug();
