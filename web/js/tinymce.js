@@ -27,7 +27,7 @@ function init_tinyMCE(selector, height) {
     tinymce.init({
         selector: selector,
         height: height,
-        plugins: 'autolink anchor codesample hr link lists preview searchreplace textcolor visualblocks wordcount',
+        plugins: 'autolink anchor codesample hr link lists preview searchreplace textcolor visualblocks wordcount textpattern',
         toolbar1: 'bold italic underline | cut, copy, paste | link codesample | bullist numlist | undo redo',
         style_formats: [
             { title: 'Headers', items: [
@@ -56,6 +56,21 @@ function init_tinyMCE(selector, height) {
         end_container_on_empty_block: false,
         content_css: [
             '//www.tinymce.com/css/codepen.min.css'
+        ],
+        textpattern_patterns: [
+            {start: '*', end: '*', format: 'italic'},
+            {start: '**', end: '**', format: 'bold'},
+            {start: '_', end: '_', format: 'italic'},
+            {start: '__', end: '__', format: 'bold'},
+            {start: '#', format: 'h1'},
+            {start: '##', format: 'h2'},
+            {start: '###', format: 'h3'},
+            {start: '####', format: 'h4'},
+            {start: '#####', format: 'h5'},
+            {start: '######', format: 'h6'},
+            {start: '1. ', cmd: 'InsertOrderedList'},
+            {start: '* ', cmd: 'InsertUnorderedList'},
+            {start: '- ', cmd: 'InsertUnorderedList'}
         ],
     });
 }
